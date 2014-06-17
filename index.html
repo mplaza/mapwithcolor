@@ -112,18 +112,23 @@ var div = d3.select("body").append("div")
 
 function mouseover() {
   d3.select(this).style("fill", "#F08080");
-
+  div.transition()
+      .duration(500)
+      .style("opacity", 1);
 }
 
-function mousemove() {
+function mousemove(d) {
   div
-      .text(d3.event.pageX + ", " + d3.event.pageY)
+      .text(d.properties.name)
       .style("left", (d3.event.pageX - 34) + "px")
       .style("top", (d3.event.pageY - 12) + "px");
 }
 
 function mouseout() {
   d3.select(this).style("fill", "#808080");
+  div.transition()
+      .duration(500)
+      .style("opacity", 1e-6);
 
 }
     function zoom(xyz) {
