@@ -1,44 +1,40 @@
- #map {
-      background-color: #fff;
-      border: 1px solid #ccc;
-    }
-    .background {
-      fill: none;
-      pointer-events: all;
-    }
-    #countries {
-      stroke: grey;
-      stroke-linejoin: round;
-      stroke-linecap: round;
-    }
+#map {
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+.background {
+  fill: none;
+  pointer-events: all;
+}
+#countries {
+  stroke: grey;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+#selected {
+  fill: #CD3333;
+  stroke: #fff;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
 
-    #selected {
-      fill: #CD3333;
-      stroke: #fff;
-      stroke-linejoin: round;
-      stroke-linecap: round;
+#countries .active, #states .active {
+  fill: #89a;
+}
 
-    }
+div.tooltip {
+  background-color: rgba(0,0,0,0.7);
+  color: white;
+  border-radius: 5px;
+  padding: 6px;
+  position: absolute;
+  font: 12px sans-serif;
+  font-weight: bolder;
+  pointer-events: none;
+}
 
-    #countries .active, #states .active {
-      fill: #89a;
-    }
-
-  div.tooltip {
-    position: absolute;
-    text-align: center;
-    width: 300px;
-    height: 100px;
-    padding: 8px;
-    font: 10px sans-serif;
-    background: #ddd;
-    border: solid 1px #aaa;
-    border-radius: 8px;
-    pointer-events: none;
-  }
-
-    pre.prettyprint {
-      border: 1px solid #ccc;
-      margin-bottom: 0;
-      padding: 9.5px;
-    }
+pre.prettyprint {
+  border: 1px solid #ccc;
+  margin-bottom: 0;
+  padding: 9.5px;
+}
