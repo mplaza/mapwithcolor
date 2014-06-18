@@ -12,8 +12,7 @@
       pointer-events: all;
     }
     #countries {
-      fill: #808080;
-      stroke: #fff;
+      stroke: grey;
       stroke-linejoin: round;
       stroke-linecap: round;
     }
@@ -51,6 +50,7 @@
     </style>
     </head>
 <body>
+
 <div id="map"></div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://d3js.org/topojson.v1.min.js"></script>
@@ -69,39 +69,113 @@ var projection = d3.geo.mercator()
 var path = d3.geo.path()
     .projection(projection);
 
+// var color = d3.scale.quantize()
+//                     .range(["#fff7ec","#fee8c8","#fdd49e","#fdbb84","#fc8d59","#ef6548","#d7301f","#b30000","#7f0000"]);
+
+d3.csv("hiv-2010.csv", function(data) {
+
+  //     color.domain([
+  //         d3.min(data, function(d) { return d.HIV; }),
+  //         d3.max(data, function(d) { return d.HIV; })
+  // ]);
+
+d3.json("countries.topo.json", function(error, json) {
+  console.log(json.objects.countries.geometries[1].properties.name)
+
+        if (error) {
+          console.log(error);
+        } else {
+
+          for (var i = 0; i < data.length; i++) {
+
+                //State name
+                var dataState = data[i].country;
+
+                //convert value from string to float
+                var dataValue = parseFloat(data[i].HIV);
+
+
+                  //Corresponding country inside the GeoJSON
+                  for (var j = 0; j < json.objects.countries.geometries.length; j++) {
+                    var jsonState = json.objects.countries.geometries[j].properties.name;
+
+                    if (dataState === jsonState) {
+                        //Copy the data value into the JSON
+                        json.objects.countries.geometries[j].properties.value = dataValue;
+
+                        //Stop looking through the JSON
+                        break;
+
+                  }
+              }
+            }
+        }
+ 
+
 var svg = d3.select("#map").append("svg")
     .attr("preserveAspectRatio", "xMidYMid")
     .attr("viewBox", "0 0 " + width + " " + height)
     .attr("width", m_width)
     .attr("height", m_width * height / width);
 
-  svg.append("rect")
-      .attr("class", "background")
-      .attr("width", width)
-      .attr("height", height)
-      .on("click", country_clicked);
+  // svg.append("rect")
+  //     .attr("class", "background")
+  //     .attr("width", width)
+  //     .attr("height", height)
+  //     .on("click", country_clicked);
 
+svg.append("defs")
+                  .append('pattern')
+                    .attr('id', 'locked2')
+                    .attr('patternUnits', 'userSpaceOnUse')
+                    .attr('width', 2000)
+                    .attr('height', 2000)
+                   .append("image")
+                    .attr("xlink:href", "https://www.icpi.org/sites/default/files/images/muster-k-pattern.jpg")
+                    .attr('width', 2000)
+                    .attr('height', 2000);
 
 var g = svg.append("g");
 
-d3.json("countries.topo.json", function(error, us) {
+// d3.json("countries.topo.json", function(error, us) {
   if (error) return console.error(error);
-  console.log(us);
+
 
 
   g.append("g")
       .attr("id", "countries")
       .selectAll("path")
-      .data(topojson.feature(us, us.objects.countries).features)
+      .data(topojson.feature(json, json.objects.countries).features)
       .enter()
       .append("path")
-      .attr("id", function(d,i){return 'country'+i} )
+      .attr("id", function(d,i){return d.properties.name;} )
       .attr("d", path)
       .on("click", country_clicked)
       .on("mouseover", mouseover)
       .on("mousemove", mousemove)
-      .on("mouseout", mouseout);
-});
+      .on("mouseout", mouseout)
+     .style("fill", function(d) {
+          //Data value
+          var value = d.properties.value;
+          if(value){
+            console.log( "rgba(255,0,0," +  Math.floor(value/30) + ")");
+            return "rgba(255,0,0," +  (value/30) + ")";
+          }
+          else{return "url(#locked2)";}
+
+          
+
+          // if (value) {
+          //         //If value exists…
+          //         return color(value);
+          // } else {
+          //         //If value is undefined…
+          //         return "grey";
+          // }
+
+    });
+  // });
+
 
 var div = d3.select("body").append("div")
     .attr("class", "tooltip")
@@ -152,7 +226,7 @@ function mouseout() {
 
       function country_clicked(d) {
 
-
+        console.log(d)
 
       if (country) {
         // g.selectAll("#" + country.id).style('display', null);
@@ -180,6 +254,21 @@ function mouseout() {
        
       }
     };
+
+     })
+});
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
