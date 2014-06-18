@@ -80,8 +80,7 @@ d3.csv("hiv-2010.csv", function(data) {
   // ]);
 
 d3.json("countries.topo.json", function(error, json) {
-  console.log(json.objects.countries.geometries[1].properties.name)
-
+  
         if (error) {
           console.log(error);
         } else {
@@ -124,21 +123,21 @@ var svg = d3.select("#map").append("svg")
   //     .attr("height", height)
   //     .on("click", country_clicked);
 
-svg.append("defs")
-                  .append('pattern')
-                    .attr('id', 'locked2')
-                    .attr('patternUnits', 'userSpaceOnUse')
-                    .attr('width', 2000)
-                    .attr('height', 2000)
-                   .append("image")
-                    .attr("xlink:href", "https://www.icpi.org/sites/default/files/images/muster-k-pattern.jpg")
-                    .attr('width', 2000)
-                    .attr('height', 2000);
+// svg.append("defs")
+//                   .append('pattern')
+//                     .attr('id', 'locked2')
+//                     .attr('patternUnits', 'userSpaceOnUse')
+//                     .attr('width', 2000)
+//                     .attr('height', 2000)
+//                    .append("image")
+//                     .attr("xlink:href", "background_pattern_1.jpeg")
+//                     .attr('width', 2000)
+//                     .attr('height', 2000);
 
 var g = svg.append("g");
 
 // d3.json("countries.topo.json", function(error, us) {
-  if (error) return console.error(error);
+  // if (error) return console.error(error);
 
 
 
@@ -158,20 +157,10 @@ var g = svg.append("g");
           //Data value
           var value = d.properties.value;
           if(value){
-            console.log( "rgba(255,0,0," +  Math.floor(value/30) + ")");
+            
             return "rgba(255,0,0," +  (value/30) + ")";
           }
-          else{return "url(#locked2)";}
-
-          
-
-          // if (value) {
-          //         //If value exists…
-          //         return color(value);
-          // } else {
-          //         //If value is undefined…
-          //         return "grey";
-          // }
+          else{return "rgba(240,240,230,1)";}
 
     });
   // });
@@ -184,27 +173,37 @@ var div = d3.select("body").append("div")
 
 
 
-function mouseover() {
-  d3.select(this).style("fill", "#F08080");
+function mouseover(d) {
+  var value = d.properties.value;
+  var HIVOppositeColor = "rgba(240,240,230,1)";
+  if(value){
+    HIVOppositeColor =  "rgba(0,255,0," +  (value/30) + ")";
+  };
+   d3.select(this).style("fill", HIVOppositeColor);
   div.transition()
       .duration(500)
       .style("opacity", 1);
-}
+};
 
 function mousemove(d) {
   div
       .text(d.properties.name)
       .style("left", (d3.event.pageX - 34) + "px")
       .style("top", (d3.event.pageY - 12) + "px");
-}
+};
 
-function mouseout() {
-  d3.select(this).style("fill", "#808080");
+function mouseout(d) {
+  var value = d.properties.value;
+  var HIVColor = "rgba(240,240,230,1)";
+  if(value){
+    HIVColor =  "rgba(255,0,0," +  (value/30) + ")";
+  };
+  d3.select(this).style("fill", HIVColor);
   div.transition()
       .duration(500)
       .style("opacity", 1e-6);
 
-}
+};
     function zoom(xyz) {
       g.transition()
         .duration(750)
@@ -226,12 +225,28 @@ function mouseout() {
 
       function country_clicked(d) {
 
-        console.log(d)
+          //Data value
+          var value = d.properties.value;
+          var HIVColor = "rgba(240,240,230,1)";
+          if(value){
+            HIVColor =  "rgba(255,0,0," +  (value/30) + ")";
+          };
+          console.log(HIVColor);
+          var HIVOppositeColor = "rgba(240,240,230,1)";
+          if(value){
+            HIVOppositeColor =  "rgba(0,255,0," +  (value/30) + ")";
+          };
+          console.log(HIVOppositeColor);
+
+
 
       if (country) {
+      
         // g.selectAll("#" + country.id).style('display', null);
-        $('path').css({"fill":"#808080"})
-        console.log(country)
+        $(this).css({"fill":
+          HIVColor });
+        $(this).css({"stroke": "grey"});
+
 
       }
 
@@ -239,8 +254,8 @@ function mouseout() {
         var xyz = get_xyz(d);
         country = d;
         zoom(xyz); 
-        $(this).css({"fill": "#CD3333"});
-        $(this).css({"stroke":"#fff"});
+        $(this).css({"fill": HIVOppositeColor});
+        $(this).css({"stroke":"grey"});
         $(this).css({"stroke-linejoin":"round"});
         $(this).css({"stroke-linecap":"round"});  
         
@@ -250,7 +265,6 @@ function mouseout() {
         var xyz = [width / 2, height / 1.5, 1];
         country = null;
         zoom(xyz);
-        $('path').css({"fill":"#808080"})
        
       }
     };
