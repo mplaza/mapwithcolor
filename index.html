@@ -248,6 +248,8 @@ function mouseout(d) {
         $(this).css({"stroke": "grey"});
 
 
+
+
       }
 
       if (d && country !== d) {
@@ -258,10 +260,16 @@ function mouseout(d) {
         $(this).css({"stroke":"grey"});
         $(this).css({"stroke-linejoin":"round"});
         $(this).css({"stroke-linecap":"round"});  
+
+        console.log(d3.select(this)[0]);
+
+        div.text(value + "%");
+
         
       } 
 
       else {
+
         var xyz = [width / 2, height / 1.5, 1];
         country = null;
         zoom(xyz);
