@@ -177,7 +177,7 @@ app.directive('map', function() {
           var HIVOppositeColor;
 
           if(value) {
-            HIVOppositeColor =  "rgba(0,255,0," +  (value/30) + ")";
+            HIVOppositeColor =  "rgba(0,255,0," +  (value/maxValue) + ")";
           };
 
           d3.select(this).style("fill", "rgba(0,255,100,0.3)");
@@ -209,7 +209,7 @@ app.directive('map', function() {
 
           if(value)
           {
-            HIVColor =  "rgba(255,0,0," +  (value/30) + ")";
+            HIVColor =  "rgba(255,0,0," +  (value/maxValue) + ")";
           };
 
           d3.select(this).style("fill", HIVColor);
@@ -246,11 +246,11 @@ app.directive('map', function() {
           var HIVColor = "url(#no_data)";
           var HIVOppositeColor = "url(#no_data)";
           if(value){
-                HIVColor =  "rgba(255,0,0," +  (value/30) + ")";
+                HIVColor =  "rgba(255,0,0," +  (value/maxValue) + ")";
             };
 
           if(value){
-            HIVOppositeColor =  "rgba(0,255,0," +  (value/30) + ")";
+            HIVOppositeColor =  "rgba(0,255,0," +  (value/maxValue) + ")";
           };
 
 
@@ -295,11 +295,11 @@ app.directive('map', function() {
                 var HIVColor = "url(#no_data)";
                 var HIVOppositeColor = "url(#no_data)";
                 if(value){
-                      HIVColor =  "rgba(255,0,0," +  (value/30) + ")";
+                      HIVColor =  "rgba(255,0,0," +  (value/maxValue) + ")";
                   };
 
                 if(value){
-                  HIVOppositeColor =  "rgba(0,255,0," +  (value/30) + ")";
+                  HIVOppositeColor =  "rgba(0,255,0," +  (value/maxValue) + ")";
                 };
 
                 if (country) {
