@@ -39,3 +39,38 @@ pre.prettyprint {
   margin-bottom: 0;
   padding: 9.5px;
 }
+
+
+slider {
+  position: relative;
+  height: 20px;
+  margin-top: 30px;
+  width: 500px;
+  display: block;
+}
+
+.bar {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: block;
+  background-color: #eee;
+  border-radius: 10px;
+  top: 0;
+}
+
+.pointer {
+  height: 100%;
+  width: 20px;
+  border-radius: 999px;
+  position: absolute;
+  display: block;
+  background: #ccc;
+  top: 0;
+}
+
+.bubble {
+  position: absolute;
+  top: -100%;
+  display: block;
+}
