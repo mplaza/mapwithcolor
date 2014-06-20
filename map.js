@@ -281,9 +281,16 @@ app.directive('map', function() {
             console.log(p);
             for (var j = 0; j < json.objects.countries.geometries.length; j++) {
               var jsonState = json.objects.countries.geometries[j].properties.name;
+              if(country){
+                if (jsonState !== p){
+                  console.log('unmatched ' + jsonState + p);
+                  var xyz = [width / 2, height / 1.5, 1];
+                  country = null;
+                  zoom(xyz);
+                }
+              }
               if(jsonState === p){
                 var d = topojson.feature(json, json.objects.countries).features[j];
-                console.log('it matched!');
                 var value = d.properties[scope.mapYear];
                 var HIVColor = "url(#no_data)";
                 var HIVOppositeColor = "url(#no_data)";
@@ -300,11 +307,11 @@ app.directive('map', function() {
                   $(this).css({"stroke": "grey"});
                 }
                 if (d && country !== d) {
-                  console.log(scope.get_xyz(d));
-                  var xyz = scope.get_xyz(d);
 
-                  country = d;
+                  var xyz = scope.get_xyz(d);
                   zoom(xyz); 
+                 console.log('past zoom');
+                  country = d;
                   // $(this).css({"fill": HIVOppositeColor});
                   $(this).css({"stroke":"grey"});
                   $(this).css({"stroke-linejoin":"round"});
@@ -316,10 +323,10 @@ app.directive('map', function() {
                   zoom(xyz);
                 
                 };
-
+                break;
               };
-            };
 
+            };
         };
 
       })
