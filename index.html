@@ -17,8 +17,12 @@
 
 <input ng-model="filename"/>
 
+Country: <input ng-model="zoomToCountry"/>
 
-<map data="filename" year="year"></map>
+{{zoomToCountry}}
+
+
+<map data="filename" year="year" country="zoomToCountry"></map>
 
 <slider ng-model="year" floor=1990.0 ceiling=2010.0 step=1.0></slider>
 
