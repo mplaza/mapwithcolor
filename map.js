@@ -52,6 +52,7 @@ app.directive('map', function() {
 
         g = svg.append("g")
           .attr("id", "countries")
+          .style("fill", "white")
           .selectAll("path")
           .data(topojson.feature(json, json.objects.countries).features)
           .enter()
@@ -62,6 +63,7 @@ app.directive('map', function() {
           .on("mouseover", mouseOver) 
           .on("mousemove", mouseMove)
           .on("mouseout", mouseOut);
+
 
         // d3.json("countries.topo.json", function(error, us) {
         if (error) return console.error(error);
@@ -365,10 +367,13 @@ app.directive('map', function() {
       scope.updateMap(scope.mapYear);
     }, true); 
 
+    var mapDatasetWatchCount = 0;
     scope.$watch('mapDataset', function(){
-      console.log(scope.mapDataset);
-      // change year loaded to map
-      loadDataset();
+      if (mapDatasetWatchCount > 0) {
+        // change year loaded to map
+        loadDataset();
+      }
+      mapDatasetWatchCount++;
     }, true);
 
     scope.$watch('zoomCountry', function(){
@@ -379,7 +384,7 @@ app.directive('map', function() {
 
     // CALL FUNCTIONS HERE
     createMap();
-    loadDataset();
+   
 
   // END LINK FUNCTION
   };
