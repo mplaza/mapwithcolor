@@ -30,6 +30,7 @@ app.directive('map', function() {
 
     console.log(scope.mapDataset.src);
 
+    // LOAD MAP DATASET
     d3.json(scope.mapDataset.src, function(error, json) {
       if (error) return console.warn(error);
       data = json;
@@ -49,7 +50,7 @@ app.directive('map', function() {
       }
       console.log(maxValue);
   
-
+      // TAKING COUNTRY TOPO DATA AND ADDING MDG DATA TO IT
       d3.json("countries.topo.json", function(error, json) {
         // for (var i = 0; i < json.objects.countries.geometries.length; i++) {
         //   console.log(json.objects.countries.geometries[i].properties.name);
@@ -94,8 +95,6 @@ app.directive('map', function() {
           }
         }
        
-
-
         var svg = d3.select("#map").append("svg")
           .attr("preserveAspectRatio", "xMidYMid")
           .attr("viewBox", "0 0 " + width + " " + height)
@@ -138,23 +137,12 @@ app.directive('map', function() {
             } else {
               return "url(#no_data)";
             }
-
-            // if (value) {
-            //         //If value exists…
-            //         return color(value);
-            // } else {
-            //         //If value is undefined…
-            //         return "grey";
-            // }
           });
 
-
-
- scope.updateMap = function() {
-      g.selectAll("path")
-          .data(topojson.feature(json, json.objects.countries).features)
-        
-          .style("fill", function(d) {
+        scope.updateMap = function() {
+          g.selectAll("path")
+            .data(topojson.feature(json, json.objects.countries).features)
+            .style("fill", function(d) {
             //Data value
             var value = d.properties[scope.mapYear]; 
             if(value) {
@@ -162,20 +150,8 @@ app.directive('map', function() {
             } else {
               return "url(#no_data)";
             }
-
-            // if (value) {
-            //         //If value exists…
-            //         return color(value);
-            // } else {
-            //         //If value is undefined…
-            //         return "grey";
-            // }
           });
- 
-    };
-
-
-
+        };
 
         var div = d3.select("body").append("div")
           .attr("class", "tooltip")
@@ -208,39 +184,38 @@ app.directive('map', function() {
           }
 
           div
-              .html(d.properties.name + "<br/>" + dataString)
-              .style("left", (d3.event.pageX + 10) + "px")
-              .style("top", (d3.event.pageY - 20) + "px");
+            .html(d.properties.name + "<br/>" + dataString)
+            .style("left", (d3.event.pageX + 10) + "px")
+            .style("top", (d3.event.pageY - 20) + "px");
         }
 
         function mouseOut(d) {
           var value = d.properties[scope.mapYear];
           var HIVColor = "url(#no_data)";
 
-          if(value)
-          {
+          if(value) {
             HIVColor =  "rgba(255,0,0," +  (value/maxValue) + ")";
           };
 
           d3.select(this).style("fill", HIVColor);
 
           div.transition()
-          .duration(200)
-          .style("opacity", 1e-6);
+            .duration(200)
+            .style("opacity", 1e-6);
         }
 
         function zoom(xyz) {
           g.transition()
-          .duration(750)
-          .attr("transform", "translate(" + projection.translate() + ")scale(" + xyz[2] + ")translate(-" + xyz[0] + ",-" + xyz[1] + ")")
-          .selectAll(["#countries"])
-          .style("stroke-width", 1.0 / xyz[2] + "px")
-          .selectAll(".city")
-          .attr("d", path.pointRadius(20.0 / xyz[2]));
+            .duration(750)
+            .attr("transform", "translate(" + projection.translate() + ")scale(" + xyz[2] + ")translate(-" + xyz[0] + ",-" + xyz[1] + ")")
+            .selectAll(["#countries"])
+            .style("stroke-width", 1.0 / xyz[2] + "px")
+            .selectAll(".city")
+            .attr("d", path.pointRadius(20.0 / xyz[2]));
         }
 
         scope.get_xyz = function(d) {
-                    var bounds = path.bounds(d);
+          var bounds = path.bounds(d);
 
           var w_scale = (bounds[1][0] - bounds[0][0]) / width;
           var h_scale = (bounds[1][1] - bounds[0][1]) / height;
@@ -254,22 +229,20 @@ app.directive('map', function() {
           var value = d.properties[scope.mapYear];
           var HIVColor = "url(#no_data)";
           var HIVOppositeColor = "url(#no_data)";
-          if(value){
+          if(value) {
                 HIVColor =  "rgba(255,0,0," +  (value/maxValue) + ")";
             };
 
-          if(value){
+          if(value) {
             HIVOppositeColor =  "rgba(0,255,0," +  (value/maxValue) + ")";
           };
 
-
-
-          if (country) {
+          if(country) {
             $(this).css({"fill": HIVColor });
             $(this).css({"stroke": "grey"});
           }
 
-          if (d && country !== d) {
+          if(d && country !== d) {
             var xyz = scope.get_xyz(d);
             country = d;
             zoom(xyz); 
@@ -281,73 +254,73 @@ app.directive('map', function() {
           } else {
             var xyz = [width / 2, height / 1.5, 1];
             country = null;
-            zoom(xyz);
-          
+            zoom(xyz);          
           }
         };
 
-          scope.zoomOnCountry = function(p) {
-            console.log(p);
-            for (var j = 0; j < json.objects.countries.geometries.length; j++) {
-              var jsonState = json.objects.countries.geometries[j].properties.name;
-              if(country){
-                if (jsonState !== p){
-                  console.log('unmatched ' + jsonState + p);
-                  var xyz = [width / 2, height / 1.5, 1];
-                  country = null;
-                  zoom(xyz);
-                }
+        scope.zoomOnCountry = function(p) {
+          console.log(p);
+          for (var j = 0; j < json.objects.countries.geometries.length; j++) {
+            var jsonState = json.objects.countries.geometries[j].properties.name;
+            if(country) {
+              if (jsonState !== p) {
+                console.log('unmatched ' + jsonState + p);
+                var xyz = [width / 2, height / 1.5, 1];
+                country = null;
+                zoom(xyz);
               }
-              if(jsonState === p){
-                var d = topojson.feature(json, json.objects.countries).features[j];
-                var value = d.properties[scope.mapYear];
-                var HIVColor = "url(#no_data)";
-                var HIVOppositeColor = "url(#no_data)";
-                if(value){
-                      HIVColor =  "rgba(255,0,0," +  (value/maxValue) + ")";
-                  };
-
-                if(value){
-                  HIVOppositeColor =  "rgba(0,255,0," +  (value/maxValue) + ")";
-                };
-
-                if (country) {
-                  $(this).css({"fill": HIVColor });
-                  $(this).css({"stroke": "grey"});
-                }
-                if (d && country !== d) {
-
-                  var xyz = scope.get_xyz(d);
-                  zoom(xyz); 
-                 console.log('past zoom');
-                  country = d;
-                  // $(this).css({"fill": HIVOppositeColor});
-                  $(this).css({"stroke":"grey"});
-                  $(this).css({"stroke-linejoin":"round"});
-                  $(this).css({"stroke-linecap":"round"}); 
-                  div.text(value + "%");
-                } else {
-                  var xyz = [width / 2, height / 1.5, 1];
-                  country = null;
-                  zoom(xyz);
-                
-                };
-                break;
+            }
+            if(jsonState === p) {
+              var d = topojson.feature(json, json.objects.countries).features[j];
+              var value = d.properties[scope.mapYear];
+              var HIVColor = "url(#no_data)";
+              var HIVOppositeColor = "url(#no_data)";
+              if(value) {
+                HIVColor =  "rgba(255,0,0," +  (value/maxValue) + ")";
               };
 
+              if(value) {
+                HIVOppositeColor = "rgba(0,255,0," +  (value/maxValue) + ")";
+              };
+
+              if (country) {
+                $(this).css({"fill": HIVColor });
+                $(this).css({"stroke": "grey"});
+              }
+              if (d && country !== d) {
+                var xyz = scope.get_xyz(d);
+                zoom(xyz); 
+                console.log('past zoom');
+                country = d;
+                // $(this).css({"fill": HIVOppositeColor});
+                $(this).css({"stroke":"grey"});
+                $(this).css({"stroke-linejoin":"round"});
+                $(this).css({"stroke-linecap":"round"}); 
+                div.text(value + "%");
+              } else {
+                var xyz = [width / 2, height / 1.5, 1];
+                country = null;
+                zoom(xyz);
+              };
+              break;
             };
+          };
         };
 
+      // END TAKING COUNTRY TOPO DATA AND ADDING MDG DATA TO IT
       })
+
+    // END LOAD MAP DATASET
     });
-    
+
+
+
+    // WATCHERS    
     scope.$watch('mapYear', function(){
       console.log(scope.mapYear);
       // change year loaded to map
-
       scope.updateMap(scope.mapYear);
     }, true); 
-
 
     scope.$watch('mapDataset', function(){
       console.log(scope.mapDataset);
@@ -358,27 +331,10 @@ app.directive('map', function() {
     scope.$watch('zoomCountry', function(){
       // change year loaded to map
       scope.zoomOnCountry(scope.zoomCountry);
-    }, true); 
+    }, true);
 
-
-   
-
-    // scope.watchCount = 0;            
-    // scope.$watch('radiusdata', function(){
-    //  scope.watchCount +=1;
-    //  console.log(scope.watchCount);
-    //  if(scope.watchCount >1){
-    //    scope.updateCircle(scope.radiusdata);
-    //  };
-    // }, true);
-
-    // scope.updateCircle = function(newradius) {
-    //  var newcenter = newradius * 2;
-    //  svgContainer.selectAll("circle")
-    //    .transition()
-    //    .attr("cx", newcenter)
-    //    .attr("cy", newcenter)
-    //    .attr("r", newradius);
-    // };
+  // END LINK FUNCTION
   };
+
+// END DIRECTIVE
 })
