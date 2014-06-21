@@ -5,6 +5,7 @@ app.directive('map', function() {
       scope: {
         mapData: '=data',
         mapYear: '=year',
+        mapDataset: '=dataset',
         zoomCountry: '=country'
       },
       link: link
@@ -27,7 +28,9 @@ app.directive('map', function() {
 
     var data;
 
-    d3.json("HIVmultiyear.json", function(error, json) {
+    console.log(scope.mapDataset.src);
+
+    d3.json(scope.mapDataset.src, function(error, json) {
       if (error) return console.warn(error);
       data = json;
  
@@ -48,7 +51,13 @@ app.directive('map', function() {
   
 
       d3.json("countries.topo.json", function(error, json) {
-        console.log(json.objects.countries.geometries[1].properties.name);
+        // for (var i = 0; i < json.objects.countries.geometries.length; i++) {
+        //   console.log(json.objects.countries.geometries[i].properties.name);
+        // }
+        
+        // for (var i = 0; i < data.length; i++) {
+        //   console.log(data[i]["Country"]);
+        // }
 
         if (error) {
           console.log(error);
@@ -68,7 +77,7 @@ app.directive('map', function() {
               var jsonState = json.objects.countries.geometries[j].properties.name;
 
               // console.log('test');
-              // console.log(jsonState);
+             
               if (dataState === jsonState) {
                 //Copy the data value into the JSON
                 // console.log('test');
@@ -84,7 +93,7 @@ app.directive('map', function() {
             }
           }
         }
-        console.log(json.objects.countries.geometries[0]);
+       
 
 
         var svg = d3.select("#map").append("svg")
@@ -189,6 +198,7 @@ app.directive('map', function() {
 
         // display country name and data on hover
         function mouseMove(d) {
+       
           var dataString;
 
           if (d.properties[scope.mapYear]) {
@@ -241,7 +251,6 @@ app.directive('map', function() {
         }
 
         function country_clicked(d) {
-          console.log(d);
           var value = d.properties[scope.mapYear];
           var HIVColor = "url(#no_data)";
           var HIVOppositeColor = "url(#no_data)";
@@ -338,6 +347,13 @@ app.directive('map', function() {
 
       scope.updateMap(scope.mapYear);
     }, true); 
+
+
+    scope.$watch('mapDataset', function(){
+      console.log(scope.mapDataset);
+      // change year loaded to map
+      scope.updateMap(scope.mapYear);
+    }, true);
 
     scope.$watch('zoomCountry', function(){
       // change year loaded to map
