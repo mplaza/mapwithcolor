@@ -43,12 +43,12 @@ app.directive('map', function() {
           .append('pattern')
           .attr('id', 'no_data')
           .attr('patternUnits', 'userSpaceOnUse')
-          .attr('width', 100)
-          .attr('height', 75)
+          .attr('width', 6)
+          .attr('height', 6)
           .append("image")
-          .attr("xlink:href", "graystripes.gif")
-          .attr('width', 100)
-          .attr('height', 75);
+          .attr("xlink:href", "greystripes.png")
+          .attr('width', 6)
+          .attr('height', 6);
 
         g = svg.append("g")
           .attr("id", "countries")
