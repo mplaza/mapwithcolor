@@ -1977,7 +1977,7 @@
   },
   {
     "CountryCode":408,
-    "Country":"Korea, Democratic People's Republic of",
+    "Country":"North Korea",
     "1990":null,
     "1991":null,
     "1992":null,
@@ -2003,7 +2003,7 @@
   },
   {
     "CountryCode":410,
-    "Country":"Korea, Republic of",
+    "Country":"South Korea",
     "1990":0.1,
     "1991":0.1,
     "1992":0.1,
@@ -3797,7 +3797,7 @@
   },
   {
     "CountryCode":834,
-    "Country":"United Republic of Tanzania",
+    "Country":"Tanzania",
     "1990":5,
     "1991":6,
     "1992":6.9,
