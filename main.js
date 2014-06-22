@@ -8,6 +8,8 @@ var app = angular.module('myApp', ['vr.directives.slider'])
   	{name:'B', src:'goal6target6aa.json'}
   ];
   $scope.targetDataset = $scope.datasets[0];
+  $scope.startingYear = null;
+  $scope.endingYear = null;
 
   $scope.$watch('radius', function() {
 		console.log("hello");

@@ -6,7 +6,9 @@ app.directive('map', function() {
         mapData: '=data',
         mapYear: '=year',
         mapDataset: '=dataset',
-        zoomCountry: '=country'
+        zoomCountry: '=country',
+        startingYear: '=floor',
+        endingYear: '=ceiling'
       },
       link: link
     }
@@ -99,6 +101,10 @@ app.directive('map', function() {
         var startingYear = parseFloat(Object.keys(data[0])[0]);
         var numberOfYears = parseFloat(Object.keys(data[0]).length - 3);
         var endingYear = parseFloat(Object.keys(data[0])[numberOfYears]);
+        scope.startingYear = startingYear;
+        scope.endingYear = endingYear;
+        scope.$apply;
+       
 
         var maxValue = 0;
         for (var i = startingYear; i <= endingYear; i++) {
@@ -364,7 +370,7 @@ app.directive('map', function() {
     scope.$watch('mapYear', function(){
       console.log(scope.mapYear);
       // change year loaded to map
-      scope.updateMap(scope.mapYear);
+      scope.updateMap();
     }, true); 
 
     var mapDatasetWatchCount = 0;
