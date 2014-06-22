@@ -1,17 +1,17 @@
 app.directive('map', function() {
   return {
     restrict: 'AE',
-      replace: 'true',
-      scope: {
-        mapData: '=data',
-        mapYear: '=year',
-        mapDataset: '=dataset',
-        zoomCountry: '=country',
-        startingYear: '=floor',
-        endingYear: '=ceiling'
-      },
-      link: link
-    }
+    replace: 'true',
+    scope: {
+      mapData: '=data',
+      mapYear: '=year',
+      mapDataset: '=dataset',
+      zoomCountry: '=country',
+      myStartyear: '=',
+      myEndyear: '='
+    },
+    link: link
+  }
 
   function link(scope, element, attr) {
 
@@ -77,9 +77,12 @@ app.directive('map', function() {
         var startingYear = parseFloat(Object.keys(data[0])[0]);
         var numberOfYears = parseFloat(Object.keys(data[0]).length - 3);
         var endingYear = parseFloat(Object.keys(data[0])[numberOfYears]);
-        scope.startingYear = startingYear;
-        scope.endingYear = endingYear;
-        scope.$apply;
+        scope.myStartyear = startingYear;
+        scope.myEndyear = endingYear;
+        console.log(scope.myStartyear);
+        scope.$apply();
+        console.log(scope.myEndyear);
+        scope.$apply();
        
 
         var maxValue = 0;

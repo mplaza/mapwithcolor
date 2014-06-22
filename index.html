@@ -21,12 +21,12 @@
 Country: <input ng-model="zoomToCountry"/>
 
 
-<map data="filename" year="year" dataset="targetDataset" country="zoomToCountry"></map>
+<map data="filename" year="year" dataset="targetDataset" country="zoomToCountry" my-startyear="startingYear" my-endyear="endingYear"></map>
 
 {{zoomToCountry}}
 
 
-<slider ng-model="year" floor="1990" ceiling="2011" step=1></slider>
+<slider ng-model="year" floor="{{startingYear}}" ceiling="{{endingYear}}" step=1></slider>
 
 {{year}}
 
