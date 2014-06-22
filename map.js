@@ -95,7 +95,7 @@ app.directive('map', function() {
           }
         }
   
-      // TAKING COUNTRY TOPO DATA AND ADDING MDG DATA TO IT
+        // TAKING COUNTRY TOPO DATA AND ADDING MDG DATA TO IT
         d3.json("countries.topo.json", function(error, json) {
 
           if (error) {
@@ -112,16 +112,13 @@ app.directive('map', function() {
               //find corresponding country inside the GeoJSON
               for (var j = 0; j < json.objects.countries.geometries.length; j++) {
                 var jsonState = json.objects.countries.geometries[j].properties.name;
-
-               
+   
                 if (dataState === jsonState) {
                   //add values for each year from the MDG Data into the properties of countries in the topojson
                   for (var k = startingYear; k <= endingYear; k++) {
                     var valueYear = k.toString();
                     json.objects.countries.geometries[j].properties[valueYear] = dataValue[valueYear];
-                    
                   }
-                  
                 }
               }
             }
@@ -148,6 +145,33 @@ app.directive('map', function() {
                 return "url(#no_data)";
               }
             });
+
+          var color_domain = [50, 150, 350]
+          var ext_color_domain = [0, 50, 150, 350]
+          var legend_labels = [Math.round(maxValue/4).toString(), Math.round(maxValue/2).toString(), Math.round(3*maxValue/4).toString(), Math.round(maxValue).toString()]              
+          var color = d3.scale.threshold()
+            .domain(color_domain)
+            .range(["#ffcb40", "#ffba00", "#ff7d73", "#ff4e40"]);
+
+          var legend = svg.selectAll("g.legend")
+            .data(ext_color_domain)
+            .enter().append("g")
+            .attr("class", "legend");
+
+          var ls_w = 20, ls_h = 20;
+
+          legend.append("rect")
+            .attr("x", 20)
+            .attr("y", function(d, i){ return height - (i*ls_h) - 2*ls_h;})
+            .attr("width", ls_w)
+            .attr("height", ls_h)
+            .style("fill", function(d, i) { return color(d); })
+            .style("opacity", 0.8);
+
+          legend.append("text")
+            .attr("x", 50)
+            .attr("y", function(d, i){ return height - (i*ls_h) - ls_h - 4;})
+            .text(function(d, i){ return legend_labels[i]; });
 
           //update the country fills when the slider changes the year being viewed
           scope.updateMap = function() {
