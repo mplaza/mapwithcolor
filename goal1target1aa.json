@@ -1,4 +1,7 @@
-[
+[ 
+  {
+    "type": "percent"
+  },
   {
     "CountryCode":"8",
     "Country":"Albania",

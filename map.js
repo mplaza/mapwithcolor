@@ -65,20 +65,20 @@ app.directive('map', function() {
 
         if (error) return console.error(error);
 
-        var color_domain = [50, 150, 350];
-        var ext_color_domain = [0, 50, 150, 350];
-        var legend_labels = [];
-        console.log(legend_labels);              
+        // BUILD EMPTY LEGEND
+        var color_domain = [50, 150, 350, 500, 750];
+        var ext_color_domain = [0, 50, 150, 350, 500, 750];
+        var legend_labels = [];            
         var color = d3.scale.threshold()
           .domain(color_domain)
-          .range(["rgba(255,0,0,0.25)", "rgba(255,0,0,0.5)", "rgba(255,0,0,0.75)", "rgba(255,0,0,1)"]);
+          .range(["url(#no_data)", "rgba(255,0,0,0.2)", "rgba(255,0,0,0.4)", "rgba(255,0,0,0.6)", "rgba(255,0,0,0.8)", "rgba(255,0,0,1)"]);
 
         var legend = svg.selectAll("g.legend")
           .data(ext_color_domain)
           .enter().append("g")
           .attr("class", "legend");
 
-        var ls_w = 20, ls_h = 20;
+        var ls_w = 30, ls_h = 18;
 
         legend.append("rect")
           .attr("x", 20)
@@ -88,7 +88,7 @@ app.directive('map', function() {
           .style("fill", "white");
 
         legend.append("text")
-          .attr("x", 50)
+          .attr("x", 55)
           .attr("y", function(d, i){ return height - (i*ls_h) - ls_h - 4;});
 
       })
@@ -99,15 +99,15 @@ app.directive('map', function() {
       d3.json(scope.mapDataset.src, function(error, json) {
         if (error) return console.warn(error);
         data = json;
-   
-        var startingYear = parseFloat(Object.keys(data[0])[0]);
-        var numberOfYears = parseFloat(Object.keys(data[0]).length - 3);
-        var endingYear = parseFloat(Object.keys(data[0])[numberOfYears]);
+        
+
+        var startingYear = parseFloat(Object.keys(data[1])[0]);
+        var numberOfYears = parseFloat(Object.keys(data[1]).length - 3);
+        var endingYear = parseFloat(Object.keys(data[1])[numberOfYears]);
         scope.myStartyear = startingYear;
         scope.myEndyear = endingYear;
-        console.log(scope.myStartyear);
-        scope.$apply();
-        console.log(scope.myEndyear);
+        scope.mapYear = startingYear;
+    
         scope.$apply();
        
 
@@ -123,10 +123,12 @@ app.directive('map', function() {
   
         // TAKING COUNTRY TOPO DATA AND ADDING MDG DATA TO IT
         d3.json("countries.topo.json", function(error, json) {
-
+          var dataColor;
+          var dataType;
           if (error) {
             console.log(error);
           } else {
+            console.log(data);
             for (var i = 0; i < data.length; i++) {
 
               //state name
@@ -148,6 +150,19 @@ app.directive('map', function() {
                 }
               }
             }
+            // SET COLOR
+            if (data[0]["color"] == 'green') {
+              dataColor = "rgba(0,100,0,";
+            } else {
+              dataColor = "rgba(178,34,34,"; 
+            }
+            // SET DATATYPE (% vs raw)
+            if (data[0]["type"] == "percent") {
+              dataType = "%";
+            } else {
+              dataType = ""; 
+            }
+              // json.objects.countries.geometries[j].properties[valueYear] = dataValue[valueYear];
           }
           
 
@@ -166,7 +181,7 @@ app.directive('map', function() {
               //Data value
               var value = d.properties[startingYear.toString()]; 
               if(value) {
-                return "rgba(255,0,0," +  (value/maxValue) + ")";
+                return dataColor +  (value/maxValue) + ")";
               } else {
                 return "url(#no_data)";
               }
@@ -174,17 +189,16 @@ app.directive('map', function() {
 
 
           // MAP COLOR SCALE LEGEND
-          var color_domain = [50, 150, 350]
-          var ext_color_domain = [0, 50, 150, 350]
-          var legend_labels = [Math.round(maxValue/4).toString(), Math.round(maxValue/2).toString(), Math.round(3*maxValue/4).toString(), Math.round(maxValue).toString()];
+          var color_domain = [50, 150, 350, 500, 750];
+          var ext_color_domain = [0, 50, 150, 350, 500, 750];
+          var legend_labels = ["No Data", (Math.round(maxValue*10/5)/10).toString() + dataType, (Math.round(maxValue*2*10/5)/10).toString() + dataType, (Math.round(maxValue*3*10/5)/10).toString() + dataType, (Math.round(maxValue*4*10/5)/10).toString() + dataType, (Math.round(maxValue*10)/10).toString() + dataType];
           console.log(legend_labels);              
           var color = d3.scale.threshold()
             .domain(color_domain)
-            .range(["rgba(255,0,0,0.25)", "rgba(255,0,0,0.5)", "rgba(255,0,0,0.75)", "rgba(255,0,0,1)"]);
+            .range(["url(#no_data)", dataColor + "0.2)", dataColor +"0.4)", dataColor + "0.6)", dataColor + "0.8)", dataColor + "1)"]);
 
           d3.selectAll("rect")
-            .style("fill", function(d, i) { return color(d); })
-            .style("opacity", 0.8);
+            .style("fill", function(d, i) { return color(d); });
 
           d3.selectAll("text")
             .text(function(d, i){ return legend_labels[i]; });
@@ -193,13 +207,15 @@ app.directive('map', function() {
           scope.updateMap = function() {
             d3.selectAll("path")
               .data(topojson.feature(json, json.objects.countries).features)
+              .transition()
               .style("fill", function(d) {
               //Data value
               var value = d.properties[scope.mapYear]; 
               var thisYear = parseInt(scope.mapYear);
+
               //for incomplete datasets, leave the fill of previous years until new data available
               var prevValue = null;
-              for(var i=thisYear; i>startingYear; i-=1){
+              for(var i = thisYear; i > startingYear; i -= 1){
                 prevYearsValue = d.properties[(i.toString())];
                 if(prevYearsValue != null){
                   prevValue = prevYearsValue;
@@ -207,15 +223,13 @@ app.directive('map', function() {
                 }
               }
               if(value) {
-                return "rgba(255,0,0," +  (value/maxValue) + ")";
-              } 
-              else {
-                if(prevValue){
-                  return "rgba(255,0,0," +  (prevValue/maxValue) + ")";
+                return dataColor +  (value/maxValue) + ")";
+              } else {
+                if(prevValue) {
+                  return dataColor +  (prevValue/maxValue) + ")";
+                } else {
+                  return "url(#no_data)";  
                 }
-                else
-                  return "url(#no_data)";
-                
               }
             });
           };

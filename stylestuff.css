@@ -74,3 +74,8 @@ slider {
   top: -100%;
   display: block;
 }
+
+.legend {
+  font-family: Helvetica;
+  font-size: 10px;
+}
