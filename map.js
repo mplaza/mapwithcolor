@@ -6,7 +6,9 @@ app.directive('map', function() {
         mapData: '=data',
         mapYear: '=year',
         mapDataset: '=dataset',
-        zoomCountry: '=country'
+        zoomCountry: '=country',
+        startingYear: '=floor',
+        endingYear: '=ceiling'
       },
       link: link
     }
@@ -44,12 +46,12 @@ app.directive('map', function() {
           .append('pattern')
           .attr('id', 'no_data')
           .attr('patternUnits', 'userSpaceOnUse')
-          .attr('width', 100)
-          .attr('height', 75)
+          .attr('width', 6)
+          .attr('height', 6)
           .append("image")
-          .attr("xlink:href", "graystripes.gif")
-          .attr('width', 100)
-          .attr('height', 75);
+          .attr("xlink:href", "greystripes.png")
+          .attr('width', 6)
+          .attr('height', 6);
 
         g = svg.append("g")
           .attr("id", "countries")
@@ -75,6 +77,10 @@ app.directive('map', function() {
         var startingYear = parseFloat(Object.keys(data[0])[0]);
         var numberOfYears = parseFloat(Object.keys(data[0]).length - 3);
         var endingYear = parseFloat(Object.keys(data[0])[numberOfYears]);
+        scope.startingYear = startingYear;
+        scope.endingYear = endingYear;
+        scope.$apply;
+       
 
         var maxValue = 0;
         for (var i = startingYear; i <= endingYear; i++) {
@@ -305,7 +311,7 @@ app.directive('map', function() {
     // WATCHERS    
     scope.$watch('mapYear', function(){
       // change year loaded to map
-      scope.updateMap(scope.mapYear);
+      scope.updateMap();
     }, true); 
 
     var mapDatasetWatchCount = 0;
