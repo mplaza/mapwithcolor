@@ -146,12 +146,14 @@ app.directive('map', function() {
               }
             });
 
+
+          // MAP COLOR SCALE LEGEND
           var color_domain = [50, 150, 350]
           var ext_color_domain = [0, 50, 150, 350]
           var legend_labels = [Math.round(maxValue/4).toString(), Math.round(maxValue/2).toString(), Math.round(3*maxValue/4).toString(), Math.round(maxValue).toString()]              
           var color = d3.scale.threshold()
             .domain(color_domain)
-            .range(["#ffcb40", "#ffba00", "#ff7d73", "#ff4e40"]);
+            .range(["rgba(255,0,0,0.25)", "rgba(255,0,0,0.5)", "rgba(255,0,0,0.75)", "rgba(255,0,0,1)"]);
 
           var legend = svg.selectAll("g.legend")
             .data(ext_color_domain)
