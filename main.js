@@ -31,8 +31,8 @@ var app = angular.module('myApp', ['vr.directives.slider'])
     ];
 
   $scope.targetDataset = $scope.datasets[0];
-  $scope.startingYear = null;
-  $scope.endingYear = null;
+  $scope.startingYear = 1;
+  $scope.endingYear = 2;
 
   $scope.$watch('radius', function() {
 		console.log("hello");
