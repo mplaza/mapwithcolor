@@ -14,13 +14,13 @@ app.directive('map', function() {
     }
 
   function link(scope, element, attr) {
-    
+
+    // map display area on page
     var m_width = $("#map").width(),
       width = 938,
-      height = 600,
-      country,
-      state;
+      height = 600;
 
+    // displays map as mercator projection
     var projection = d3.geo.mercator()
       .scale(150)
       .translate([width / 2, height / 1.5]);
@@ -33,6 +33,7 @@ app.directive('map', function() {
 
     // CREATE AN EMPTY MAP
     var createMap = function () {
+      //bring in topojson-- from natural earth data, Medium scale data, 1:50m, without Antartica
       d3.json("countries.topo.json", function(error, json) {
      
         svg = d3.select("#map").append("svg")
@@ -61,37 +62,12 @@ app.directive('map', function() {
           .append("path")
           .attr("id", function(d,i){return d.properties.name;} )
           .attr("d", path)
-          .on("click", country_clicked)
-          .on("mouseover", mouseOver) 
-          .on("mousemove", mouseMove)
-          .on("mouseout", mouseOut);
 
-
-        // d3.json("countries.topo.json", function(error, us) {
         if (error) return console.error(error);
 
-        
-         
-
-
-        var div = d3.select("body").append("div")
-          .attr("class", "tooltip")
-          .style("opacity", 1e-6);
       })
     }
     
-
-
-    // scope.loadData = function() { 
-    //   delete json file and create new one
-    //   fill map 
-    // }
-
-    // scope.updateMap = function() {
-    //   fill map
-    // }
-
-
     // LOAD MAP DATASET
     var loadDataset = function() {
       d3.json(scope.mapDataset.src, function(error, json) {
@@ -115,7 +91,6 @@ app.directive('map', function() {
             maxValue = max;
           }
         }
-        console.log(maxValue);
   
       // TAKING COUNTRY TOPO DATA AND ADDING MDG DATA TO IT
         d3.json("countries.topo.json", function(error, json) {
@@ -125,29 +100,23 @@ app.directive('map', function() {
           } else {
             for (var i = 0; i < data.length; i++) {
 
-              //State name
+              //state name
               var dataState = data[i]["Country"];
 
-              // console.log(dataState);
               //convert value from string to float
               var dataValue = data[i];
-              // console.log(dataValue);
 
-              //Corresponding country inside the GeoJSON
+              //find corresponding country inside the GeoJSON
               for (var j = 0; j < json.objects.countries.geometries.length; j++) {
                 var jsonState = json.objects.countries.geometries[j].properties.name;
 
-                // console.log('test');
                
                 if (dataState === jsonState) {
-                  //Copy the data value into the JSON
-                  // console.log('test');
+                  //add values for each year from the MDG Data into the properties of countries in the topojson
                   for (var k = startingYear; k <= endingYear; k++) {
                     var valueYear = k.toString();
                     json.objects.countries.geometries[j].properties[valueYear] = dataValue[valueYear];
                     
-                    //Stop looking through the JSON
-                    // break;
                   }
                   
                 }
@@ -155,12 +124,10 @@ app.directive('map', function() {
             }
           }
           
-          console.log(json.objects.countries);
-          
-          // d3.json("countries.topo.json", function(error, us) {
+
           if (error) return console.error(error);
 
-          // console.log(g);
+          // update the paths created when the map was made to be colored and interactable based on new json data
           d3.selectAll("path")
             .data(topojson.feature(json, json.objects.countries).features)
             .attr("id", function(d,i){return d.properties.name;} )
@@ -179,54 +146,51 @@ app.directive('map', function() {
               }
             });
 
-
-          // g = svg.append("g")
-          // .attr("id", "countries")
-          // .selectAll("path")
-          // .data(topojson.feature(json, json.objects.countries).features)
-          // .enter()
-          // .append("path")
-          
-
-            // .data(topojson.feature(json, json.objects.countries).features)
-            // .enter()
-            // .style("fill", function(d) {
-            //   //Data value
-            //   var value = d.properties[startingYear.toString()]; 
-            //   if(value) {
-            //     return "rgba(255,0,0," +  (value/maxValue) + ")";
-            //   } else {
-            //     return "url(#no_data)";
-            //   }
-            // });      
-
+          //update the country fills when the slider changes the year being viewed
           scope.updateMap = function() {
             d3.selectAll("path")
               .data(topojson.feature(json, json.objects.countries).features)
               .style("fill", function(d) {
               //Data value
               var value = d.properties[scope.mapYear]; 
+              var thisYear = parseInt(scope.mapYear);
+              //for incomplete datasets, leave the fill of previous years until new data available
+              var prevValue = null;
+              for(var i=thisYear; i>startingYear; i-=1){
+                prevYearsValue = d.properties[(i.toString())];
+                if(prevYearsValue != null){
+                  prevValue = prevYearsValue;
+                  break;
+                }
+              }
               if(value) {
                 return "rgba(255,0,0," +  (value/maxValue) + ")";
-              } else {
-                return "url(#no_data)";
+              } 
+              else {
+                if(prevValue){
+                  return "rgba(255,0,0," +  (prevValue/maxValue) + ")";
+                }
+                else
+                  return "url(#no_data)";
+                
               }
             });
           };
 
+          //add the tooptip to see country data when the mouse is over it
           var div = d3.select("body").append("div")
             .attr("class", "tooltip")
             .style("opacity", 1e-6);
 
-          function mouseOver(d) {
-            var value = d.properties[scope.mapYear];
 
+          //make the tooptip visible on mouseover
+          function mouseOver(d) {
             div.transition()
             .duration(200)
             .style("opacity", 1);
           }
 
-          // display country name and data on hover
+          // display country name and data when the mouse is hovering over it
           function mouseMove(d) {
          
             var dataString;
@@ -243,28 +207,20 @@ app.directive('map', function() {
               .style("top", (d3.event.pageY - 20) + "px");
           }
 
+          //make the tooltip invisible when the mouse isn't over a country
           function mouseOut(d) {
-            var value = d.properties[scope.mapYear];
-            var HIVColor = "url(#no_data)";
-
-            if(value) {
-              HIVColor =  "rgba(255,0,0," +  (value/maxValue) + ")";
-            };
-
-            d3.select(this).style("fill", HIVColor);
-
             div.transition()
               .duration(200)
               .style("opacity", 1e-6);
           }
 
+          //change the map so one country is zoomed in on
           function zoom(xyz) {
             d3.select('g')
               .attr("transform", "translate(" + projection.translate() + ")scale(" + xyz[2] + ")translate(-" + xyz[0] + ",-" + xyz[1] + ")");
-              // .selectAll(".city")
-              // .attr("d", path.pointRadius(20.0 / xyz[2]));
           }
 
+          //find the point to zoom in on for the selected country
           scope.get_xyz = function(d) {
             var bounds = path.bounds(d);
 
@@ -276,21 +232,10 @@ app.directive('map', function() {
             return [x, y, z];
           }
 
+          //zoom in on a country when it's clicked and then back out when it's clicked again
+          var country = null;
           function country_clicked(d) {
-            console.log(d);
-            var value = d.properties[scope.mapYear];
-            var HIVColor = "url(#no_data)";
-            var HIVOppositeColor = "url(#no_data)";
-            if(value) {
-                  HIVColor =  "rgba(255,0,0," +  (value/maxValue) + ")";
-              };
-
-            if(value) {
-              HIVOppositeColor =  "rgba(0,255,0," +  (value/maxValue) + ")";
-            };
-
-            if(country) {
-              $(this).css({"fill": HIVColor });
+           if(country) {
               $(this).css({"stroke": "grey"});
             }
 
@@ -298,11 +243,9 @@ app.directive('map', function() {
               var xyz = scope.get_xyz(d);
               country = d;
               zoom(xyz); 
-              // $(this).css({"fill": HIVOppositeColor});
-              $(this).css({"stroke":"grey"});
+              $(this).css({"stroke":"black"});
               $(this).css({"stroke-linejoin":"round"});
               $(this).css({"stroke-linecap":"round"}); 
-              div.text(value + "%");
             } else {
               var xyz = [width / 2, height / 1.5, 1];
               country = null;
@@ -310,19 +253,19 @@ app.directive('map', function() {
             }
           };
 
+          //zoom on country when it's name is typed in and then out when it's not a match anymore
           scope.zoomOnCountry = function(p) {
             console.log(p);
             for (var j = 0; j < json.objects.countries.geometries.length; j++) {
               var jsonState = json.objects.countries.geometries[j].properties.name;
               if(country) {
-                if (jsonState !== p) {
-                  console.log('unmatched ' + jsonState + p);
+                if (jsonState.toLowerCase() !== p.toLowerCase()) {
                   var xyz = [width / 2, height / 1.5, 1];
                   country = null;
                   zoom(xyz);
                 }
               }
-              if(jsonState === p) {
+              if(jsonState.toLowerCase() === p.toLowerCase()) {
                 var d = topojson.feature(json, json.objects.countries).features[j];
                 var value = d.properties[scope.mapYear];
                 var HIVColor = "url(#no_data)";
@@ -342,7 +285,6 @@ app.directive('map', function() {
                 if (d && country !== d) {
                   var xyz = scope.get_xyz(d);
                   zoom(xyz); 
-                  console.log('past zoom');
                   country = d;
                   // $(this).css({"fill": HIVOppositeColor});
                   $(this).css({"stroke":"grey"});
@@ -368,7 +310,6 @@ app.directive('map', function() {
 
     // WATCHERS    
     scope.$watch('mapYear', function(){
-      console.log(scope.mapYear);
       // change year loaded to map
       scope.updateMap();
     }, true); 
