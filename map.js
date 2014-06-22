@@ -65,6 +65,32 @@ app.directive('map', function() {
 
         if (error) return console.error(error);
 
+        var color_domain = [50, 150, 350];
+        var ext_color_domain = [0, 50, 150, 350];
+        var legend_labels = [];
+        console.log(legend_labels);              
+        var color = d3.scale.threshold()
+          .domain(color_domain)
+          .range(["rgba(255,0,0,0.25)", "rgba(255,0,0,0.5)", "rgba(255,0,0,0.75)", "rgba(255,0,0,1)"]);
+
+        var legend = svg.selectAll("g.legend")
+          .data(ext_color_domain)
+          .enter().append("g")
+          .attr("class", "legend");
+
+        var ls_w = 20, ls_h = 20;
+
+        legend.append("rect")
+          .attr("x", 20)
+          .attr("y", function(d, i){ return height - (i*ls_h) - 2*ls_h;})
+          .attr("width", ls_w)
+          .attr("height", ls_h)
+          .style("fill", "white");
+
+        legend.append("text")
+          .attr("x", 50)
+          .attr("y", function(d, i){ return height - (i*ls_h) - ls_h - 4;});
+
       })
     }
     
@@ -150,29 +176,17 @@ app.directive('map', function() {
           // MAP COLOR SCALE LEGEND
           var color_domain = [50, 150, 350]
           var ext_color_domain = [0, 50, 150, 350]
-          var legend_labels = [Math.round(maxValue/4).toString(), Math.round(maxValue/2).toString(), Math.round(3*maxValue/4).toString(), Math.round(maxValue).toString()]              
+          var legend_labels = [Math.round(maxValue/4).toString(), Math.round(maxValue/2).toString(), Math.round(3*maxValue/4).toString(), Math.round(maxValue).toString()];
+          console.log(legend_labels);              
           var color = d3.scale.threshold()
             .domain(color_domain)
             .range(["rgba(255,0,0,0.25)", "rgba(255,0,0,0.5)", "rgba(255,0,0,0.75)", "rgba(255,0,0,1)"]);
 
-          var legend = svg.selectAll("g.legend")
-            .data(ext_color_domain)
-            .enter().append("g")
-            .attr("class", "legend");
-
-          var ls_w = 20, ls_h = 20;
-
-          legend.append("rect")
-            .attr("x", 20)
-            .attr("y", function(d, i){ return height - (i*ls_h) - 2*ls_h;})
-            .attr("width", ls_w)
-            .attr("height", ls_h)
+          d3.selectAll("rect")
             .style("fill", function(d, i) { return color(d); })
             .style("opacity", 0.8);
 
-          legend.append("text")
-            .attr("x", 50)
-            .attr("y", function(d, i){ return height - (i*ls_h) - ls_h - 4;})
+          d3.selectAll("text")
             .text(function(d, i){ return legend_labels[i]; });
 
           //update the country fills when the slider changes the year being viewed
