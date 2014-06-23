@@ -1,6 +1,8 @@
 #map {
   background-color: #fff;
   border: 1px solid #ccc;
+  width: 80%;
+  margin: 0 auto;
 }
 .background {
   fill: none;

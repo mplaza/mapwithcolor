@@ -18,12 +18,12 @@ app.directive('map', function() {
     // map display area on page
     var m_width = $("#map").width(),
       width = 938,
-      height = 600;
+      height = 500;
 
     // displays map as mercator projection
     var projection = d3.geo.mercator()
       .scale(150)
-      .translate([width / 2, height / 1.5]);
+      .translate([width / 2, height / 1.7]);
 
     var path = d3.geo.path()
       .projection(projection);
@@ -214,19 +214,38 @@ app.directive('map', function() {
               var thisYear = parseInt(scope.mapYear);
 
               //for incomplete datasets, leave the fill of previous years until new data available
-              var prevValue = null;
-              for(var i = thisYear; i > startingYear; i -= 1){
-                prevYearsValue = d.properties[(i.toString())];
-                if(prevYearsValue != null){
-                  prevValue = prevYearsValue;
+              var nextValue = null;
+              var lastValue = null;
+              var i;
+              var j;
+              var timeDifference;
+
+              // FIND NEXT VALUE IN A DATASET WHEN NULL VALUES EXIST
+              for(i = thisYear; i <= endingYear; i++ ){
+                var nextYearsValue = d.properties[(i.toString())];
+                if(nextYearsValue != null) {
+                  nextValue = nextYearsValue;
+                  break;
+                }
+              }
+              for(j = thisYear; j >= startingYear; j-- ){
+                var lastYearsValue = d.properties[(j.toString())];
+                if(lastYearsValue != null) {
+                  lastValue = lastYearsValue;
+                  timeDifference = i - j;
                   break;
                 }
               }
               if(value) {
                 return dataColor +  (value/maxValue) + ")";
-              } else {
-                if(prevValue) {
-                  return dataColor +  (prevValue/maxValue) + ")";
+              } 
+              else {
+                if(nextValue && lastValue) {
+                  var interpolatedValue = lastValue + ((thisYear - j) * ((nextValue - lastValue) / timeDifference));
+                  console.log(d.properties.name);
+                  console.log("next value: " + d.properties[(i.toString())] + " last value: " + d.properties[(j.toString())]);
+                  console.log("this year: " + thisYear + " interpolated value: " + interpolatedValue);
+                  return dataColor +  (interpolatedValue/maxValue) + ")";
                 } else {
                   return "url(#no_data)";  
                 }
