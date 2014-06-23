@@ -1,5 +1,5 @@
 var app = angular.module('myApp', ['vr.directives.slider'])
-.controller('MainCtrl', ['$scope', function($scope) {
+.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
   $scope.cx = "5";
   $scope.circles=[5,10,15,20,25];
   $scope.datasets = [
@@ -31,10 +31,25 @@ var app = angular.module('myApp', ['vr.directives.slider'])
     ];
 
   $scope.targetDataset = $scope.datasets[0];
-  $scope.startingYear = 1;
-  $scope.endingYear = 2;
+  $scope.startingYear = null;
+  $scope.endingYear = null;
 
-  $scope.$watch('radius', function() {
-		console.log("hello");
-	}) 
+  $scope.play = function() {
+    console.log("play");
+    $scope.year = $scope.startingYear;
+    var count = 0;
+    for (var i = $scope.startingYear; i <= $scope.endingYear; i++) {
+      count++;
+      $scope.setDelay(count);
+    }
+  };
+
+  $scope.setDelay = function(count) {
+    $timeout(function() {
+      $scope.year++;
+    }, count*100);
+  }
+  
+
+
 }])

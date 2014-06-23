@@ -128,7 +128,7 @@ app.directive('map', function() {
           if (error) {
             console.log(error);
           } else {
-            console.log(data);
+            // LOOP THROUGH COUNTRIES
             for (var i = 0; i < data.length; i++) {
 
               //state name
@@ -142,14 +142,36 @@ app.directive('map', function() {
                 var jsonState = json.objects.countries.geometries[j].properties.name;
    
                 if (dataState === jsonState) {
-                  //add values for each year from the MDG Data into the properties of countries in the topojson
+                  var extrapolate = new EXTRAPOLATE.LINEAR();
+                  var dataCount = 0;
+                  
+
+                  // BUILD EXTRAPOLATION MODEL
+                  // ONLY EXTRAPOLATE IF AT LEAST 3 DATAPOINTS
                   for (var k = startingYear; k <= endingYear; k++) {
                     var valueYear = k.toString();
-                    json.objects.countries.geometries[j].properties[valueYear] = dataValue[valueYear];
+                    if (dataValue[valueYear] != null) {
+                      extrapolate.given(k).get(dataValue[valueYear]);
+                      dataCount++;
+                    }
+                  }
+
+                  //add values for each year from the MDG Data into the properties of countries in the topojson
+                  for (var l = startingYear; l <= endingYear; l++) { 
+                    var valueYear = l.toString();
+                    if (dataValue[valueYear] == null && dataCount >= 3) {
+                      json.objects.countries.geometries[j].properties[valueYear] = Math.round(extrapolate.valueFor(l)*10)/10;
+                      // console.log(extrapolate.valueFor(l));         
+                    } else {
+                      json.objects.countries.geometries[j].properties[valueYear] = dataValue[valueYear];  
+                    }
                   }
                 }
               }
             }
+
+            console.log(json.objects.countries);
+
             // SET COLOR
             if (data[0]["color"] == 'green') {
               dataColor = "rgba(0,100,0,";
@@ -191,8 +213,7 @@ app.directive('map', function() {
           // MAP COLOR SCALE LEGEND
           var color_domain = [50, 150, 350, 500, 750];
           var ext_color_domain = [0, 50, 150, 350, 500, 750];
-          var legend_labels = ["No Data", (Math.round(maxValue*10/5)/10).toString() + dataType, (Math.round(maxValue*2*10/5)/10).toString() + dataType, (Math.round(maxValue*3*10/5)/10).toString() + dataType, (Math.round(maxValue*4*10/5)/10).toString() + dataType, (Math.round(maxValue*10)/10).toString() + dataType];
-          console.log(legend_labels);              
+          var legend_labels = ["No Data", (Math.round(maxValue*10/5)/10).toString() + dataType, (Math.round(maxValue*2*10/5)/10).toString() + dataType, (Math.round(maxValue*3*10/5)/10).toString() + dataType, (Math.round(maxValue*4*10/5)/10).toString() + dataType, (Math.round(maxValue*10)/10).toString() + dataType];             
           var color = d3.scale.threshold()
             .domain(color_domain)
             .range(["url(#no_data)", dataColor + "0.2)", dataColor +"0.4)", dataColor + "0.6)", dataColor + "0.8)", dataColor + "1)"]);
@@ -221,35 +242,33 @@ app.directive('map', function() {
               var timeDifference;
 
               // FIND NEXT VALUE IN A DATASET WHEN NULL VALUES EXIST
-              for(i = thisYear; i <= endingYear; i++ ){
-                var nextYearsValue = d.properties[(i.toString())];
-                if(nextYearsValue != null) {
-                  nextValue = nextYearsValue;
-                  break;
-                }
-              }
-              for(j = thisYear; j >= startingYear; j-- ){
-                var lastYearsValue = d.properties[(j.toString())];
-                if(lastYearsValue != null) {
-                  lastValue = lastYearsValue;
-                  timeDifference = i - j;
-                  break;
-                }
-              }
+              // for(i = thisYear; i <= endingYear; i++ ){
+              //   var nextYearsValue = d.properties[(i.toString())];
+              //   if(nextYearsValue != null) {
+              //     nextValue = nextYearsValue;
+              //     break;
+              //   }
+              // }
+              // for(j = thisYear; j >= startingYear; j-- ){
+              //   var lastYearsValue = d.properties[(j.toString())];
+              //   if(lastYearsValue != null) {
+              //     lastValue = lastYearsValue;
+              //     timeDifference = i - j;
+              //     break;
+              //   }
+              // }
               if(value) {
                 return dataColor +  (value/maxValue) + ")";
               } 
               else {
                 if(nextValue && lastValue) {
                   var interpolatedValue = lastValue + ((thisYear - j) * ((nextValue - lastValue) / timeDifference));
-                  console.log(d.properties.name);
-                  console.log("next value: " + d.properties[(i.toString())] + " last value: " + d.properties[(j.toString())]);
-                  console.log("this year: " + thisYear + " interpolated value: " + interpolatedValue);
                   return dataColor +  (interpolatedValue/maxValue) + ")";
                 } else {
                   return "url(#no_data)";  
                 }
               }
+
             });
           };
 
@@ -272,7 +291,7 @@ app.directive('map', function() {
             var dataString;
 
             if (d.properties[scope.mapYear]) {
-              dataString = d.properties[scope.mapYear] + "%";
+              dataString = d.properties[scope.mapYear] + dataType;
             } else {
               dataString = "No Data";
             }
@@ -331,7 +350,6 @@ app.directive('map', function() {
 
           //zoom on country when it's name is typed in and then out when it's not a match anymore
           scope.zoomOnCountry = function(p) {
-            console.log(p);
             for (var j = 0; j < json.objects.countries.geometries.length; j++) {
               var jsonState = json.objects.countries.geometries[j].properties.name;
               if(country) {
@@ -403,6 +421,12 @@ app.directive('map', function() {
       // change year loaded to map
       scope.zoomOnCountry(scope.zoomCountry);
     }, true);
+
+    // scope.$watch(function() {
+    //   return angular.element($window)[0].innerWidth;
+    // }, function() {
+    //   console.log("resized!");
+    // });
 
 
     // CALL FUNCTIONS HERE
