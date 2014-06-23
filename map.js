@@ -8,7 +8,8 @@ app.directive('map', function() {
       mapDataset: '=dataset',
       zoomCountry: '=country',
       myStartyear: '=',
-      myEndyear: '='
+      myEndyear: '=',
+      extrapolationToggle: '='
     },
     link: link
   }
@@ -148,13 +149,16 @@ app.directive('map', function() {
 
                   // BUILD EXTRAPOLATION MODEL
                   // ONLY EXTRAPOLATE IF AT LEAST 3 DATAPOINTS
-                  for (var k = startingYear; k <= endingYear; k++) {
-                    var valueYear = k.toString();
-                    if (dataValue[valueYear] != null) {
-                      extrapolate.given(k).get(dataValue[valueYear]);
-                      dataCount++;
+                  if (scope.extrapolationToggle) {
+                    for (var k = startingYear; k <= endingYear; k++) {
+                      var valueYear = k.toString();
+                      if (dataValue[valueYear] != null) {
+                        extrapolate.given(k).get(dataValue[valueYear]);
+                        dataCount++;
+                      }
                     }
                   }
+                  
 
                   //add values for each year from the MDG Data into the properties of countries in the topojson
                   for (var l = startingYear; l <= endingYear; l++) { 
@@ -228,7 +232,7 @@ app.directive('map', function() {
           scope.updateMap = function() {
             d3.selectAll("path")
               .data(topojson.feature(json, json.objects.countries).features)
-              .transition()
+              // .transition()
               .style("fill", function(d) {
               //Data value
               var value = d.properties[scope.mapYear]; 
@@ -420,6 +424,11 @@ app.directive('map', function() {
     scope.$watch('zoomCountry', function(){
       // change year loaded to map
       scope.zoomOnCountry(scope.zoomCountry);
+    }, true);
+
+    scope.$watch('extrapolationToggle', function(){
+      // change year loaded to map
+      loadDataset();
     }, true);
 
     // scope.$watch(function() {

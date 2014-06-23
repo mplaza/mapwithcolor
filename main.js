@@ -33,6 +33,7 @@ var app = angular.module('myApp', ['vr.directives.slider'])
   $scope.targetDataset = $scope.datasets[0];
   $scope.startingYear = null;
   $scope.endingYear = null;
+  $scope.extrapolationToggle = false;
 
   $scope.play = function() {
     console.log("play");

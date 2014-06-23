@@ -19,15 +19,15 @@
 <!-- <input ng-model="filename"/> -->
 
 
-
+Data extrapolation: <input type="checkbox" ng-model="extrapolationToggle">
 <slider ng-show="startingYear" ng-model="year" floor="{{startingYear}}" ceiling="{{endingYear}}" step=1></slider>
-<button ng-click="play()"></button>
+<button ng-click="play()">Play</button>
 
 <select ng-model="targetDataset" ng-options="dataset.name for dataset in datasets"></select>
 {{targetDataset.src}}
 
 
-<map data="filename" year="year" dataset="targetDataset" country="zoomToCountry" my-startyear="startingYear" my-endyear="endingYear"></map>
+<map data="filename" year="year" dataset="targetDataset" country="zoomToCountry" my-startyear="startingYear" my-endyear="endingYear" extrapolation-toggle="extrapolationToggle"></map>
 <div id="map"></div>
 Country: <input ng-model="zoomToCountry"/>
 {{zoomToCountry}}
