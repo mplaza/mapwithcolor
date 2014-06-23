@@ -42,6 +42,7 @@ app.directive('map', function() {
           .attr("viewBox", "0 0 " + width + " " + height)
           .attr("width", m_width)
           .attr("height", m_width * height / width);
+          
 
         svg.append("defs")
           .append('pattern')
@@ -199,7 +200,7 @@ app.directive('map', function() {
             .data(topojson.feature(json, json.objects.countries).features)
             .attr("id", function(d,i){return d.properties.name;} )
             .attr("d", path)
-            .on("click", country_clicked)
+            // .on("click", clicked)
             .on("mouseover", mouseOver) 
             .on("mousemove", mouseMove)
             .on("mouseout", mouseOut)
@@ -405,6 +406,33 @@ app.directive('map', function() {
       });
     }
 
+
+// function clicked(d) {
+//   console.log("clicked");
+//   console.log(d);
+//             var x, y, k;
+
+//             if (d && centered !== d) {
+//               var centroid = path.centroid(d);
+//               x = centroid[0];
+//               y = centroid[1];
+//               k = 4;
+//               centered = d;
+//             } else {
+//               x = width / 2;
+//               y = height / 2;
+//               k = 1;
+//               centered = null;
+//             }
+
+//             g.selectAll("path")
+//                 .classed("active", centered && function(d) { return d === centered; });
+
+//             g.transition()
+//                 .duration(750)
+//                 .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
+//                 .style("stroke-width", 1.5 / k + "px");
+//           }
 
     // WATCHERS    
     scope.$watch('mapYear', function(){

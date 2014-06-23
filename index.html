@@ -21,7 +21,7 @@
 
 Data extrapolation: <input type="checkbox" ng-model="extrapolationToggle">
 <slider ng-show="startingYear" ng-model="year" floor="{{startingYear}}" ceiling="{{endingYear}}" step=1></slider>
-<button ng-click="play()">Play</button>
+<button ng-bind="buttonText" ng-click="play()"></button>
 
 <select ng-model="targetDataset" ng-options="dataset.name for dataset in datasets"></select>
 {{targetDataset.src}}

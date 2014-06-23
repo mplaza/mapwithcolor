@@ -1,7 +1,5 @@
 var app = angular.module('myApp', ['vr.directives.slider'])
 .controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
-  $scope.cx = "5";
-  $scope.circles=[5,10,15,20,25];
   $scope.datasets = [
   	{name:"Select MDG Goal", src:''},
   	{name:'Population Below $1 a day', src:'goal1target1aa.json'},
@@ -27,29 +25,50 @@ var app = angular.module('myApp', ['vr.directives.slider'])
     {name:'Maternal Mortality Ratio Per 100,000 Live Births', src:'goal5target5aa.json'},
     {name:'Births Attended By Skilled Health Personell', src:'goal5target5ab.json'},
     {name:'Contraceptive Use Among Married Women 15-49 Years Old', src:'goal5target5ba.json'},
-    {name:'Adolescent Birth Rate per 1,000 Women', src:'goal5target5ba.json'},
-    ];
+    {name:'Adolescent Birth Rate per 1,000 Women', src:'goal5target5ba.json'}
+  ];
 
   $scope.targetDataset = $scope.datasets[0];
   $scope.startingYear = null;
   $scope.endingYear = null;
   $scope.extrapolationToggle = false;
+  $scope.buttonText = "Play";
 
   $scope.play = function() {
     console.log("play");
-    $scope.year = $scope.startingYear;
-    var count = 0;
-    for (var i = $scope.startingYear; i <= $scope.endingYear; i++) {
-      count++;
-      $scope.setDelay(count);
+    if ($scope.buttonText == "Play") {
+      $scope.buttonText = "Pause";
+      $scope.year = $scope.startingYear;
+      var count = 0;
+      $scope.currentTimeout = $timeout($scope.setDelay, 100);
     }
+    else if ($scope.buttonText == "Pause") {
+      $timeout.cancel($scope.currentTimeout);
+      $scope.buttonText = "Play";
+    }
+    
   };
 
   $scope.setDelay = function(count) {
-    $timeout(function() {
-      $scope.year++;
-    }, count*100);
+    $scope.year++;
+    if ($scope.year <= $scope.endingYear) {
+      $scope.currentTimeout = $timeout($scope.setDelay, 100);
+    }
   }
+
+  $scope.$watch('extrapolationToggle', function(){
+      // change year loaded to map
+      console.log("hello");
+      $scope.buttonText = "Play";
+      $timeout.cancel($scope.currentTimeout);
+    }, true);
+
+  $scope.$watch('targetDataset', function(){
+      // change year loaded to map
+      console.log("hello");
+      $scope.buttonText = "Play";
+      $timeout.cancel($scope.currentTimeout);
+    }, true);
   
 
 
