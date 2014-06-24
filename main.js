@@ -54,6 +54,9 @@ var app = angular.module('myApp', ['vr.directives.slider'])
     if ($scope.year <= $scope.endingYear) {
       $scope.currentTimeout = $timeout($scope.setDelay, 100);
     }
+    else {
+       $scope.buttonText = "Play";
+    }
   }
 
   $scope.$watch('extrapolationToggle', function(){
