@@ -4,14 +4,17 @@ namespace :import_cd do
   	require 'csv'
 
   	files_to_load = Hash.new
-  	files_to_load["lib/assets/poverty2.csv"] = Goal1target1aa
+  	files_to_load["lib/assets/goal1target1ab.csv"] = Fulldataset
 
   	files_to_load.each do |filename, modelName|
       modelName.delete_all
   		lines = File.new(filename).readlines
+      filenamearray =  filename.split("/")[2].split(".")[0].split(/l|t/)
+      goalnum = filenamearray[1]
+      targetnum = filenamearray[3]
   		header = lines.shift.strip
   		keys = header.split(',')
-      fixedkeys = []
+      fixedkeys = ['goal', 'targetset']
       keys.each do |key|
           if key.to_i > 0
             key = "year" + key
@@ -24,7 +27,7 @@ namespace :import_cd do
 
   		lines.each do |line|
   			values = line.strip.split(',')
-        newvalues = []; 
+        newvalues = [goalnum, targetnum]; 
         values.each do |value|
           if value == ""
             value = nil
