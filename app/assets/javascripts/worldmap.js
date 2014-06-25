@@ -11,7 +11,7 @@ var app = angular.module('myApp', ['ngResource', 'vr.directives.slider'])
 }]);
 
 // app.factory('Dataset', ['$resource', function($resource) {
-//   return $resource('/goal1target1aa/povertyindicatorone',
+//   return $resource('/fulldataset/1aa/povertyindicatorone',
 //     {},
 //      {update: { method: 'PATCH'}});
 // }]);
@@ -25,30 +25,45 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
   $scope.circles=[5,10,15,20,25];
   $scope.datasets = [
   	{name:"Select MDG Goal", src:''},
-  	{name:'Population Below $1 a day', src:'/goal1/target1ab.json', color: 'green', dataType: '%'},
-   //  {name:'Poverty Gap Ration at $1 a day', src:'goal1target1ab.json'},
-   //  {name:"Poorest Quintile's Share in National Income", src:'goal1target1ac.json'},
-   //  {name:'Growth Rate of GDP per Employed Person', src:'goal1target1ba.json'},
-   //  {name:'Employment to Population Ration', src:'goal1target1bb.json'},
-   //  {name:'Proportion of Employed People Below Poverty Line', src:'goal1target1bc.json'},
-   //  {name:'Proportion of Own Account and Contributing Family Workers in Total Employment', src:'goal1target1bd.json'},
-  	// {name:'Children Under 5 Moderately or Severly Underweight', src:'goal1target1ca.json'},
-   //  {name:'Population Undernourished', src:'goal1target1cb.json'},
-   //  {name:'Total Net Enrolment Ratio in Primary Education', src:'goal2target2aa.json'},
-   //  {name:'Percent of Pupils Starting Grade 1 who Reach Last Grade of Primary', src:'goal2target2ab.json'},
-   //  {name:'Literacy Rates of 15-24 year olds', src:'goal2target2ac.json'},
-   //  {name:'Gender Parity Index in Primary Level Enrolment', src:'goal3target3aa.json'},
-   //  {name:'Gender Parity Index in Secondary Level Enrolment', src:'goal3target3ab.json'},
-   //  {name:'Gender Parity Index in Tertiary Level Enrolment', src:'goal3target3ac.json'},
-   //  {name:'Share of Women in Wage Employment in the Non-Agricultural Secrot', src:'goal3target3ad.json'},
-   //  {name:'Seats Held By Women in National Parliament', src:'goal3target3ae.json'},
-   //  {name:'Children Under 5 Mortality per 1,000 Live Births', src:'goal4target4aa.json'},
-   //  {name:'Infant (0-1) Mortality per 1,000 Live Births', src:'goal4target4ab.json'},
-   //  {name:'Children 1 Year Old Immunizated Against Measles', src:'goal4target4ac.json'},
-   //  {name:'Maternal Mortality Ratio Per 100,000 Live Births', src:'goal5target5aa.json'},
-   //  {name:'Births Attended By Skilled Health Personell', src:'goal5target5ab.json'},
-   //  {name:'Contraceptive Use Among Married Women 15-49 Years Old', src:'goal5target5ba.json'},
-   //  {name:'Adolescent Birth Rate per 1,000 Women', src:'goal5target5ba.json'},
+  	{name:'Population Below $1 a day', src:'/fulldatasets/1aa.json', color: 'red', dataType: '%'},
+    {name:'Poverty Gap Ratio at $1 a day', src:'/fulldatasets/1ab.json', color: 'red', dataType: '%'},
+    {name:"Poorest Quintile's Share in National Income", src:'/fulldatasets/1ac.json', color: 'red', dataType: '%'},
+    {name:'Growth Rate of GDP per Employed Person', src:'/fulldatasets/1ba.json', color: 'green', dataType: '%'},
+    {name:'Employment to Population Ratio', src:'/fulldatasets/1bb.json', color: 'green', dataType: '%'},
+    {name:'Proportion of Employed People Below Poverty Line', src:'/fulldatasets/1bc.json', color: 'red', dataType: '%'},
+    {name:'Proportion of Own Account and Contributing Family Workers in Total Employment', src:'/fulldatasets/1bd.json', color: 'green', dataType: '%'},
+  	{name:'Children Under 5 Moderately or Severly Underweight', src:'/fulldatasets/1ca.json', color: 'red', dataType: '%'},
+    {name:'Population Undernourished', src:'/fulldatasets/1cb.json', color: 'red', dataType: '%'},
+    {name:'Total Net Enrolment Ratio in Primary Education', src:'fulldatasets/2aa.json', color: 'green', dataType: '%'},
+    {name:'Pupils Starting Grade 1 who Reach Last Grade of Primary', src:'fulldatasets/2ab.json', color: 'green', dataType: '%'},
+    {name:'Literacy Rates of 15-24 year olds', src:'fulldatasets/2ac.json', color: 'green', dataType: '%'},
+    {name:'Gender Parity Index in Primary Level Enrollment', src:'/fulldatasets/3aa.json', color: 'green', dataType: ''},
+    {name:'Gender Parity Index in Secondary Level Enrollment', src:'/fulldatasets/3ab.json', color: 'green', dataType: ''},
+    {name:'Gender Parity Index in Tertiary Level Enrollment', src:'/fulldatasets/3ac.json', color: 'green', dataType: '%'},
+    {name:'Share of Women in Wage Employment in the Non-Agricultural Secrot', src:'/fulldatasets/3ad.json', color: 'green', dataType: '%'},
+    {name:'Seats Held By Women in National Parliament', src:'/fulldatasets/3ae.json', color: 'green', dataType: '%'},
+    {name:'Children Under 5 Mortality per 1,000 Live Births', src:'/fulldatasets/4aa.json', color: 'red', dataType: ''},
+    {name:'Infant (0-1) Mortality per 1,000 Live Births', src:'/fulldatasets/4ab.json', color: 'red', dataType: ''},
+    {name:'Children 1 Year Old Immunizated Against Measles', src:'/fulldatasets/4ac.json', color: 'green', dataType: '%'},
+    {name:'Maternal Mortality Ratio Per 100,000 Live Births', src:'/fulldatasets/5aa.json', color: 'red', dataType: ''},
+    {name:'Births Attended By Skilled Health Personell', src:'/fulldatasets/5ab.json', color: 'green', dataType: '%'},
+    {name:'Contraceptive Use Among Married Women 15-49 Years Old', src:'/fulldatasets/5ba.json', color: 'green', dataType: '%'},
+    {name:'Adolescent Birth Rate per 1,000 Women', src:'/fulldatasets/5bb.json', color: 'red', dataType: ''},
+    {name:'Antenatal care coverage (at least one visit)', src:'/fulldatasets/5bc.json', color: 'green', dataType: '%'},
+    {name:'Antenatal care coverage (at least four visits)', src:'/fulldatasets/5bd.json', color: 'red', dataType: '%'},
+    {name:'Unmet need for family planning', src:'/fulldatasets/5be.json', color: 'red', dataType: '%'},
+    {name:'HIV prevalence among population aged 15-24 years', src:'/fulldatasets/6aa.json', color: 'red', dataType: '%'},
+    {name:'Condom use at last high-risk sex (women)', src:'/fulldatasets/6ab.json', color: 'red', dataType: '%'},
+    {name:'Condom use at last high-risk sex (men)', src:'/fulldatasets/6ac.json', color: 'red', dataType: '%'},
+    {name:'Population aged 15-24 years with comprehensive knowledge of HIV/AIDS (Men)', src:'/fulldatasets/6ad.json', color: 'red', dataType: '%'},
+    {name:'Population aged 15-24 years with comprehensive knowledge of HIV/AIDS (Women)', src:'/fulldatasets/6ae.json', color: 'red', dataType: '%'},
+    {name:'Ratio of school attendance of orphans to school attendance of non-orphans aged 10-14 years', src:'/fulldatasets/6af.json', color: 'red', dataType: '%'},
+    {name:'Proportion of population with advanced HIV infection with access to antiretroviral drugs', src:'/fulldatasets/6ba.json', color: 'red', dataType: '%'},
+    {name:'Notified cases of malaria per 100,000 population', src:'/fulldatasets/6ca.json', color: 'red', dataType: '%'},
+    {name:'Notified cases of malaria per 100,000 population', src:'/fulldatasets/6ca.json', color: 'red', dataType: '%'},
+
+
+
     ];
 
   $scope.targetDataset = $scope.datasets[0];
@@ -255,6 +270,7 @@ app.directive('map', [function(Dataset) {
               //state name
               var dataState = data[i]["Country"];
 
+
               //convert value from string to float
               var dataValue = data[i];
 
@@ -303,7 +319,8 @@ app.directive('map', [function(Dataset) {
             if (scope.mapDataset.color == 'green') {
               dataColor = "rgba(0,100,0,";
                 console.log("green set");
-            } else if (color == 'red') {
+            } else if (scope.mapDataset.color == 'red') {
+              console.log('red set');
               dataColor = "rgba(178,34,34,"; 
             }
             
