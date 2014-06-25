@@ -4,12 +4,26 @@ namespace :import_cd do
   	require 'csv'
 
   	files_to_load = Hash.new
-  	files_to_load["lib/assets/goal1target1ab.csv"] = Fulldataset
-    files_to_load["lib/assets/goal1target1cb.csv"] = Fulldataset
+
+    @files = Dir.glob('lib/assets/*.csv')
+    for file in @files
+        files_to_load[file] = Fulldataset
+    end
+
+
+
+
+   #  files_to_load["lib/assets/goal1target1aa.csv"] = Fulldataset
+  	# files_to_load["lib/assets/goal1target1ab.csv"] = Fulldataset
+   #  files_to_load["lib/assets/goal1target1ac.csv"] = Fulldataset
+   #  files_to_load["lib/assets/goal1target1ba.csv"] = Fulldataset
+   #  files_to_load["lib/assets/goal1target1bb.csv"] = Fulldataset
+   #  files_to_load["lib/assets/goal1target1ab.csv"] = Fulldataset
+   #  files_to_load["lib/assets/goal1target1cb.csv"] = Fulldataset
 
   	files_to_load.each do |filename, modelName|
+      puts filename
       # need to remove the modelName.deleteall when want to put in all the files
-      modelName.delete_all
   		lines = File.new(filename).readlines
       filenamearray =  filename.split("/")[2].split(".")[0].split(/l|t/)
       goalnum = filenamearray[1]
@@ -25,7 +39,6 @@ namespace :import_cd do
             fixedkeys.push(key)
           end
         end
-        puts fixedkeys
 
   		lines.each do |line|
   			values = line.strip.split(',')
