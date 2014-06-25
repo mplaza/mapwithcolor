@@ -25,7 +25,7 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
   $scope.circles=[5,10,15,20,25];
   $scope.datasets = [
   	{name:"Select MDG Goal", src:''},
-  	{name:'Population Below $1 a day', src:'/datasets/goal1target1ab.json', color: 'green', dataType: '%'},
+  	{name:'Population Below $1 a day', src:'/goal1/target1ab.json', color: 'green', dataType: '%'},
    //  {name:'Poverty Gap Ration at $1 a day', src:'goal1target1ab.json'},
    //  {name:"Poorest Quintile's Share in National Income", src:'goal1target1ac.json'},
    //  {name:'Growth Rate of GDP per Employed Person', src:'goal1target1ba.json'},

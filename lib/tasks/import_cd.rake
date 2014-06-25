@@ -5,8 +5,10 @@ namespace :import_cd do
 
   	files_to_load = Hash.new
   	files_to_load["lib/assets/goal1target1ab.csv"] = Fulldataset
+    files_to_load["lib/assets/goal1target1cb.csv"] = Fulldataset
 
   	files_to_load.each do |filename, modelName|
+      # need to remove the modelName.deleteall when want to put in all the files
       modelName.delete_all
   		lines = File.new(filename).readlines
       filenamearray =  filename.split("/")[2].split(".")[0].split(/l|t/)
