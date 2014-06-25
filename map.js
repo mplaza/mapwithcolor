@@ -1,145 +1,4 @@
-var app = angular.module('myApp', ['ngResource', 'vr.directives.slider'])
-.config(
-    ['$httpProvider', function($httpProvider) {
-    var authToken = angular.element("meta[name=\"csrf-token\"]").attr("content");
-    var defaults = $httpProvider.defaults.headers;
-
-    defaults.common["X-CSRF-TOKEN"] = authToken;
-    defaults.patch = defaults.patch || {};
-    defaults.patch['Content-Type'] = 'application/json';
-    defaults.common['Accept'] = 'application/json';
-}]);
-
-// app.factory('Dataset', ['$resource', function($resource) {
-//   return $resource('/fulldataset/1aa/povertyindicatorone',
-//     {},
-//      {update: { method: 'PATCH'}});
-// }]);
-
-
-
-
-app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
-  console.log('hey there');
-  $scope.cx = "5";
-  $scope.circles=[5,10,15,20,25];
-  $scope.goals = [
-  {number: 1, description: "Eradicate extreme poverty and hunger"}, {number: 2, description:"Achieve universal primary education"}, {number: 3, description: "Promote gender equality and empower women"}, {number: 4, description: "Reduce child mortality"}, {number: 5, description: "Improve maternal health"}, {number: 6, description: "Combat HIV/AIDS, malaria and other diseases"}, {number: 7 , description: "Ensure environmental sustainability"}, {number: 8, description: "Develop a global partnership for development"}
-    ];
-  $scope.datasets = [
-  	{name:"Select MDG Goal", src:''},
-  	{name:'Population Below $1 a day', src:'/fulldatasets/1aa.json', color: 'red', dataType: '%', number: 1},
-    {name:'Poverty Gap Ratio at $1 a day', src:'/fulldatasets/1ab.json', color: 'red', dataType: '%', number: 1},
-    {name:"Poorest Quintile's Share in National Income", src:'/fulldatasets/1ac.json', color: 'red', dataType: '%', number: 1},
-    {name:'Growth Rate of GDP per Employed Person', src:'/fulldatasets/1ba.json', color: 'green', dataType: '%', number: 1},
-    {name:'Employment to Population Ratio', src:'/fulldatasets/1bb.json', color: 'green', dataType: '%', number: 1},
-    {name:'Proportion of Employed People Below Poverty Line', src:'/fulldatasets/1bc.json', color: 'red', dataType: '%', number: 1},
-    {name:'Proportion of Own Account and Contributing Family Workers in Total Employment', src:'/fulldatasets/1bd.json', color: 'green', dataType: '%', number: 1},
-  	{name:'Children Under 5 Moderately or Severly Underweight', src:'/fulldatasets/1ca.json', color: 'red', dataType: '%', number: 1},
-    {name:'Population Undernourished', src:'/fulldatasets/1cb.json', color: 'red', dataType: '%', number: 1},
-    {name:'Total Net Enrolment Ratio in Primary Education', src:'fulldatasets/2aa.json', color: 'green', dataType: '%'},
-    {name:'Pupils Starting Grade 1 who Reach Last Grade of Primary', src:'fulldatasets/2ab.json', color: 'green', dataType: '%'},
-    {name:'Literacy Rates of 15-24 year olds', src:'fulldatasets/2ac.json', color: 'green', dataType: '%'},
-    {name:'Gender Parity Index in Primary Level Enrollment', src:'/fulldatasets/3aa.json', color: 'green', dataType: ''},
-    {name:'Gender Parity Index in Secondary Level Enrollment', src:'/fulldatasets/3ab.json', color: 'green', dataType: ''},
-    {name:'Gender Parity Index in Tertiary Level Enrollment', src:'/fulldatasets/3ac.json', color: 'green', dataType: '%'},
-    {name:'Share of Women in Wage Employment in the Non-Agricultural Secrot', src:'/fulldatasets/3ad.json', color: 'green', dataType: '%'},
-    {name:'Seats Held By Women in National Parliament', src:'/fulldatasets/3ae.json', color: 'green', dataType: '%'},
-    {name:'Children Under 5 Mortality per 1,000 Live Births', src:'/fulldatasets/4aa.json', color: 'red', dataType: ''},
-    {name:'Infant (0-1) Mortality per 1,000 Live Births', src:'/fulldatasets/4ab.json', color: 'red', dataType: ''},
-    {name:'Children 1 Year Old Immunizated Against Measles', src:'/fulldatasets/4ac.json', color: 'green', dataType: '%'},
-    {name:'Maternal Mortality Ratio Per 100,000 Live Births', src:'/fulldatasets/5aa.json', color: 'red', dataType: ''},
-    {name:'Births Attended By Skilled Health Personell', src:'/fulldatasets/5ab.json', color: 'green', dataType: '%'},
-    {name:'Contraceptive Use Among Married Women 15-49 Years Old', src:'/fulldatasets/5ba.json', color: 'green', dataType: '%'},
-    {name:'Adolescent Birth Rate per 1,000 Women', src:'/fulldatasets/5bb.json', color: 'red', dataType: ''},
-    {name:'Antenatal care coverage (at least one visit)', src:'/fulldatasets/5bc.json', color: 'green', dataType: '%'},
-    {name:'Antenatal care coverage (at least four visits)', src:'/fulldatasets/5bd.json', color: 'red', dataType: '%'},
-    {name:'Unmet need for family planning', src:'/fulldatasets/5be.json', color: 'red', dataType: '%'},
-    {name:'HIV prevalence among population aged 15-24 years', src:'/fulldatasets/6aa.json', color: 'red', dataType: '%'},
-    {name:'Condom use at last high-risk sex (women)', src:'/fulldatasets/6ab.json', color: 'red', dataType: '%'},
-    {name:'Condom use at last high-risk sex (men)', src:'/fulldatasets/6ac.json', color: 'red', dataType: '%'},
-    {name:'Population aged 15-24 years with comprehensive knowledge of HIV/AIDS (Men)', src:'/fulldatasets/6ad.json', color: 'red', dataType: '%'},
-    {name:'Population aged 15-24 years with comprehensive knowledge of HIV/AIDS (Women)', src:'/fulldatasets/6ae.json', color: 'red', dataType: '%'},
-    {name:'Ratio of school attendance of orphans to school attendance of non-orphans aged 10-14 years', src:'/fulldatasets/6af.json', color: 'red', dataType: '%'},
-    {name:'Proportion of population with advanced HIV infection with access to antiretroviral drugs', src:'/fulldatasets/6ba.json', color: 'red', dataType: '%'},
-    {name:'Notified cases of malaria per 100,000 population', src:'/fulldatasets/6ca.json', color: 'red', dataType: ''},
-    {name:'Malaria death rate per 100,000 population all ages', src:'/fulldatasets/6cb.json', color: 'red', dataType: ''},
-    {name:'Malaria death rate per 100,000 population children 0-4', src:'/fulldatasets/6cc.json', color: 'red', dataType: ''},
-    {name:'Proportion of children under 5 sleeping under insecticide-treated bednets', src:'/fulldatasets/6cd.json', color: 'red', dataType: ''},
-    {name:'Proportion of children under 5 with fever who are treated with appropriate anti-malarial drugs', src:'/fulldatasets/6ce.json', color: 'red', dataType: ''},
-    {name:'Tuberculosis prevalence rate per 100,000 population', src:'/fulldatasets/6cf.json', color: 'red', dataType: ''},
-    {name:'Tuberculosis death rate per 100,000 population', src:'/fulldatasets/6cg.json', color: 'red', dataType: ''},
-    {name:'Tuberculosis incidence rate per 100,000 population', src:'/fulldatasets/6ch.json', color: 'red', dataType: ''},
-    {name:'Tuberculosis detection rate under DOTS', src:'/fulldatasets/6ci.json', color: 'green', dataType: '%'},
-    {name:'Tuberculosis treatment rate success under DOTS', src:'/fulldatasets/6cj.json', color: 'green', dataType: '%'},
-    {name:'Proportion of land area covered by forest', src:'/fulldatasets/7aa.json', color: 'red', dataType: '%'},
-    {name:'Carbon dioxide emissions (CO2), thousand metric tons', src:'/fulldatasets/7ab.json', color: 'red', dataType: ''},
-    {name:'Carbon dioxide emissions (CO2), metric tons of CO2 per capita', src:'/fulldatasets/7ad.json', color: 'red', dataType: ''},
-    {name:'Carbon dioxide emissions (CO2), kg CO2 per $1 GDP (PPP)', src:'/fulldatasets/7af.json', color: 'red', dataType: ''},
-    {name:'Consumption of all ozone-depleting substances in ODP metric tons', src:'/fulldatasets/7ah.json', color: 'red', dataType: ''},
-    {name:'Proportion of fish stocks within safe biological limits', src:'/fulldatasets/7ai.json', color: 'green', dataType: '%'},
-    {name:'Terrestrial and marine areas protected to total territorial area', src:'/fulldatasets/7ba.json', color: 'green', dataType: '%'},
-    {name:'Proportion of the population using improved drinking water sources', src:'/fulldatasets/7ca.json', color: 'green', dataType: '%'},
-    {name:'Proportion of the population using improved sanitation facilities', src:'/fulldatasets/7cb.json', color: 'green', dataType: '%'},
-    {name:'Slum population as percentage of urban', src:'/fulldatasets/7da.json', color: 'red', dataType: '%'},
-    {name:'Net ODA as percentage of OECD/DAC donors GNI', src:'/fulldatasets/8aa.json', color: 'red', dataType: '%'},
-    {name:'ODA that is untied', src:'/fulldatasets/8ad.json', color: 'red', dataType: '%'},
-    {name:'ODA received in landlocked developing countries as a percentage of their GNI', src:'/fulldatasets/8ae.json', color: 'red', dataType: '%'},
-    {name:'Fixed-telephone subscriptions per 100 inhabitants', src:'/fulldatasets/8fa.json', color: 'green', dataType: ''},
-    {name:'Mobile-cellular subscriptions per 100 inhabitants', src:'/fulldatasets/8fb.json', color: 'green', dataType: ''},
-    {name:'Internet users per 100 inhabitants', src:'/fulldatasets/8fc.json', color: 'green', dataType: ''}
-    ];
-
-  $scope.targetDataset = $scope.datasets[0];
-  $scope.startingYear = null;
-  $scope.endingYear = null;
-  $scope.extrapolationToggle = false;
-  $scope.buttonText = "Play";
-
-  $scope.play = function() {
-    console.log("play");
-    if ($scope.buttonText == "Play") {
-      $scope.buttonText = "Pause";
-      $scope.year = $scope.startingYear;
-      var count = 0;
-      $scope.currentTimeout = $timeout($scope.setDelay, 100);
-    }
-    else if ($scope.buttonText == "Pause") {
-      $timeout.cancel($scope.currentTimeout);
-      $scope.buttonText = "Play";
-    }
-  };
-   
-  $scope.setDelay = function(count) {
-    $scope.year++;
-    if ($scope.year <= $scope.endingYear) {
-      $scope.currentTimeout = $timeout($scope.setDelay, 100);
-    }
-    else {
-       $scope.buttonText = "Play";
-    }
-  };
-
-  $scope.$watch('extrapolationToggle', function(){
-    // change year loaded to map
-    console.log("hello");
-    $scope.buttonText = "Play";
-    $timeout.cancel($scope.currentTimeout);
-  }, true);
-
-  $scope.$watch('targetDataset', function(){
-    // change year loaded to map
-    console.log("hello");
-    $scope.buttonText = "Play";
-    $timeout.cancel($scope.currentTimeout);
-  }, true);
-   
-
-
-}])
-
-app.directive('map', [function(Dataset) {
-
+app.directive('map', function() {
   return {
     restrict: 'AE',
     replace: 'true',
@@ -156,7 +15,6 @@ app.directive('map', [function(Dataset) {
   }
 
   function link(scope, element, attr) {
-    scope.$broadcast('refreshSlider');
 
     // map display area on page
     var m_width = $("#map").width(),
@@ -177,13 +35,14 @@ app.directive('map', [function(Dataset) {
     // CREATE AN EMPTY MAP
     var createMap = function () {
       //bring in topojson-- from natural earth data, Medium scale data, 1:50m, without Antartica
-      d3.json("/countries.topo.json", function(error, json) {
+      d3.json("countries.topo.json", function(error, json) {
      
         svg = d3.select("#map").append("svg")
           .attr("preserveAspectRatio", "xMidYMid")
           .attr("viewBox", "0 0 " + width + " " + height)
           .attr("width", m_width)
           .attr("height", m_width * height / width);
+          
 
         svg.append("defs")
           .append('pattern')
@@ -192,7 +51,7 @@ app.directive('map', [function(Dataset) {
           .attr('width', 6)
           .attr('height', 6)
           .append("image")
-          .attr("xlink:href", "/greystripes.png")
+          .attr("xlink:href", "greystripes.png")
           .attr('width', 6)
           .attr('height', 6);
 
@@ -238,33 +97,15 @@ app.directive('map', [function(Dataset) {
     }
     
     // LOAD MAP DATASET
-
     var loadDataset = function() {
-      var dataColor;
-      color = scope.mapDataset.color;
-      dataType = scope.mapDataset.dataType;
-      console.log(color);
-
-
-      // Dataset.query(function(dataset){
-      //   scope.targetDataset = dataset;
-      //   // console.log(scope.targetDataset);
-      // })
-
-      console.log("src: " + scope.mapDataset.src);
       d3.json(scope.mapDataset.src, function(error, json) {
-
         if (error) return console.warn(error);
         data = json;
-
         
-        var numOfPrecedingJson = 4;
-        var startingYear = parseFloat(Object.keys(data[1])[numOfPrecedingJson].split("r")[1]);
-        // console.log(startingYear);
-        // will need to subtract more than 3 when add other data into json
-        var numberOfYears = parseFloat(Object.keys(data[1]).length - numOfPrecedingJson);
-        var endingYear = parseFloat(Object.keys(data[1])[numOfPrecedingJson + numberOfYears - 1].split("r")[1]);
-        console.log(endingYear);
+
+        var startingYear = parseFloat(Object.keys(data[1])[0]);
+        var numberOfYears = parseFloat(Object.keys(data[1]).length - 3);
+        var endingYear = parseFloat(Object.keys(data[1])[numberOfYears]);
         scope.myStartyear = startingYear;
         scope.myEndyear = endingYear;
         scope.mapYear = startingYear;
@@ -273,10 +114,9 @@ app.directive('map', [function(Dataset) {
        
 
         var maxValue = 0;
-
         for (var i = startingYear; i <= endingYear; i++) {
           var max = d3.max(data, function(d) {
-            return d["year" + i.toString()];
+            return d[i.toString()];
           });
           if (max > maxValue) {
             maxValue = max;
@@ -284,7 +124,9 @@ app.directive('map', [function(Dataset) {
         }
   
         // TAKING COUNTRY TOPO DATA AND ADDING MDG DATA TO IT
-        d3.json("/countries.topo.json", function(error, json) {
+        d3.json("countries.topo.json", function(error, json) {
+          var dataColor;
+          var dataType;
           if (error) {
             console.log(error);
           } else {
@@ -293,7 +135,6 @@ app.directive('map', [function(Dataset) {
 
               //state name
               var dataState = data[i]["Country"];
-
 
               //convert value from string to float
               var dataValue = data[i];
@@ -311,18 +152,18 @@ app.directive('map', [function(Dataset) {
                   // ONLY EXTRAPOLATE IF AT LEAST 3 DATAPOINTS
                   if (scope.extrapolationToggle) {
                     for (var k = startingYear; k <= endingYear; k++) {
-                      var valueYear = "year" + k.toString();
+                      var valueYear = k.toString();
                       if (dataValue[valueYear] != null) {
                         extrapolate.given(k).get(dataValue[valueYear]);
                         dataCount++;
                       }
                     }
                   }
-
+                  
 
                   //add values for each year from the MDG Data into the properties of countries in the topojson
                   for (var l = startingYear; l <= endingYear; l++) { 
-                    var valueYear = "year" + l.toString();
+                    var valueYear = l.toString();
                     if (dataValue[valueYear] == null && dataCount >= 3) {
                       json.objects.countries.geometries[j].properties[valueYear] = Math.round(extrapolate.valueFor(l)*10)/10;
                       // console.log(extrapolate.valueFor(l));         
@@ -330,24 +171,24 @@ app.directive('map', [function(Dataset) {
                       json.objects.countries.geometries[j].properties[valueYear] = dataValue[valueYear];  
                     }
                   }
-                  
                 }
               }
             }
-            // console.log(json.objects.countries);
 
-            // console.log(json.objects.countries);
+            console.log(json.objects.countries);
 
             // SET COLOR
-            console.log('this is the color' + scope.mapDataset.color);
-            if (scope.mapDataset.color == 'green') {
+            if (data[0]["color"] == 'green') {
               dataColor = "rgba(0,100,0,";
-                console.log("green set");
-            } else if (scope.mapDataset.color == 'red') {
-              console.log('red set');
+            } else {
               dataColor = "rgba(178,34,34,"; 
             }
-            
+            // SET DATATYPE (% vs raw)
+            if (data[0]["type"] == "percent") {
+              dataType = "%";
+            } else {
+              dataType = ""; 
+            }
               // json.objects.countries.geometries[j].properties[valueYear] = dataValue[valueYear];
           }
           
@@ -359,15 +200,14 @@ app.directive('map', [function(Dataset) {
             .data(topojson.feature(json, json.objects.countries).features)
             .attr("id", function(d,i){return d.properties.name;} )
             .attr("d", path)
-            .on("click", country_clicked)
+            // .on("click", clicked)
             .on("mouseover", mouseOver) 
             .on("mousemove", mouseMove)
             .on("mouseout", mouseOut)
             .style("fill", function(d) {
               //Data value
-              var value = d.properties["year"+startingYear.toString()]; 
+              var value = d.properties[startingYear.toString()]; 
               if(value) {
-                console.log(dataColor +  (value/maxValue) + ")");
                 return dataColor +  (value/maxValue) + ")";
               } else {
                 return "url(#no_data)";
@@ -396,7 +236,7 @@ app.directive('map', [function(Dataset) {
               // .transition()
               .style("fill", function(d) {
               //Data value
-              var value = d.properties["year" + scope.mapYear]; 
+              var value = d.properties[scope.mapYear]; 
               var thisYear = parseInt(scope.mapYear);
 
               //for incomplete datasets, leave the fill of previous years until new data available
@@ -455,8 +295,8 @@ app.directive('map', [function(Dataset) {
          
             var dataString;
 
-            if (d.properties["year" + scope.mapYear]) {
-              dataString = d.properties["year" + scope.mapYear] + dataType;
+            if (d.properties[scope.mapYear]) {
+              dataString = d.properties[scope.mapYear] + dataType;
             } else {
               dataString = "No Data";
             }
@@ -567,6 +407,33 @@ app.directive('map', [function(Dataset) {
     }
 
 
+// function clicked(d) {
+//   console.log("clicked");
+//   console.log(d);
+//             var x, y, k;
+
+//             if (d && centered !== d) {
+//               var centroid = path.centroid(d);
+//               x = centroid[0];
+//               y = centroid[1];
+//               k = 4;
+//               centered = d;
+//             } else {
+//               x = width / 2;
+//               y = height / 2;
+//               k = 1;
+//               centered = null;
+//             }
+
+//             g.selectAll("path")
+//                 .classed("active", centered && function(d) { return d === centered; });
+
+//             g.transition()
+//                 .duration(750)
+//                 .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
+//                 .style("stroke-width", 1.5 / k + "px");
+//           }
+
     // WATCHERS    
     scope.$watch('mapYear', function(){
       // change year loaded to map
@@ -607,5 +474,4 @@ app.directive('map', [function(Dataset) {
   };
 
 // END DIRECTIVE
-}])
-
+})

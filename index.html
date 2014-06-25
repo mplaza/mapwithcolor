@@ -1,5 +1,16 @@
-IT WORKS!
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+<script src="/js/vendor/jquery.js"></script>
+<script src="/js/angular.min.js"></script>
+<script src="/js/angular-touch.min.js"></script>
+<script src="/js/angular-slider.min.js"></script>
 
+
+<link rel="stylesheet" type="text/css" href="stylestuff.css">
+</head>
+
+<body>
 <div ng-app="myApp">
 <div ng-controller="MainCtrl">
 
@@ -12,8 +23,7 @@ Data extrapolation: <input type="checkbox" ng-model="extrapolationToggle">
 <slider ng-show="startingYear" ng-model="year" floor="{{startingYear}}" ceiling="{{endingYear}}" step=1></slider>
 <button ng-bind="buttonText" ng-click="play()"></button>
 
-<select ng-model="goal" ng-options="goal.description for goal in goals"></select>
-<select ng-model="targetDataset" ng-options="dataset.name for dataset in datasets |filter:{number: goal.number}"></select>
+<select ng-model="targetDataset" ng-options="dataset.name for dataset in datasets"></select>
 {{targetDataset.src}}
 
 
@@ -29,6 +39,15 @@ Country: <input ng-model="zoomToCountry"/>
   <circle cx="50" cy="50" r="{{circle}}" fill="red"/>
 </svg> -->
 
+<script src="/js/d3.v3.min.js"></script>
+<script src="/js/topojson.v1.min.js"></script>
+<script src="/js/extrapolate.js"></script>
+<script src="/main.js"></script>
+<script src="/map.js"></script>
+
 
 </div>
 </div>
+
+
+</body>
