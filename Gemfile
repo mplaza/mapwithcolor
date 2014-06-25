@@ -29,6 +29,15 @@ gem 'angularjs-rails'
 gem "d3-rails"
 
 gem 'rails_12factor'
+
+group :development, :test do
+	gem "rspec-rails"
+end
+
+group :test do
+  gem 'shoulda-matchers', require: false
+end
+
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 

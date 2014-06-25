@@ -37,9 +37,9 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
     {name:'Proportion of Own Account and Contributing Family Workers in Total Employment', src:'/fulldatasets/1bd.json', color: 'green', dataType: '%', number: 1},
   	{name:'Children Under 5 Moderately or Severly Underweight', src:'/fulldatasets/1ca.json', color: 'red', dataType: '%', number: 1},
     {name:'Population Undernourished', src:'/fulldatasets/1cb.json', color: 'red', dataType: '%', number: 1},
-    {name:'Total Net Enrolment Ratio in Primary Education', src:'fulldatasets/2aa.json', color: 'green', dataType: '%', number: 2},
-    {name:'Pupils Starting Grade 1 who Reach Last Grade of Primary', src:'fulldatasets/2ab.json', color: 'green', dataType: '%', number: 2},
-    {name:'Literacy Rates of 15-24 year olds', src:'fulldatasets/2ac.json', color: 'green', dataType: '%', number: 2},
+    {name:'Total Net Enrolment Ratio in Primary Education', src:'/fulldatasets/2aa.json', color: 'green', dataType: '%', number: 2},
+    {name:'Pupils Starting Grade 1 who Reach Last Grade of Primary', src:'/fulldatasets/2ab.json', color: 'green', dataType: '%', number: 2},
+    {name:'Literacy Rates of 15-24 year olds', src:'/fulldatasets/2ac.json', color: 'green', dataType: '%', number: 2},
     {name:'Gender Parity Index in Primary Level Enrollment', src:'/fulldatasets/3aa.json', color: 'green', dataType: '', number: 3},
     {name:'Gender Parity Index in Secondary Level Enrollment', src:'/fulldatasets/3ab.json', color: 'green', dataType: '', number: 3},
     {name:'Gender Parity Index in Tertiary Level Enrollment', src:'/fulldatasets/3ac.json', color: 'green', dataType: '%', number: 3},
@@ -438,10 +438,17 @@ app.directive('map', [function(Dataset) {
             });
           };
 
-          //add the tooptip to see country data when the mouse is over it
+          //add the tooptip
           var div = d3.select("body").append("div")
-            .attr("class", "tooltip")
+            .attr("class", "has-tip")
+            .attr("class", "tip-left")
             .style("opacity", 1e-6);
+
+          // var tooltip = d3.select("body").append('span')
+          //   .attr("data-tooltip", "true")
+          //   .attr("class", "has-tip")
+          //   .attr("title",  "hii");
+
 
 
           //make the tooptip visible on mouseover
@@ -464,6 +471,7 @@ app.directive('map', [function(Dataset) {
 
             div
               .html(d.properties.name + "<br/>" + dataString)
+              .attr("title", d.properties.name)
               .style("left", (d3.event.pageX + 10) + "px")
               .style("top", (d3.event.pageY - 20) + "px");
           }
