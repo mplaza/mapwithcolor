@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   get "worldmap/index"
-  get 'datasets/goal1target1aa', to: 'datasets#povertyindicatorone'
-  resources :goal1target1aa
+  # get 'goal1/target1ab', to: 'fulldatasets#goal1target1ab'
+  # get 'goal1/target1cb', to: 'fulldatasets#goal1target1cb'
+  resources :fulldatasets
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
