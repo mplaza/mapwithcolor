@@ -62,6 +62,17 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
     {name:'Notified cases of malaria per 100,000 population', src:'/fulldatasets/6ca.json', color: 'red', dataType: '%'},
     {name:'Notified cases of malaria per 100,000 population', src:'/fulldatasets/6ca.json', color: 'red', dataType: '%'},
 
+    {name:'Proportion of land area covered by forest', src:'/fulldatasets/7aa.json', color: 'red', dataType: '%'},
+    {name:'Carbon dioxide emissions (CO2), thousand metric tons', src:'/fulldatasets/7ab.json', color: 'red', dataType: ''},
+    {name:'Carbon dioxide emissions (CO2), metric tons of CO2 per capita', src:'/fulldatasets/7ad.json', color: 'red', dataType: ''},
+    {name:'Carbon dioxide emissions (CO2), kg CO2 per $1 GDP (PPP)', src:'/fulldatasets/7af.json', color: 'red', dataType: ''},
+    {name:'Consumption of all ozone-depleting substances in ODP metric tons', src:'/fulldatasets/7ah.json', color: 'red', dataType: ''},
+    {name:'Proportion of fish stocks within safe biological limits', src:'/fulldatasets/7ai.json', color: 'green', dataType: '%'},
+    {name:'Terrestrial and marine areas protected to total territorial area', src:'/fulldatasets/7ba.json', color: 'green', dataType: '%'},
+    {name:'Proportion of the population using improved drinking water sources', src:'/fulldatasets/7ca.json', color: 'green', dataType: '%'},
+    {name:'Proportion of the population using improved sanitation facilities', src:'/fulldatasets/7cb.json', color: 'green', dataType: '%'},
+    {name:'Slum population as percentage of urban', src:'/fulldatasets/7da.json', color: 'red', dataType: '%'},
+   
 
 
     ];
