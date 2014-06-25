@@ -1,5 +1,7 @@
 [
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":4,
     "Country":"Afghanistan",
     "1990":0.1,
@@ -26,6 +28,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":12,
     "Country":"Algeria",
     "1990":null,
@@ -52,6 +56,8 @@
     "2011":null
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":24,
     "Country":"Angola",
     "1990":0.6,
@@ -78,6 +84,8 @@
     "2011":2.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":32,
     "Country":"Argentina",
     "1990":0.2,
@@ -104,6 +112,8 @@
     "2011":0.4
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":51,
     "Country":"Armenia",
     "1990":0.1,
@@ -130,6 +140,8 @@
     "2011":0.2
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":36,
     "Country":"Australia",
     "1990":0.1,
@@ -156,6 +168,8 @@
     "2011":0.2
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":40,
     "Country":"Austria",
     "1990":0.1,
@@ -182,6 +196,8 @@
     "2011":0.4
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":31,
     "Country":"Azerbaijan",
     "1990":0.1,
@@ -208,6 +224,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":44,
     "Country":"Bahamas",
     "1990":3.9,
@@ -234,6 +252,8 @@
     "2011":2.8
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":50,
     "Country":"Bangladesh",
     "1990":0.1,
@@ -260,6 +280,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":52,
     "Country":"Barbados",
     "1990":0.4,
@@ -286,6 +308,8 @@
     "2011":0.9
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":112,
     "Country":"Belarus",
     "1990":0.1,
@@ -312,6 +336,8 @@
     "2011":0.4
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":56,
     "Country":"Belgium",
     "1990":0.1,
@@ -338,6 +364,8 @@
     "2011":0.3
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":84,
     "Country":"Belize",
     "1990":1,
@@ -364,6 +392,8 @@
     "2011":2.3
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":204,
     "Country":"Benin",
     "1990":3.2,
@@ -390,6 +420,8 @@
     "2011":1.2
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":64,
     "Country":"Bhutan",
     "1990":0.1,
@@ -416,6 +448,8 @@
     "2011":0.3
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":68,
     "Country":"Bolivia",
     "1990":0.6,
@@ -442,6 +476,8 @@
     "2011":0.3
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":72,
     "Country":"Botswana",
     "1990":6.2,
@@ -468,6 +504,8 @@
     "2011":23.4
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":76,
     "Country":"Brazil",
     "1990":0.2,
@@ -494,6 +532,8 @@
     "2011":0.3
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":100,
     "Country":"Bulgaria",
     "1990":0.1,
@@ -520,6 +560,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":854,
     "Country":"Burkina Faso",
     "1990":3.7,
@@ -546,6 +588,8 @@
     "2011":1.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":108,
     "Country":"Burundi",
     "1990":2.1,
@@ -572,6 +616,8 @@
     "2011":1.3
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":116,
     "Country":"Cambodia",
     "1990":0.5,
@@ -598,6 +644,8 @@
     "2011":0.6
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":120,
     "Country":"Cameroon",
     "1990":1,
@@ -624,6 +672,8 @@
     "2011":4.6
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":124,
     "Country":"Canada",
     "1990":0.2,
@@ -650,6 +700,8 @@
     "2011":0.3
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":132,
     "Country":"Cape Verde",
     "1990":0.8,
@@ -676,6 +728,8 @@
     "2011":1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":140,
     "Country":"Central African Republic",
     "1990":8.6,
@@ -702,6 +756,8 @@
     "2011":4.6
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":148,
     "Country":"Chad",
     "1990":2.3,
@@ -728,6 +784,8 @@
     "2011":3.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":152,
     "Country":"Chile",
     "1990":0.1,
@@ -754,6 +812,8 @@
     "2011":0.5
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":156,
     "Country":"China",
     "1990":null,
@@ -780,6 +840,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":170,
     "Country":"Colombia",
     "1990":0.3,
@@ -806,6 +868,8 @@
     "2011":0.5
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":174,
     "Country":"Comoros",
     "1990":0.1,
@@ -832,6 +896,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":178,
     "Country":"Congo",
     "1990":5.1,
@@ -858,6 +924,8 @@
     "2011":3.3
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":188,
     "Country":"Costa Rica",
     "1990":0.1,
@@ -884,6 +952,8 @@
     "2011":0.3
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":384,
     "Country":"Cote d'Ivoire",
     "1990":5.8,
@@ -910,6 +980,8 @@
     "2011":3
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":191,
     "Country":"Croatia",
     "1990":0.1,
@@ -936,6 +1008,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":192,
     "Country":"Cuba",
     "1990":0.1,
@@ -962,6 +1036,8 @@
     "2011":0.2
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":203,
     "Country":"Czech Republic",
     "1990":0.1,
@@ -988,6 +1064,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":180,
     "Country":"Democratic Republic of the Congo",
     "1990":null,
@@ -1014,6 +1092,8 @@
     "2011":null
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":208,
     "Country":"Denmark",
     "1990":0.1,
@@ -1040,6 +1120,8 @@
     "2011":0.2
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":262,
     "Country":"Djibouti",
     "1990":0.6,
@@ -1066,6 +1148,8 @@
     "2011":1.4
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":214,
     "Country":"Dominican Republic",
     "1990":0.4,
@@ -1092,6 +1176,8 @@
     "2011":0.7
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":218,
     "Country":"Ecuador",
     "1990":0.2,
@@ -1118,6 +1204,8 @@
     "2011":0.4
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":818,
     "Country":"Egypt",
     "1990":0.1,
@@ -1144,6 +1232,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":222,
     "Country":"El Salvador",
     "1990":0.1,
@@ -1170,6 +1260,8 @@
     "2011":0.6
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":226,
     "Country":"Equatorial Guinea",
     "1990":0.9,
@@ -1196,6 +1288,8 @@
     "2011":4.7
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":232,
     "Country":"Eritrea",
     "1990":0.2,
@@ -1222,6 +1316,8 @@
     "2011":0.6
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":233,
     "Country":"Estonia",
     "1990":0.1,
@@ -1248,6 +1344,8 @@
     "2011":1.3
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":231,
     "Country":"Ethiopia",
     "1990":1.3,
@@ -1274,6 +1372,8 @@
     "2011":1.4
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":242,
     "Country":"Fiji",
     "1990":0.1,
@@ -1300,6 +1400,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":246,
     "Country":"Finland",
     "1990":0.1,
@@ -1326,6 +1428,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":250,
     "Country":"France",
     "1990":0.3,
@@ -1352,6 +1456,8 @@
     "2011":0.4
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":266,
     "Country":"Gabon",
     "1990":1.2,
@@ -1378,6 +1484,8 @@
     "2011":5
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":270,
     "Country":"Gambia",
     "1990":0.1,
@@ -1404,6 +1512,8 @@
     "2011":1.5
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":268,
     "Country":"Georgia",
     "1990":0.1,
@@ -1430,6 +1540,8 @@
     "2011":0.2
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":276,
     "Country":"Germany",
     "1990":0.1,
@@ -1456,6 +1568,8 @@
     "2011":0.2
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":288,
     "Country":"Ghana",
     "1990":1,
@@ -1482,6 +1596,8 @@
     "2011":1.5
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":300,
     "Country":"Greece",
     "1990":0.1,
@@ -1508,6 +1624,8 @@
     "2011":0.2
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":320,
     "Country":"Guatemala",
     "1990":0.1,
@@ -1534,6 +1652,8 @@
     "2011":0.8
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":324,
     "Country":"Guinea",
     "1990":0.7,
@@ -1560,6 +1680,8 @@
     "2011":1.4
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":624,
     "Country":"Guinea-Bissau",
     "1990":0.3,
@@ -1586,6 +1708,8 @@
     "2011":2.5
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":328,
     "Country":"Guyana",
     "1990":0.6,
@@ -1612,6 +1736,8 @@
     "2011":1.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":332,
     "Country":"Haiti",
     "1990":2.9,
@@ -1638,6 +1764,8 @@
     "2011":1.8
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":340,
     "Country":"Honduras",
     "1990":null,
@@ -1664,6 +1792,8 @@
     "2011":null
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":348,
     "Country":"Hungary",
     "1990":0.1,
@@ -1690,6 +1820,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":352,
     "Country":"Iceland",
     "1990":0.1,
@@ -1716,6 +1848,8 @@
     "2011":0.3
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":356,
     "Country":"India",
     "1990":null,
@@ -1742,6 +1876,8 @@
     "2011":null
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":360,
     "Country":"Indonesia",
     "1990":0.1,
@@ -1768,6 +1904,8 @@
     "2011":0.3
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":364,
     "Country":"Iran (Islamic Republic of)",
     "1990":0.1,
@@ -1794,6 +1932,8 @@
     "2011":0.2
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":372,
     "Country":"Ireland",
     "1990":0.1,
@@ -1820,6 +1960,8 @@
     "2011":0.3
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":376,
     "Country":"Israel",
     "1990":0.1,
@@ -1846,6 +1988,8 @@
     "2011":0.2
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":380,
     "Country":"Italy",
     "1990":0.4,
@@ -1872,6 +2016,8 @@
     "2011":0.4
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":388,
     "Country":"Jamaica",
     "1990":0.9,
@@ -1898,6 +2044,8 @@
     "2011":1.8
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":392,
     "Country":"Japan",
     "1990":0.1,
@@ -1924,6 +2072,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":398,
     "Country":"Kazakhstan",
     "1990":0.1,
@@ -1950,6 +2100,8 @@
     "2011":0.2
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":404,
     "Country":"Kenya",
     "1990":2.5,
@@ -1976,6 +2128,8 @@
     "2011":6.2
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":408,
     "Country":"North Korea",
     "1990":null,
@@ -2002,6 +2156,8 @@
     "2011":null
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":410,
     "Country":"South Korea",
     "1990":0.1,
@@ -2028,6 +2184,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":417,
     "Country":"Kyrgyzstan",
     "1990":0.1,
@@ -2054,6 +2212,8 @@
     "2011":0.4
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":418,
     "Country":"Lao People's Democratic Republic",
     "1990":0.1,
@@ -2080,6 +2240,8 @@
     "2011":0.3
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":428,
     "Country":"Latvia",
     "1990":0.1,
@@ -2106,6 +2268,8 @@
     "2011":0.7
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":422,
     "Country":"Lebanon",
     "1990":0.1,
@@ -2132,6 +2296,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":426,
     "Country":"Lesotho",
     "1990":0.8,
@@ -2158,6 +2324,8 @@
     "2011":23.3
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":430,
     "Country":"Liberia",
     "1990":0.7,
@@ -2184,6 +2352,8 @@
     "2011":1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":440,
     "Country":"Lithuania",
     "1990":0.1,
@@ -2210,6 +2380,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":442,
     "Country":"Luxembourg",
     "1990":0.1,
@@ -2236,6 +2408,8 @@
     "2011":0.3
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":450,
     "Country":"Madagascar",
     "1990":0.1,
@@ -2262,6 +2436,8 @@
     "2011":0.3
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":454,
     "Country":"Malawi",
     "1990":7.8,
@@ -2288,6 +2464,8 @@
     "2011":10
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":458,
     "Country":"Malaysia",
     "1990":0.1,
@@ -2314,6 +2492,8 @@
     "2011":0.4
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":462,
     "Country":"Maldives",
     "1990":0.1,
@@ -2340,6 +2520,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":466,
     "Country":"Mali",
     "1990":1.1,
@@ -2366,6 +2548,8 @@
     "2011":1.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":470,
     "Country":"Malta",
     "1990":0.1,
@@ -2392,6 +2576,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":478,
     "Country":"Mauritania",
     "1990":0.3,
@@ -2418,6 +2604,8 @@
     "2011":1.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":480,
     "Country":"Mauritius",
     "1990":0.1,
@@ -2444,6 +2632,8 @@
     "2011":1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":484,
     "Country":"Mexico",
     "1990":0.2,
@@ -2470,6 +2660,8 @@
     "2011":0.3
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":496,
     "Country":"Mongolia",
     "1990":0.1,
@@ -2496,6 +2688,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":504,
     "Country":"Morocco",
     "1990":0.1,
@@ -2522,6 +2716,8 @@
     "2011":0.2
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":508,
     "Country":"Mozambique",
     "1990":0.4,
@@ -2548,6 +2744,8 @@
     "2011":11.3
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":104,
     "Country":"Myanmar",
     "1990":0.2,
@@ -2574,6 +2772,8 @@
     "2011":0.6
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":516,
     "Country":"Namibia",
     "1990":1.8,
@@ -2600,6 +2800,8 @@
     "2011":13.4
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":524,
     "Country":"Nepal",
     "1990":0.1,
@@ -2626,6 +2828,8 @@
     "2011":0.3
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":528,
     "Country":"Netherlands",
     "1990":0.1,
@@ -2652,6 +2856,8 @@
     "2011":0.2
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":554,
     "Country":"New Zealand",
     "1990":0.1,
@@ -2678,6 +2884,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":558,
     "Country":"Nicaragua",
     "1990":0.1,
@@ -2704,6 +2912,8 @@
     "2011":0.2
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":562,
     "Country":"Niger",
     "1990":0.4,
@@ -2730,6 +2940,8 @@
     "2011":0.8
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":566,
     "Country":"Nigeria",
     "1990":0.5,
@@ -2756,6 +2968,8 @@
     "2011":3.7
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":578,
     "Country":"Norway",
     "1990":0.1,
@@ -2782,6 +2996,8 @@
     "2011":0.2
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":512,
     "Country":"Oman",
     "1990":null,
@@ -2808,6 +3024,8 @@
     "2011":null
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":586,
     "Country":"Pakistan",
     "1990":0.1,
@@ -2834,6 +3052,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":591,
     "Country":"Panama",
     "1990":0.8,
@@ -2860,6 +3080,8 @@
     "2011":0.8
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":598,
     "Country":"Papua New Guinea",
     "1990":0.2,
@@ -2886,6 +3108,8 @@
     "2011":0.7
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":600,
     "Country":"Paraguay",
     "1990":0.1,
@@ -2912,6 +3136,8 @@
     "2011":0.3
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":604,
     "Country":"Peru",
     "1990":0.2,
@@ -2938,6 +3164,8 @@
     "2011":0.4
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":608,
     "Country":"Philippines",
     "1990":0.1,
@@ -2964,6 +3192,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":616,
     "Country":"Poland",
     "1990":0.1,
@@ -2990,6 +3220,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":620,
     "Country":"Portugal",
     "1990":0.1,
@@ -3016,6 +3248,8 @@
     "2011":0.7
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":498,
     "Country":"Republic of Moldova",
     "1990":0.1,
@@ -3042,6 +3276,8 @@
     "2011":0.5
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":642,
     "Country":"Romania",
     "1990":0.1,
@@ -3068,6 +3304,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":643,
     "Country":"Russian Federation",
     "1990":null,
@@ -3094,6 +3332,8 @@
     "2011":null
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":646,
     "Country":"Rwanda",
     "1990":5.8,
@@ -3120,6 +3360,8 @@
     "2011":2.9
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":678,
     "Country":"Sao Tome and Principe",
     "1990":0.2,
@@ -3146,6 +3388,8 @@
     "2011":1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":686,
     "Country":"Senegal",
     "1990":0.1,
@@ -3172,6 +3416,8 @@
     "2011":0.7
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":688,
     "Country":"Serbia",
     "1990":0.1,
@@ -3198,6 +3444,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":694,
     "Country":"Sierra Leone",
     "1990":0.1,
@@ -3224,6 +3472,8 @@
     "2011":1.6
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":702,
     "Country":"Singapore",
     "1990":0.1,
@@ -3250,6 +3500,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":703,
     "Country":"Slovakia",
     "1990":0.1,
@@ -3276,6 +3528,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":705,
     "Country":"Slovenia",
     "1990":0.1,
@@ -3302,6 +3556,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":706,
     "Country":"Somalia",
     "1990":0.5,
@@ -3328,6 +3584,8 @@
     "2011":0.7
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":710,
     "Country":"South Africa",
     "1990":0.5,
@@ -3354,6 +3612,8 @@
     "2011":17.3
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":728,
     "Country":"South Sudan",
     "1990":null,
@@ -3380,6 +3640,8 @@
     "2011":3.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":724,
     "Country":"Spain",
     "1990":0.4,
@@ -3406,6 +3668,8 @@
     "2011":0.4
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":144,
     "Country":"Sri Lanka",
     "1990":0.1,
@@ -3432,6 +3696,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":729,
     "Country":"Sudan",
     "1990":null,
@@ -3458,6 +3724,8 @@
     "2011":null
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":740,
     "Country":"Suriname",
     "1990":1.6,
@@ -3484,6 +3752,8 @@
     "2011":1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":748,
     "Country":"Swaziland",
     "1990":3,
@@ -3510,6 +3780,8 @@
     "2011":26
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":752,
     "Country":"Sweden",
     "1990":0.1,
@@ -3536,6 +3808,8 @@
     "2011":0.2
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":756,
     "Country":"Switzerland",
     "1990":0.2,
@@ -3562,6 +3836,8 @@
     "2011":0.4
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":762,
     "Country":"Tajikistan",
     "1990":0.1,
@@ -3588,6 +3864,8 @@
     "2011":0.3
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":764,
     "Country":"Thailand",
     "1990":1,
@@ -3614,6 +3892,8 @@
     "2011":1.2
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":768,
     "Country":"Togo",
     "1990":1.7,
@@ -3640,6 +3920,8 @@
     "2011":3.4
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":780,
     "Country":"Trinidad and Tobago",
     "1990":0.2,
@@ -3666,6 +3948,8 @@
     "2011":1.5
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":788,
     "Country":"Tunisia",
     "1990":0.1,
@@ -3692,6 +3976,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":792,
     "Country":"Turkey",
     "1990":0.1,
@@ -3718,6 +4004,8 @@
     "2011":0.1
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":800,
     "Country":"Uganda",
     "1990":13.4,
@@ -3744,6 +4032,8 @@
     "2011":7.2
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":804,
     "Country":"Ukraine",
     "1990":0.1,
@@ -3770,6 +4060,8 @@
     "2011":0.8
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":826,
     "Country":"United Kingdom",
     "1990":0.1,
@@ -3796,6 +4088,8 @@
     "2011":0.3
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":834,
     "Country":"Tanzania",
     "1990":5,
@@ -3822,6 +4116,8 @@
     "2011":5.8
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":840,
     "Country":"United States",
     "1990":0.5,
@@ -3848,6 +4144,8 @@
     "2011":0.7
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":858,
     "Country":"Uruguay",
     "1990":0.1,
@@ -3874,6 +4172,8 @@
     "2011":0.6
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":860,
     "Country":"Uzbekistan",
     "1990":null,
@@ -3900,6 +4200,8 @@
     "2011":null
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":862,
     "Country":"Venezuela",
     "1990":0.2,
@@ -3926,6 +4228,8 @@
     "2011":0.6
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":704,
     "Country":"Viet Nam",
     "1990":0.1,
@@ -3952,6 +4256,8 @@
     "2011":0.5
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":887,
     "Country":"Yemen",
     "1990":0.1,
@@ -3978,6 +4284,8 @@
     "2011":0.2
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":894,
     "Country":"Zambia",
     "1990":13.8,
@@ -4004,6 +4312,8 @@
     "2011":12.5
   },
   {
+    "Goal":"6",
+    "Target":"6aa",
     "CountryCode":716,
     "Country":"Zimbabwe",
     "1990":13.6,
