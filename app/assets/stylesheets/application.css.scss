@@ -11,9 +11,8 @@
  * file per style scope.
  *
  *= require_self
- *= require foundation 
+ *= require foundation_and_overrides
  *= require stylesheet
-@import "foundation_and_overrides";
 
  */
 
