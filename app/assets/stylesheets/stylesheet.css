@@ -11,14 +11,27 @@ body {
   text-align: center;
 }
 
+.options-section {
+  position: relative;
+  z-index: 999;
+}
+
+.options {
+  width: 300px;
+  float: right;
+}
+
 #map {
   background-color: #fff;
   width: 100%;
-  margin: 0 auto 0 auto;
+  margin: 0 auto;
 }
+
 path {
   fill: white;
+/*  margin: -100px auto 0 auto;*/
 }
+
 .background {
   fill: none;
   pointer-events: all;
@@ -36,9 +49,6 @@ path {
   stroke-linecap: round;
 }
 
-#countries .active, #states .active {
-  fill: #89a;
-}
 
 div.tooltip {
   background-color: rgba(0,0,0,0.7);
