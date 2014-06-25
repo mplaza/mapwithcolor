@@ -1,0 +1,236 @@
+CountryCode,Country,2010
+4,Afghanistan,1
+8,Albania,
+12,Algeria,0
+16,American Samoa,
+20,Andorra,
+24,Angola,64
+660,Anguilla,
+28,Antigua and Barbuda,
+32,Argentina,0
+51,Armenia,0
+533,Aruba,
+36,Australia,
+40,Austria,
+31,Azerbaijan,0
+44,Bahamas,0
+48,Bahrain,
+50,Bangladesh,14
+52,Barbados,
+112,Belarus,
+56,Belgium,
+84,Belize,0
+204,Benin,104
+60,Bermuda,
+64,Bhutan,0
+68,Bolivia,0
+70,Bosnia and Herzegovina,
+72,Botswana,2
+76,Brazil,1
+92,British Virgin Islands,
+96,Brunei Darussalam,
+100,Bulgaria,
+854,Burkina Faso,191
+108,Burundi,23
+116,Cambodia,6
+120,Cameroon,92
+124,Canada,
+132,Cape Verde,1
+136,Cayman Islands,
+140,Central African Republic,169
+148,Chad,192
+830,Channel Islands,
+152,Chile,
+156,China,0
+344,"China, Hong Kong Special Administrative Region",
+446,"China, Macao Special Administrative Region",
+170,Colombia,2
+174,Comoros,37
+178,Congo,93
+184,Cook Islands,
+188,Costa Rica,0
+384,Cote d'Ivoire,116
+191,Croatia,
+192,Cuba,
+196,Cyprus,
+203,Czech Republic,
+180,Democratic Republic of the Congo,121
+208,Denmark,
+262,Djibouti,18
+212,Dominica,
+214,Dominican Republic,0
+218,Ecuador,0
+818,Egypt,0
+222,El Salvador,0
+226,Equatorial Guinea,79
+232,Eritrea,6
+233,Estonia,
+231,Ethiopia,12
+234,Faeroe Islands,
+238,Falkland Islands (Malvinas),
+242,Fiji,
+246,Finland,
+250,France,
+254,French Guiana,1
+258,French Polynesia,
+266,Gabon,39
+270,Gambia,83
+268,Georgia,0
+276,Germany,
+288,Ghana,52
+300,Greece,
+304,Greenland,
+308,Grenada,
+312,Guadeloupe,
+316,Guam,
+320,Guatemala,0
+324,Guinea,144
+624,Guinea-Bissau,108
+328,Guyana,18
+332,Haiti,7
+340,Honduras,0
+348,Hungary,
+352,Iceland,
+356,India,4
+360,Indonesia,9
+364,Iran (Islamic Republic of),0
+368,Iraq,0
+372,Ireland,
+376,Israel,
+380,Italy,
+388,Jamaica,0
+392,Japan,
+400,Jordan,
+398,Kazakhstan,
+404,Kenya,9
+296,Kiribati,
+408,"Korea, Democratic People's Republic of",0
+410,"Korea, Republic of",0
+414,Kuwait,
+417,Kyrgyzstan,0
+418,Lao People's Democratic Republic,7
+428,Latvia,
+422,Lebanon,
+426,Lesotho,
+430,Liberia,86
+434,Libyan Arab Jamahiriya,
+438,Liechtenstein,
+440,Lithuania,
+442,Luxembourg,
+450,Madagascar,25
+454,Malawi,51
+458,Malaysia,2
+462,Maldives,
+466,Mali,145
+470,Malta,
+584,Marshall Islands,
+474,Martinique,
+478,Mauritania,29
+480,Mauritius,
+175,Mayotte,0
+484,Mexico,0
+583,"Micronesia, Federated States of",
+492,Monaco,
+496,Mongolia,
+499,Montenegro,
+500,Montserrat,
+504,Morocco,0
+508,Mozambique,125
+104,Myanmar,14
+516,Namibia,1
+520,Nauru,
+524,Nepal,0
+528,Netherlands,
+530,Netherlands Antilles,
+540,New Caledonia,
+554,New Zealand,
+558,Nicaragua,0
+562,Niger,118
+566,Nigeria,131
+570,Niue,
+580,Northern Mariana Islands,
+578,Norway,
+512,Oman,0
+586,Pakistan,2
+585,Palau,
+591,Panama,0
+598,Papua New Guinea,46
+600,Paraguay,0
+604,Peru,1
+608,Philippines,0
+616,Poland,
+620,Portugal,
+630,Puerto Rico,
+634,Qatar,
+498,Republic of Moldova,
+638,Reunion,
+642,Romania,
+643,Russian Federation,0
+646,Rwanda,4
+659,Saint Kitts and Nevis,
+662,Saint Lucia,
+670,Saint Vincent and the Grenadines,
+882,Samoa,
+674,San Marino,
+678,Sao Tome and Principe,29
+682,Saudi Arabia,0
+686,Senegal,45
+688,Serbia,
+690,Seychelles,
+694,Sierra Leone,177
+702,Singapore,
+703,Slovakia,
+705,Slovenia,
+90,Solomon Islands,24
+706,Somalia,30
+710,South Africa,2
+728,South Sudan,0
+724,Spain,
+144,Sri Lanka,0
+275,State of Palestine,
+736,Sudan (former),30
+740,Suriname,1
+748,Swaziland,1
+752,Sweden,
+756,Switzerland,
+760,Syrian Arab Republic,0
+762,Tajikistan,0
+764,Thailand,1
+807,Macedonia,
+626,Timor-Leste,25
+768,Togo,63
+772,Tokelau,
+776,Tonga,
+780,Trinidad and Tobago,
+788,Tunisia,
+792,Turkey,0
+795,Turkmenistan,0
+796,Turks and Caicos Islands,
+798,Tuvalu,
+800,Uganda,55
+804,Ukraine,
+784,United Arab Emirates,
+826,United Kingdom,
+834,Tanzania,39
+840,United States,
+850,United States Virgin Islands,
+858,Uruguay,
+860,Uzbekistan,0
+548,Vanuatu,14
+862,Venezuela,1
+704,Viet Nam,0
+732,Western Sahara,
+887,Yemen,13
+894,Zambia,67
+716,Zimbabwe,123
+,,
+Code, FootnoteText,
+,,
+Type, Name,
+C,Country Data,
+CA,Country Adjusted,
+E,Estimated,
+M,Modeled,
+G,Global monitoring data,
+N,Not Relevant,
+NA,Not Available,
