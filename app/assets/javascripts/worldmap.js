@@ -91,6 +91,7 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 
     ];
 
+ 
   $scope.targetDataset = $scope.datasets[0];
   $scope.startingYear = null;
   $scope.endingYear = null;
@@ -438,11 +439,13 @@ app.directive('map', [function(Dataset) {
             });
           };
 
-          //add the tooptip
-          var div = d3.select("body").append("div")
+          //add country data to the side div
+          var div = d3.select("#countrydata").append("div")
             .attr("class", "has-tip")
             .attr("class", "tip-left")
             .style("opacity", 1e-6);
+
+
 
           // var tooltip = d3.select("body").append('span')
           //   .attr("data-tooltip", "true")
