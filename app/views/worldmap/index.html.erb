@@ -12,7 +12,8 @@ Data extrapolation: <input type="checkbox" ng-model="extrapolationToggle">
 <slider ng-show="startingYear" ng-model="year" floor="{{startingYear}}" ceiling="{{endingYear}}" step=1></slider>
 <button ng-bind="buttonText" ng-click="play()"></button>
 
-<select ng-model="targetDataset" ng-options="dataset.name for dataset in datasets"></select>
+<select ng-model="goal" ng-options="goal.description for goal in goals"></select>
+<select ng-model="targetDataset" ng-options="dataset.name for dataset in datasets |filter:{number: goal.number}"></select>
 {{targetDataset.src}}
 
 
