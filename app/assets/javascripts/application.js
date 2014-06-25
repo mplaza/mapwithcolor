@@ -19,7 +19,6 @@
 //= require angular-touch
 //= require topojson
 //= require d3
-//= require foundation
 //= require_tree .
 
 
