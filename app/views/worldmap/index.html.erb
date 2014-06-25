@@ -7,6 +7,23 @@ IT WORKS!
 
 <!-- <input ng-model="filename"/> -->
 
+<a href="#" class="button" data-dropdown="drop">Link Dropdown</a>
+<ul id="drop" class="tiny content f-dropdown" data-dropdown-content>
+  <li><a href="#">This is a link</a></li>
+  <li><a href="#">This is another</a></li>
+  <li><a href="#">Yet another</a></li>
+</ul>
+
+
+<div class="switch">
+  <input id="exampleCheckboxSwitch" type="checkbox">
+  <label for="exampleCheckboxSwitch"></label>
+</div>
+
+<div class="switch small">
+  <input id="exampleRadioSwitch1" type="radio" checked name="testGroup">
+  <label for="exampleRadioSwitch1"></label>
+</div> 
 
 Data extrapolation: <input type="checkbox" ng-model="extrapolationToggle">
 <slider ng-show="startingYear" ng-model="year" floor="{{startingYear}}" ceiling="{{endingYear}}" step=1></slider>

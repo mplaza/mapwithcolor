@@ -19,7 +19,9 @@
 //= require angular-touch
 //= require topojson
 //= require d3
-//= require_tree .
+//= require extrapolate
+//= require maincontroller
+//= require mapdirective
 
 
 $(function(){ $(document).foundation(); });
