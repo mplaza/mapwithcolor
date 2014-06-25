@@ -10,22 +10,22 @@ var app = angular.module('myApp', ['ngResource', 'vr.directives.slider'])
     defaults.common['Accept'] = 'application/json';
 }]);
 
-app.factory('Dataset', ['$resource', function($resource) {
-  return $resource('/goal1target1aa/povertyindicatorone',
-    {},
-     {update: { method: 'PATCH'}});
-}]);
+// app.factory('Dataset', ['$resource', function($resource) {
+//   return $resource('/goal1target1aa/povertyindicatorone',
+//     {},
+//      {update: { method: 'PATCH'}});
+// }]);
 
 
 
 
-app.controller('MainCtrl', ['$scope', '$timeout', 'Dataset', function($scope, $timeout, Dataset) {
+app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
   console.log('hey there');
   $scope.cx = "5";
   $scope.circles=[5,10,15,20,25];
   $scope.datasets = [
   	{name:"Select MDG Goal", src:''},
-  	{name:'Population Below $1 a day', src:'/datasets/goal1target1aa.json', color: 'green', dataType: '%'},
+  	{name:'Population Below $1 a day', src:'/datasets/goal1target1ab.json', color: 'green', dataType: '%'},
    //  {name:'Poverty Gap Ration at $1 a day', src:'goal1target1ab.json'},
    //  {name:"Poorest Quintile's Share in National Income", src:'goal1target1ac.json'},
    //  {name:'Growth Rate of GDP per Employed Person', src:'goal1target1ba.json'},
@@ -99,7 +99,7 @@ app.controller('MainCtrl', ['$scope', '$timeout', 'Dataset', function($scope, $t
 
 }])
 
-app.directive('map', ['Dataset', function(Dataset) {
+app.directive('map', [function(Dataset) {
 
   return {
     restrict: 'AE',
@@ -207,10 +207,10 @@ app.directive('map', ['Dataset', function(Dataset) {
       console.log(color);
 
 
-      Dataset.query(function(dataset){
-        scope.targetDataset = dataset;
-        // console.log(scope.targetDataset);
-      })
+      // Dataset.query(function(dataset){
+      //   scope.targetDataset = dataset;
+      //   // console.log(scope.targetDataset);
+      // })
 
       console.log("src: " + scope.mapDataset.src);
       d3.json(scope.mapDataset.src, function(error, json) {
@@ -219,7 +219,7 @@ app.directive('map', ['Dataset', function(Dataset) {
         data = json;
 
         
-        var numOfPrecedingJson = 2;
+        var numOfPrecedingJson = 4;
         var startingYear = parseFloat(Object.keys(data[1])[numOfPrecedingJson].split("r")[1]);
         // console.log(startingYear);
         // will need to subtract more than 3 when add other data into json
