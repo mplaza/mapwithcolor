@@ -10,15 +10,16 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
  *= require_self
- //= require foundation_and_overrides
+ *= require foundation 
+ *= require_tree .
+@import "foundation_and_overrides";
 
  */
 
 @font-face {
     font-family: 'DroidSerif-Bold';
-    src:font-url('DroidSerif-Bold.ttf');
+    src:font-url('/assets/fonts/DroidSerif-Bold.ttf');
     font-weight: bold;
     font-style: normal;
 } 
@@ -42,12 +43,13 @@ body {
 #map {
   background-color: #fff;
   width: 100%;
-  margin: -100px auto 0 auto;
+/*  margin: -100px auto 0 auto;*/
   z-index: -999;
 }
-path {
+
+/*path {
   fill: black;
-}
+}*/
 .background {
   fill: none;
   pointer-events: all;
@@ -65,9 +67,6 @@ path {
   stroke-linecap: round;
 }
 
-#countries .active, #states .active {
-  fill: #89a;
-}
 
 div.tooltip {
   background-color: rgba(0,0,0,0.7);
