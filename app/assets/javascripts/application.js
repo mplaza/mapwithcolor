@@ -12,11 +12,15 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require foundation
 //= require angular
 //= require angular-resource
 //= require angular-slider
 //= require angular-touch
 //= require topojson
 //= require d3
+//= require foundation
 //= require_tree .
 
+
+$(function(){ $(document).foundation(); });

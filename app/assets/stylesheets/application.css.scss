@@ -11,8 +11,9 @@
  * file per style scope.
  *
  *= require_self
+ *= require foundation 
  *= require_tree .
- *= require foundation_and_overrides
+@import "foundation_and_overrides";
 
  */
 
@@ -42,12 +43,13 @@ body {
 #map {
   background-color: #fff;
   width: 100%;
-  margin: -100px auto 0 auto;
+/*  margin: -100px auto 0 auto;*/
   z-index: -999;
 }
-path {
+
+/*path {
   fill: black;
-}
+}*/
 .background {
   fill: none;
   pointer-events: all;
@@ -65,9 +67,6 @@ path {
   stroke-linecap: round;
 }
 
-#countries .active, #states .active {
-  fill: #89a;
-}
 
 div.tooltip {
   background-color: rgba(0,0,0,0.7);

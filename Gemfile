@@ -23,7 +23,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'topojson-rails'
 
 gem 'active_model_serializers'
-
+gem 'foundation-rails'
 
 gem 'angularjs-rails'
 gem "d3-rails"
