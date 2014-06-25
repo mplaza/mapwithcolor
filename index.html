@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+<script src="/js/vendor/jquery.js"></script>
+<script src="/js/angular.min.js"></script>
+<script src="/js/angular-touch.min.js"></script>
+<script src="/js/angular-slider.min.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="stylestuff.css">
+</head>
+
+<body>
+<div ng-app="myApp">
+<div ng-controller="MainCtrl">
+
+
+
+<!-- <input ng-model="filename"/> -->
+
+
+Data extrapolation: <input type="checkbox" ng-model="extrapolationToggle">
+<slider ng-show="startingYear" ng-model="year" floor="{{startingYear}}" ceiling="{{endingYear}}" step=1></slider>
+<button ng-bind="buttonText" ng-click="play()"></button>
+
+<select ng-model="targetDataset" ng-options="dataset.name for dataset in datasets"></select>
+{{targetDataset.src}}
+
+
+<map data="filename" year="year" dataset="targetDataset" country="zoomToCountry" my-startyear="startingYear" my-endyear="endingYear" extrapolation-toggle="extrapolationToggle"></map>
+<div id="map"></div>
+Country: <input ng-model="zoomToCountry"/>
+{{zoomToCountry}}
+
+
+
+
+<!-- <svg ng-repeat="circle in circles" height="100" width="100">
+  <circle cx="50" cy="50" r="{{circle}}" fill="red"/>
+</svg> -->
+
+<script src="/js/d3.v3.min.js"></script>
+<script src="/js/topojson.v1.min.js"></script>
+<script src="/js/extrapolate.js"></script>
+<script src="/main.js"></script>
+<script src="/map.js"></script>
+
+
+</div>
+</div>
+
+
+</body>

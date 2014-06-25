@@ -88,6 +88,7 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
     {name:'Fixed-telephone subscriptions per 100 inhabitants', src:'/fulldatasets/8fa.json', color: 'green', dataType: '', number: 8},
     {name:'Mobile-cellular subscriptions per 100 inhabitants', src:'/fulldatasets/8fb.json', color: 'green', dataType: '', number: 8},
     {name:'Internet users per 100 inhabitants', src:'/fulldatasets/8fc.json', color: 'green', dataType: '', number: 8},
+
     ];
 
   $scope.targetDataset = $scope.datasets[0];
