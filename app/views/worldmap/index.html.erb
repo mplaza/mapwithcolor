@@ -3,28 +3,21 @@
 
 
 
-<!-- <input ng-model="filename"/> -->
-<!-- 
- <div class="large-1 columns">
-    <div class="switch tiny">
-      <input id="x" name="switch-x" type="radio" checked>
-      <label for="x" onclick="">No</label>
-      <input id="x1" name="switch-x" type="radio">
-      <label for="x1" onclick="">yes</label>
-      <span></span>
-    </div>
-  </div> -->
-
 <div id="container">
 	<div id="content">
 		<div class="row">
 			<div class="small-2 columns">
 			 	<select ng-model="goal" ng-options="goal.description for goal in goals"></select>
 				<select ng-model="targetDataset" ng-options="dataset.name for dataset in datasets |filter:{number: goal.number}"></select>
-				<div>Country: <input ng-model="zoomToCountry"/></div>
+
+				<input ng-model="targetDataset" type="text" placeholder= "Search for Indicator" typeahead= "dataset as dataset.name for dataset in datasets | filter:{name:$viewValue}" class="form-control"></input>
+
+				<input ng-show="startingYear" ng-model="zoomToCountry" type="text" placeholder= "Search for Country" typeahead="country for country in countryList | filter:$viewValue | limitTo:8" class="form-control"></input>
+
 				<div ng-show="startingYear" id="countrydata" class ="panel">
-				<p>{{goal.description}}</p>
-				<p>{{targetDataset.name}}</p>
+					<h6>Goal <small> {{goal.description}} </small></h6>
+					<h6>Target: <small> {{targetDataset.target}} </small></h6>
+					<h6>Indicator: <small> {{targetDataset.name}} </small></h6>
 				</div>
 			</div>
 
@@ -60,8 +53,6 @@
 				<button ng-bind="buttonText" ng-click="play()" class="button radius"></button>
 			</div>
 		</div>
-
-
 	</div>
 </div>
 
@@ -69,12 +60,12 @@
 
 
 
-  <script type="text/ng-template" id="myModalContent.html">
+ <!--  <script type="text/ng-template" id="myModalContent.html">
   	<h1>hello</h1>
     	<chart dataset="targetDataset" target-country="clickedCountry" clicked-country="clickedCountry"></chart>
 			<div id="chart"></div>
     <a class="close-reveal-modal" ng-click="cancel()">&#215;</a>
-  </script>
+  </script> -->
 
   <!-- <button class="button" ng-click="open()">Open me!</button>
   <div ng-show="selected">Selection from a modal: {{ selected }}</div> -->
