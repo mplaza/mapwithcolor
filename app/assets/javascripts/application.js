@@ -24,6 +24,7 @@
 //= require mapdirective
 //= require chartdirective
 //= require foundation
+//= require mm-foundation-tpls-0.2.2.min
 
 
 
