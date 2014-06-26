@@ -11,7 +11,10 @@ app.directive('map', [function() {
       myStartyear: '=',
       myEndyear: '=',
       extrapolationToggle: '=',
-      targetCountry: '='
+      targetCountry: '=',
+      clickedCountry: '=',
+      minDatasetValue: '=',
+      maxDatasetValue: '='
     },
     link: link
   }
@@ -132,6 +135,7 @@ app.directive('map', [function() {
        
 
         var maxValue = 0;
+        var minValue = 0;
 
         for (var i = startingYear; i <= endingYear; i++) {
           var max = d3.max(data, function(d) {
@@ -141,6 +145,19 @@ app.directive('map', [function() {
             maxValue = max;
           }
         }
+
+        for (var i = startingYear; i <= endingYear; i++) {
+          var min = d3.min(data, function(d) {
+            return d["year" + i.toString()];
+          });
+          if (min < minValue) {
+            minValue = min;
+          }
+        }
+
+        scope.maxDatasetValue = maxValue;
+        scope.minDatasetValue = minValue;
+        scope.$apply();
   
         // TAKING COUNTRY TOPO DATA AND ADDING MDG DATA TO IT
         d3.json("/countries.topo.json", function(error, json) {
@@ -356,24 +373,24 @@ app.directive('map', [function() {
           //zoom in on a country when it's clicked and then back out when it's clicked again
           var country = null;
           function country_clicked(d) {
-           if(country) {
-              $(this).css({"stroke": "grey"});
-            }
+           // if(country) {
+           //    $(this).css({"stroke": "grey"});
+           //  }
 
-            if(d && country !== d) {
-              var xyz = scope.get_xyz(d);
-              country = d;
-              zoom(xyz); 
-              $(this).css({"stroke":"black"});
-              $(this).css({"stroke-linejoin":"round"});
-              $(this).css({"stroke-linecap":"round"}); 
-            } else {
-              var xyz = [width / 2, height / 1.5, 1];
-              country = null;
-              zoom(xyz);          
-            }
+           //  if(d && country !== d) {
+           //    var xyz = scope.get_xyz(d);
+           //    country = d;
+           //    zoom(xyz); 
+           //    $(this).css({"stroke":"black"});
+           //    $(this).css({"stroke-linejoin":"round"});
+           //    $(this).css({"stroke-linecap":"round"}); 
+           //  } else {
+           //    var xyz = [width / 2, height / 1.5, 1];
+           //    country = null;
+           //    zoom(xyz);          
+           //  }
 
-            scope.targetCountry = d.properties.name;
+            scope.clickedCountry = d.properties.name;
             scope.$apply();
           };
 

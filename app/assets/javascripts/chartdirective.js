@@ -5,7 +5,10 @@ app.directive('chart', [function() {
     replace: 'true',
     scope: {
       mapDataset: '=dataset',
-      targetCountry: '='
+      targetCountry: '=',
+      clickedCountry: '=',
+      minDatasetValue: '=',
+      maxDatasetValue: '='
     },
     link: link
   }
@@ -16,8 +19,8 @@ app.directive('chart', [function() {
       d3.select("#chart").select("svg").remove();
 
       var margin = {top: 20, right: 20, bottom: 30, left: 40},
-        width = 700 - margin.left - margin.right,
-        height = 400 - margin.top - margin.bottom;
+        width = 550 - margin.left - margin.right,
+        height = 300 - margin.top - margin.bottom;
 
       var x = d3.scale.linear()
           .range([0, width]);
@@ -32,7 +35,7 @@ app.directive('chart', [function() {
       var yAxis = d3.svg.axis()
           .scale(y)
           .orient("left")
-          .ticks(10);
+          .ticks(6);
 
       var svg = d3.select("#chart").append("svg")
           .attr("width", width + margin.left + margin.right)
@@ -43,6 +46,17 @@ app.directive('chart', [function() {
       console.log("createChart");
      
       d3.json(scope.mapDataset.src, function(error, json) {
+
+        // console.log(json);
+        // for (var i = startingYear; i <= endingYear; i++) {
+        //   var max = d3.max(data, function(d) {
+        //     return d["year" + i.toString()];
+        //   });
+        //   if (max > maxValue) {
+        //     maxValue = max;
+        //   }
+        // }
+
         for (var i = 0; i < json.length; i++) {
           if (json[i]["Country"] == scope.targetCountry) {
             dataset = json[i];
@@ -64,7 +78,7 @@ app.directive('chart', [function() {
         }
 
         x.domain(d3.extent(data, function(d) { return d.year; }));
-        y.domain(d3.extent(data, function(d) { return d.frequency; }));
+        y.domain([scope.minDatasetValue, scope.maxDatasetValue]);
 
         svg.append("g")
             .attr("class", "x axis")
@@ -85,8 +99,8 @@ app.directive('chart', [function() {
             .data(data)
           .enter().append("rect")
             .attr("class", "bar")
-            .attr("x", function(d) { return x(d.year); })
-            .attr("width", 10)
+            .attr("x", function(d) { return x(d.year) - 7; })
+            .attr("width", 14)
             .attr("y", function(d) { return y(d.frequency); })
             .attr("height", function(d) { return height - y(d.frequency); });
       }); 

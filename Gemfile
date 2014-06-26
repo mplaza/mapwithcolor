@@ -14,6 +14,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 gem 'foundation-rails'
+# gem "nvd3-rails", :git => "git@github.com:adeven/nvd3-rails.git", :submodules => true
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
