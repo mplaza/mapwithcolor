@@ -188,6 +188,18 @@ app.controller('MainCtrl', ['$scope', '$timeout', '$modal', '$log', '$http', fun
       $log.info('Modal dismissed at: ' + new Date());
     });
   };
+
+  $scope.extrapolationText = "Extrapolate Data";
+  $scope.toggleExtrapolation = function() {
+    if ($scope.extrapolationText == "Extrapolate Data") {
+      $scope.extrapolationToggle = true;
+      $scope.extrapolationText = "Extrapolating...";
+    } else if ($scope.extrapolationText == "Extrapolating...") {
+      $scope.extrapolationToggle = false;
+      $scope.extrapolationText = "Extrapolate Data";
+    }
+    
+  }
    
 
 
