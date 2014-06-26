@@ -38,24 +38,14 @@
 		</div>
 
 		<div class="row" ng-show="startingYear">
-			<div class = "small-7 column">
+			<div class = "large-6 columns">
 				<slider ng-model="year" floor="{{startingYear}}" ceiling="{{endingYear}}" step=1></slider>
 			</div>
-			<div class = "small-1 column">
-				Data extrapolation: 
-					<!-- <div class="switch tiny">
-			      <input id="x" name="switch-x" type="radio" ng-model="extrapolationToggle" value="true" checked>
-			      <label for="x" onclick="">No</label>
-			      <input id="x1" name="switch-x" type="radio" ng-model="extrapolationToggle" value="false">
-			      <label for="x1" onclick="">yes</label>
-			      <span></span>
-			    </div> -->
-
-	    	<input type="checkbox" ng-model="extrapolationToggle">
-			</div>
-			<div class = "small-2 column">
+			<div class = "large-6 columns">
 				<button ng-bind="buttonText" ng-click="play()" class="button radius"></button>
+				<button ng-bind="extrapolationText" ng-click="toggleExtrapolation()" class="button radius"></button>
 			</div>
+			
 		</div>
 	</div>
 </div>
