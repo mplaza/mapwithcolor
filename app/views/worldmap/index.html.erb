@@ -15,9 +15,7 @@
 
 			<input ng-model="targetDataset" type="text" placeholder= "Search for Indicator" typeahead= "dataset as dataset.name for dataset in datasets | filter:{name:$viewValue}" class="form-control"></input>
 
-			<input ng-show="startingYear" ng-model="zoomToCountry" type="text" placeholder= "Search for Country"></input>
-
-
+			<input ng-show="startingYear" ng-model="zoomToCountry" type="text" placeholder= "Search for Country" typeahead="country for country in countryList | filter:$viewValue | limitTo:8" class="form-control"></input>
 
 			<div ng-show="startingYear" id="countrydata" class ="panel">
 				<h6>Goal <small> {{goal.description}} </small></h6>

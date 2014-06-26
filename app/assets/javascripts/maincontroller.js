@@ -17,7 +17,7 @@ var app = angular.module('myApp', ['ngResource', 'vr.directives.slider', 'mm.fou
 // }]);
 
 
-app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
+app.controller('MainCtrl', ['$scope', '$timeout', '$http', function($scope, $timeout, $http) {
   $scope.cx = "5";
   $scope.circles=[5,10,15,20,25];
   $scope.goals = [
@@ -93,6 +93,29 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
   $scope.extrapolationToggle = false;
   $scope.buttonText = "Play";
   $scope.targetCountry = "";
+
+  $scope.countryList = [];
+
+
+
+  $scope.getCountries = function(val) {
+    return $http.get('/countries.topo.json', {
+      params: {
+        Country: val,
+      }
+    })
+      .then(function(targetC){
+      // var targetCountries = [];
+      console.log(targetC);
+      angular.forEach(targetC.data.objects.countries.geometries, function(item){
+        console.log(item);
+        $scope.countryList.push(item.properties.name);
+      });
+      console.log(countryList);
+    });
+  };
+
+  $scope.getCountries();
 
   $scope.play = function() {
     console.log("play");
