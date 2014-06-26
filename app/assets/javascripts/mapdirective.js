@@ -42,6 +42,16 @@ app.directive('map', [function() {
     var createMap = function () {
       //bring in topojson-- from natural earth data, Medium scale data, 1:50m, without Antartica
       d3.json("/countries.topo.json", function(error, json) {
+
+        // var tip = d3.tip()
+        //   .attr('class', 'd3-tip')
+        //   .offset([-10, 0])
+        //   .html(function(d) {
+        //     return "<strong>Frequency:</strong> <span style='color:red'>" + d.frequency + "</span>";
+        //   });
+
+        // svg.call(tip);
+
      
         svg = d3.select("#map").append("svg")
           .attr("preserveAspectRatio", "xMidYMid")
@@ -68,7 +78,7 @@ app.directive('map', [function() {
           .enter()
           .append("path")
           .attr("id", function(d,i){return d.properties.name;} )
-          .attr("d", path)
+          .attr("d", path);
 
         if (error) return console.error(error);
 

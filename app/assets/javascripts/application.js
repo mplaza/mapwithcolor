@@ -19,6 +19,7 @@
 //= require angular-touch
 //= require topojson
 //= require d3
+//= require d3.tip
 //= require extrapolate
 //= require maincontroller
 //= require mapdirective
