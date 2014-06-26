@@ -1,15 +1,3 @@
-@font-face {
-    font-family: 'DroidSerif-Bold';
-    src:font-url('DroidSerif-Bold.ttf');
-    font-weight: bold;
-    font-style: normal;
-} 
-
-body {
-/*  font-family: 'DroidSerif-Bold';*/
-/*  margin: 0 auto;
-  text-align: center;*/
-}
 
 .options-section {
   position: relative;
