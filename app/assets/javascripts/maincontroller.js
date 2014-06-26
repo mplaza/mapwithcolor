@@ -100,7 +100,7 @@ app.controller('MainCtrl', ['$scope', '$timeout', '$modal', '$log', '$http', fun
 
 
   $scope.getCountries = function(val) {
-    return $http.get('/assets/countries.topo.json', {
+    return $http.get("/countries.topo.json", {
       params: {
         Country: val,
       }
