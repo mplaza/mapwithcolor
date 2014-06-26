@@ -45,14 +45,14 @@ app.directive('chart', [function() {
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-      // var tip = d3.tip()
-      //     .attr('class', 'd3-tip')
-      //     .offset([-10, 0])
-      //     .html(function(d) {
-      //       return "<strong>Frequency:</strong> <span style='color:red'>Hello</span>";
-      //     });
+      var tip = d3.tip()
+          .attr('class', 'd3-tip')
+          .offset([-10, 0])
+          .html(function(d) {
+            return "<strong>Frequency:</strong> <span style='color:red'>" + d.frequency + "</span>";
+          });
 
-      // svg.call(tip);
+      svg.call(tip);
      
       d3.json(scope.mapDataset.src, function(error, json) {
 
@@ -137,6 +137,8 @@ app.directive('chart', [function() {
             .attr("width", 14)
             .attr("y", function(d) { return y(d.frequency); })
             .attr("height", function(d) { return height - y(d.frequency); })
+            .on('mouseover', tip.show)
+            .on('mouseout', tip.hide)
             .style("fill", function(d) {return d.color;} );
 
             // .on('mouseover', tip.show)
