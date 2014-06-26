@@ -12,6 +12,35 @@
     <%= csrf_meta_tags %>
   </head>
 
+<nav class="top-bar" data-topbar>
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="/worldmap/index">MDG Data Visualization</a></h1>
+    </li>
+     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+   
+  </ul>
+
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right">
+      <% if user_signed_in? %>
+      <li class="menu-icon"><a href="#"><span>API Docs</span></a></li>
+      <li class="menu-icon"><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+
+      <% else %>
+      <li class="menu-icon"><a href="#"><span>API Docs</span></a></li>
+      <li class="menu-icon"><%= link_to "Sign up", new_user_registration_path%></li>
+      <li class="menu-icon"><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
+
+      <% end %>
+    </ul>
+
+    <!-- Left Nav Section -->
+
+  </section>
+</nav>
+
   <body>
 
 

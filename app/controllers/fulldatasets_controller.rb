@@ -1,10 +1,13 @@
 class FulldatasetsController < ApplicationController
 	respond_to :json
+    before_action :checkforsecretkey, :only => [:index, :country]
+
 
 	def index
 		@metrics = Fulldataset.all
 		respond_with @metrics
  	end
+
 
  	def show
  		@targetset = params[:id]
@@ -19,6 +22,25 @@ class FulldatasetsController < ApplicationController
 		@metrics = Fulldataset.where(:CountryCode => @targetcountry)
 		respond_with @metrics
  	end
+
+ 	# def authenticate_user
+  #   	if !current_user
+  #     		flash[:danger] = "Please sign up or sign in to access our full API."
+  #     		redirect_to new_user_registration_path
+  #   	end
+  # 	end
+
+  	def checkforsecretkey
+  		@secretkey = Apikey.where(:user_id => 1)
+  		puts @secretkey
+  		@requesturl = request.original_url
+  		# puts @requesturl.split("?")[1]
+  		if @requesturl.split("?")[1] != @secretkey
+  			flash[:danger] = "Please sign up or sign in to access our full API."
+     		redirect_to new_user_registration_path
+  		end
+  	end
+
 
 
 end
