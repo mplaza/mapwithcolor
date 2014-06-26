@@ -22,7 +22,7 @@ app.controller('MainCtrl', ['$scope', '$timeout', '$modal', '$log', '$http', fun
   $scope.cx = "5";
   $scope.circles=[5,10,15,20,25];
   $scope.goals = [
-  {number: 1, description: "1: Eradicate extreme poverty and hunger"}, {number: 2, description:"2: Achieve universal primary education"}, {number: 3, description: "3: Promote gender equality and empower women"}, {number: 4, description: "4: Reduce child mortality"}, {number: 5, description: "5: Improve maternal health"}, {number: 6, description: "6: Combat HIV/AIDS, malaria and other diseases"}, {number: 7 , description: "7: Ensure environmental sustainability"}, {number: 8, description: "Develop a global partnership for development"}
+  {number: 1, description: "1: Eradicate extreme poverty and hunger"}, {number: 2, description:"2: Achieve universal primary education"}, {number: 3, description: "3: Promote gender equality and empower women"}, {number: 4, description: "4: Reduce child mortality"}, {number: 5, description: "5: Improve maternal health"}, {number: 6, description: "6: Combat HIV/AIDS, malaria and other diseases"}, {number: 7 , description: "7: Ensure environmental sustainability"}, {number: 8, description: "8: Develop a global partnership for development"}
     ];
   $scope.datasets = [
 
