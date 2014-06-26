@@ -12,16 +12,19 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require foundation
 //= require angular
 //= require angular-resource
 //= require angular-slider
 //= require angular-touch
 //= require topojson
 //= require d3
+//= require nv.d3
 //= require extrapolate
 //= require maincontroller
 //= require mapdirective
+//= require chartdirective
+//= require foundation
 
 
-$(function(){ $(document).foundation(); });
+
+$(document).foundation();
