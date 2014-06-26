@@ -39,13 +39,21 @@ class FulldatasetsController < ApplicationController
   # 	end
 
   	def checkforsecretkey
-  		@secretkey = Apikey.where(:user_id => 1)
+      if current_user
+  		  @secretkey = Apikey.where(:user_id => current_user.id)
+      end
   		@requesturl = request.original_url
   		# puts @requesturl.split("?")[1]
-  		if @requesturl.split("?")[1] != @secretkey[0].secretkey_digest
-  			flash[:danger] = "Please sign up or sign in to access our full API."
-     		redirect_to new_user_registration_path
-  		end
+      if @secretkey
+        if (@requesturl.split("?")[1] != @secretkey[0].secretkey_digest)
+      			flash[:danger] = "Wrong secretkey."
+         		respond_with '{"error": "wrong secretkey"}'
+        end
+      end
+      if !@secretkey
+        flash[:danger] = "Please sign up or sign in to access our full API."
+            respond_with '{"error": "wrong secretkey"}'
+      end
   	end
 
 
