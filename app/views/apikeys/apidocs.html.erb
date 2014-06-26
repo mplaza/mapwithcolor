@@ -1,0 +1,289 @@
+<h1> MDG Visualization API </h1>
+
+<% if @secretkey[0] %>
+<%= link_to 'See your Secret Key', apikey_path(@secretkey), class: "button radius" %>
+
+<% else %>
+<%= form_for @apikey, url: {action: "create"} do |f| %>
+<%= f.hidden_field :user_id, :value => @user.id %>
+<%= f.hidden_field :secretkey_digest, :value => SecureRandom.hex(10) %>
+
+<%= f.submit 'Get Key', class: "button radius" %>
+
+<% end %>
+
+<% end %>
+
+<h3> Indicator Data </h3>
+
+<h5>Retreive Data for each indicator at "/fulldatasets/[targetnumber]"</h5>
+<p>Indicators are numbered with the target first (goalnumber + a,b,c, etc.) followed by the number of indicator for that target as letter starting with a<br></br>
+</p>
+
+<h3>Data Format </h3>
+<div class ="panel"><h4>All data is returned as an array of objects. Objects are organized by country with the following keys:</h4>
+
+goal: MDG goal number<br></br>
+targetset: MDG indicator (numbered with the target first (goalnumber + a,b,c, etc.) followed by the number of indicator for that target as letter starting with a)<br></br>
+CountryCode: numberic country code returned as string<br></br>
+Country: country name<br></br>
+year1990: data for 1990 for that country and indicator as a float<br></br>
+year keys are formatted as "year" + [the year] and span from 1990 to 2015, although most data is only available up to 2011<br></br>
+all blank or unavailable values are returned as nil
+
+</div>
+
+<h3> Indicator Data </h3>
+
+<h5>Retreive Data for each indicator at "/fulldatasets/[targetset].json"</h5>
+<p>Indicators are numbered with the target first (goalnumber + a,b,c, etc.) followed by the number of indicator for that target as letter starting with a followed by .json<br></br>
+
+<div class ="panel"><h5>Example</h5>
+
+get '/fulldatasets/1ab.json'
+<br></br>
+will return: 
+<br></br>
+<div class = "small">[
+{
+goal: "1",
+targetset: "1ab",
+CountryCode: "8",
+Country: "Albania",
+year1990: null,
+year1991: null,
+year1992: null,
+year1993: null,
+year1994: null,
+year1995: null,
+year1996: null,
+year1997: 0,
+year1998: null,
+year1999: null,
+year2000: null,
+year2001: null,
+year2002: 0.1,
+year2003: null,
+year2004: 0.1,
+year2005: 0.2,
+year2006: null,
+year2007: null,
+year2008: 0.2,
+year2009: null,
+year2010: null,
+year2011: null,
+year2012: null,
+year2013: null,
+year2014: null,
+year2015: null
+},
+{
+goal: "1",
+targetset: "1ab",
+CountryCode: "12",
+Country: "Algeria",
+year1990: null,
+year1991: null,
+year1992: null,
+year1993: null,
+year1994: null,
+year1995: 1.4,
+year1996: null,
+year1997: null,
+year1998: null,
+year1999: null,
+year2000: null,
+year2001: null,
+year2002: null,.....
+</div>
+	
+</div>
+</p>
+
+<h3> Country Data </h3>
+
+<h5>Retreive Data for each country at "/countrues/[CountryCode].json?[apikey]"</h5>
+<p>The country data requires an api key to be passed in after .json preceded by a ?<br></br>
+
+<div class ="panel"><h5>Example</h5>
+
+get '/countries/8.json?9352824102401'
+<br></br>
+will return: 
+<br></br>
+<div class = "small">[
+{
+goal: "1",
+targetset: "1aa",
+CountryCode: "8",
+Country: "Albania",
+year1990: null,
+year1991: null,
+year1992: null,
+year1993: null,
+year1994: null,
+year1995: null,
+year1996: null,
+year1997: 0.2,
+year1998: null,
+year1999: null,
+year2000: null,
+year2001: null,
+year2002: 0.6,
+year2003: null,
+year2004: 0.5,
+year2005: 0.9,
+year2006: null,
+year2007: null,
+year2008: 0.6,
+year2009: null,
+year2010: null,
+year2011: null,
+year2012: null,
+year2013: null,
+year2014: null,
+year2015: null
+},
+{
+goal: "1",
+targetset: "1ab",
+CountryCode: "8",
+Country: "Albania",
+year1990: null,
+year1991: null,
+year1992: null,
+year1993: null,
+year1994: null,
+year1995: null,
+year1996: null,
+year1997: 0,
+year1998: null,
+year1999: null,
+year2000: null,
+year2001: null,
+year2002: 0.1,
+year2003: null,
+year2004: 0.1,
+year2005: 0.2,
+year2006: null,
+year2007: null,
+year2008: 0.2,
+year2009: null,
+year2010: null,
+year2011: null,
+year2012: null,
+year2013: null,
+year2014: null,
+year2015: null
+},
+{
+goal: "1",
+targetset: "1ac",
+CountryCode: "8",
+Country: "Albania",
+year1990: null,
+year1991: null,.......
+</div>
+	
+</div>
+</p>
+
+<h3> Full Dataset </h3>
+
+<h5>Retreive the full dataset "/fulldatasets/index.json?[apikey]"</h5>
+<p>The fulldataset requires an api key to be passed in after .json preceded by a ?<br></br>
+
+<div class ="panel"><h5>Example</h5>
+
+get '/fulldatasets/index.json'
+<br></br>
+will return: 
+<br></br>
+<div class = "small">[
+{
+goal: "1",
+targetset: "1aa",
+CountryCode: "8",
+Country: "Albania",
+year1990: null,
+year1991: null,
+year1992: null,
+year1993: null,
+year1994: null,
+year1995: null,
+year1996: null,
+year1997: 0.2,
+year1998: null,
+year1999: null,
+year2000: null,
+year2001: null,
+year2002: 0.6,
+year2003: null,
+year2004: 0.5,
+year2005: 0.9,
+year2006: null,
+year2007: null,
+year2008: 0.6,
+year2009: null,
+year2010: null,
+year2011: null,
+year2012: null,
+year2013: null,
+year2014: null,
+year2015: null
+},
+{
+goal: "1",
+targetset: "1aa",
+CountryCode: "12",
+Country: "Algeria",
+year1990: null,
+year1991: null,
+year1992: null,
+year1993: null,
+year1994: null,
+year1995: 6.8,
+year1996: null,
+year1997: null,
+year1998: null,
+year1999: null,
+year2000: null,
+year2001: null,
+year2002: null,
+year2003: null,
+year2004: null,
+year2005: null,
+year2006: null,
+year2007: null,
+year2008: null,
+year2009: null,
+year2010: null,
+year2011: null,
+year2012: null,
+year2013: null,
+year2014: null,
+year2015: null
+},
+{
+goal: "1",
+targetset: "1aa",
+CountryCode: "24",
+Country: "Angola",
+year1990: null,
+year1991: null,
+year1992: null,
+year1993: null,
+year1994: null,
+year1995: null,
+year1996: null,
+year1997: null,
+year1998: null,
+year1999: null,
+year2000: 54.3,
+year2001: null,
+year2002: null,
+y.......
+</div>
+	
+</div>
+</p>
