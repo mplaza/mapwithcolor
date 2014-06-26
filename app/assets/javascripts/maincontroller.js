@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ngResource', 'vr.directives.slider'])
+var app = angular.module('myApp', ['ngResource', 'vr.directives.slider', 'mm.foundation'])
 .config(
     ['$httpProvider', function($httpProvider) {
     var authToken = angular.element("meta[name=\"csrf-token\"]").attr("content");
