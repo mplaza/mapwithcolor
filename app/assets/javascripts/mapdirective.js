@@ -375,22 +375,6 @@ app.directive('map', [function() {
           //zoom in on a country when it's clicked and then back out when it's clicked again
           var country = null;
           function country_clicked(d) {
-           // if(country) {
-           //    $(this).css({"stroke": "grey"});
-           //  }
-
-           //  if(d && country !== d) {
-           //    var xyz = scope.get_xyz(d);
-           //    country = d;
-           //    zoom(xyz); 
-           //    $(this).css({"stroke":"black"});
-           //    $(this).css({"stroke-linejoin":"round"});
-           //    $(this).css({"stroke-linecap":"round"}); 
-           //  } else {
-           //    var xyz = [width / 2, height / 1.5, 1];
-           //    country = null;
-           //    zoom(xyz);          
-           //  }
 
             scope.clickedCountry = d.properties.name;
             scope.$apply();
