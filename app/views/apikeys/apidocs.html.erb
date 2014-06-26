@@ -1,23 +1,27 @@
 <h1> MDG Data API </h1>
+<% if @secretkey %>
+	<% if @secretkey[0] %>
+		<%= link_to 'See your Secret Key', apikey_path(@secretkey), class: "button radius" %>
 
-<% if @secretkey[0] %>
-<%= link_to 'See your Secret Key', apikey_path(@secretkey), class: "button radius" %>
+	<% else %>
+		<% if @user %>
+		<%= form_for @apikey, url: {action: "create"} do |f| %>
+		<%= f.hidden_field :user_id, :value => @user.id %>
+		<%= f.hidden_field :secretkey_digest, :value => SecureRandom.hex(10) %>
 
-<% else %>
-<%= form_for @apikey, url: {action: "create"} do |f| %>
-<%= f.hidden_field :user_id, :value => @user.id %>
-<%= f.hidden_field :secretkey_digest, :value => SecureRandom.hex(10) %>
+		<%= f.submit 'Get Key', class: "button radius" %>
+	<% end %>
 
-<%= f.submit 'Get Key', class: "button radius" %>
+	<% end %>
 
 <% end %>
 
 <% end %>
 
-<h3> Indicator Data </h3>
+<h3> API Key </h3>
 
-<h5>Retreive Data for each indicator at "/fulldatasets/[targetnumber]"</h5>
-<p>Indicators are numbered with the target first (goalnumber + a,b,c, etc.) followed by the number of indicator for that target as letter starting with a<br></br>
+<h5>Sign up and retreive an API key to access all datasets</h5>
+<p>Each user has one API key which provides unlimited access. If you forgot your API key, you can log in to see it.<br></br>
 </p>
 
 <h3>Data Format </h3>

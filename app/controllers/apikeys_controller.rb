@@ -23,7 +23,9 @@ class ApikeysController < ApplicationController
 	def apidocs	
 		@apikey = Apikey.new
 		@user = current_user
-		@secretkey = Apikey.where(:user_id => current_user.id)
+		if current_user
+			@secretkey = Apikey.where(:user_id => current_user.id)
+		end
 	end
 
 	def apikey_params
