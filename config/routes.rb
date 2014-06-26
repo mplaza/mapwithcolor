@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'worldmap#index'
   get "worldmap/index"
   get 'countries/:id', to: 'fulldatasets#country'
@@ -6,6 +7,7 @@ Rails.application.routes.draw do
   # get 'goal1/target1ab', to: 'fulldatasets#goal1target1ab'
   # get 'goal1/target1cb', to: 'fulldatasets#goal1target1cb'
   resources :fulldatasets
+  resources :apikeys
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

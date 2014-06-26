@@ -21,6 +21,7 @@ gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
+gem 'devise'
 
 gem 'topojson-rails'
 
@@ -29,7 +30,11 @@ gem 'active_model_serializers'
 gem 'angularjs-rails'
 gem "d3-rails"
 
+gem 'cancancan', '~> 1.8'
+
 gem 'rails_12factor'
+
+gem 'bcrypt-ruby', '~> 3.1.2'
 
 group :development, :test do
 	gem "rspec-rails"

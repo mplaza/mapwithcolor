@@ -1,0 +1,6 @@
+<%= form_for @apikey do |f| %>
+<%= f.hidden_field :user_id, :value => @user.id %>
+<%= f.hidden_field :secretkey_digest, :value => SecureRandom.hex(10) %>
+
+<%= f.submit 'Get Key'%>
+<% end %>
