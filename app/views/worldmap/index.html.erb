@@ -24,12 +24,15 @@
 			<div class="small-10 columns" id="mapcolumn">
 				<map data="filename" year="year" dataset="targetDataset" country="zoomToCountry" my-startyear="startingYear" my-endyear="endingYear" extrapolation-toggle="extrapolationToggle" target-country="targetCountry" clicked-country="clickedCountry" min-dataset-value="minDatasetValue" max-dataset-value="maxDatasetValue"></map>
 				<div id="map"></div>
+
+				<!-- MODAL HERE -->
 				<div id="chartmodal" ng-show="showchart">
 					<chart dataset="targetDataset" target-country="clickedCountry" clicked-country="clickedCountry" min-dataset-value="minDatasetValue" max-dataset-value="maxDatasetValue"></chart>
+					<span id="countrytitle">{{clickedCountry}}</span>
+					<a href="#" class="button tiny" ng-click="closeChart()" id="modalbutton">Close</a>
 					<div id="chart"></div>
-					<span>{{clickedCountry}}</span>
-					<a href="#" class="button tiny" ng-click="closeChart()">Close</a>
 				</div>
+
 			</div>
 		</div>
 

@@ -30,7 +30,8 @@ app.directive('chart', [function() {
 
       var xAxis = d3.svg.axis()
           .scale(x)
-          .orient("bottom");
+          .orient("bottom")
+          .tickFormat(d3.format("d"));
 
       var yAxis = d3.svg.axis()
           .scale(y)
@@ -43,7 +44,15 @@ app.directive('chart', [function() {
           .append("g")
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-      console.log("createChart");
+
+      // var tip = d3.tip()
+      //     .attr('class', 'd3-tip')
+      //     .offset([-10, 0])
+      //     .html(function(d) {
+      //       return "<strong>Frequency:</strong> <span style='color:red'>Hello</span>";
+      //     });
+
+      // svg.call(tip);
      
       d3.json(scope.mapDataset.src, function(error, json) {
 
@@ -71,13 +80,38 @@ app.directive('chart', [function() {
         var xValues = [];
         var yValues = [];
         var data = [];
+        
+        var extrapolate = new EXTRAPOLATE.LINEAR();
+        var dataCount = 0;
 
         for (var key in dataset) {
           var obj = dataset[key];
-          data.push({year: parseInt(key.split("r")[1]), frequency: dataset[key]});
+          data.push({year: parseInt(key.split("r")[1]), frequency: dataset[key], color: "rgba(178,34,34,0.7)"});
         }
 
-        x.domain(d3.extent(data, function(d) { return d.year; }));
+        console.log(data);
+
+        // BUILD EXTRAPOLATION MODEL
+        // ONLY EXTRAPOLATE IF AT LEAST 3 DATAPOINTS
+        for (var i = 0; i < data.length; i++) {
+          if (data[i].frequency != null) {
+            extrapolate.given(data[i].year).get(data[i].frequency);
+            dataCount++;
+          }
+        }
+        console.log(dataCount);
+
+        if (dataCount >= 3) {
+          for (var i = 0; i < data.length; i++) {
+            if (data[i].frequency == null) {
+              data[i].frequency = Math.round(extrapolate.valueFor(data[i].year)*10)/10;
+              data[i].color = "rgba(255,204,51,0.7)";
+            }
+          }
+        }
+        
+        minMaxYears = (d3.extent(data, function(d) { return d.year; }));
+        x.domain([minMaxYears[0]-2,minMaxYears[1]+2]);
         y.domain([scope.minDatasetValue, scope.maxDatasetValue]);
 
         svg.append("g")
@@ -93,7 +127,7 @@ app.directive('chart', [function() {
             .attr("y", 6)
             .attr("dy", ".71em")
             .style("text-anchor", "end")
-            .text("Frequency");
+            .text("frequency");
 
         svg.selectAll(".bar")
             .data(data)
@@ -102,7 +136,11 @@ app.directive('chart', [function() {
             .attr("x", function(d) { return x(d.year) - 7; })
             .attr("width", 14)
             .attr("y", function(d) { return y(d.frequency); })
-            .attr("height", function(d) { return height - y(d.frequency); });
+            .attr("height", function(d) { return height - y(d.frequency); })
+            .style("fill", function(d) {return d.color;} );
+
+            // .on('mouseover', tip.show)
+            // .on('mouseout', tip.hide);
       }); 
     }
     console.log(scope.mapDatasets);
