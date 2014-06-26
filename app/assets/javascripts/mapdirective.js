@@ -314,10 +314,12 @@ app.directive('map', [function() {
           };
 
           //add the tooptip to see country data when the mouse is over it
-          var div = d3.select("#countrydata").append("div")
-            .attr("class", "has-tip")
-            .attr("class", "tip-left")
-            .style("opacity", 1e-6);
+          var div = d3.select("#countrydatadiv")
+
+          // .append("div")
+          //   .attr("class", "has-tip")
+          //   .attr("class", "tip-left")
+          //   .style("opacity", 1e-6);
 
 
           //make the tooptip visible on mouseover
