@@ -32,7 +32,7 @@ class FulldatasetsController < ApplicationController
 
   	def checkforsecretkey
   		@secretkey = Apikey.where(:user_id => 1)
-  		puts @secretkey
+  		puts @secretkey[0].secretkey_digest
   		@requesturl = request.original_url
   		# puts @requesturl.split("?")[1]
   		if @requesturl.split("?")[1] != @secretkey
