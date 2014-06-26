@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'countries/:id', to: 'fulldatasets#country'
   get 'apidocs/all', to: 'apikeys#apidocs'
   get 'goals/:id', to: 'fulldatasets#goal'
+  get 'fulldatasets/:target_id/countries/:id', to: 'fulldatasets#targetforcountry'
   # get 'goal1/target1ab', to: 'fulldatasets#goal1target1ab'
   # get 'goal1/target1cb', to: 'fulldatasets#goal1target1cb'
   resources :fulldatasets

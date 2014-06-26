@@ -23,6 +23,14 @@ class FulldatasetsController < ApplicationController
 		respond_with @metrics
  	end
 
+  def targetforcountry
+    @targetset = params[:target_id]
+    @targetcountry = params[:id]
+    # @metrics = Fulldataset.find_by_sql(["SELECT * FROM fulldatasets WHERE targetset = ?", @targetset])
+    @metrics = Fulldataset.where(:targetset => @targetset).where(:CountryCode => @targetcountry)
+    respond_with @metrics
+  end
+
  	# def authenticate_user
   #   	if !current_user
   #     		flash[:danger] = "Please sign up or sign in to access our full API."
