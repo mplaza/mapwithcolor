@@ -1,6 +1,7 @@
-<%= form_for @apikey do |f| %>
+<%= form_for @apikey, url: {action: "create"} do |f| %>
 <%= f.hidden_field :user_id, :value => @user.id %>
 <%= f.hidden_field :secretkey_digest, :value => SecureRandom.hex(10) %>
 
-<%= f.submit 'Get Key'%>
+<%= f.submit 'Get Key', class: "button radius" %>
 <% end %>
+
