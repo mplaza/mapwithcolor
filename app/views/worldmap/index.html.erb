@@ -10,17 +10,22 @@
 	<div class="row">
 		 <div class="small-2 large-2 columns">
 
-		 	<select ng-model="goal" ng-options="goal.description for goal in goals"></select>
-			<select ng-model="targetDataset" ng-options="dataset.name for dataset in datasets |filter:{number: goal.number}"></select>
+		 	<select ng-model="goal" ng-options="goal.description for goal in goals"> <option value="">Select Goal</option> </select>
+			<select ng-model="targetDataset" ng-options="dataset.name for dataset in datasets |filter:{number: goal.number}"> <option value="">Select Indicator</option> </select>
 
-			<div>Country: <input ng-model="zoomToCountry"/></div>
+			<input ng-model="targetDataset" type="text" placeholder= "Search for Indicator" typeahead= "dataset as dataset.name for dataset in datasets | filter:{name:$viewValue}" class="form-control"></input>
+
+			<input ng-show="startingYear" ng-model="zoomToCountry" type="text" placeholder= "Search for Country"></input>
+
+
 
 			<div ng-show="startingYear" id="countrydata" class ="panel">
-				<p>{{goal.description}}</p>
-				<p>{{targetDataset.name}}</p>
+				<h6>Goal <small> {{goal.description}} </small></h6>
+				<h6>Target: <small> {{targetDataset.target}} </small></h6>
+				<h6>Indicator: <small> {{targetDataset.name}} </small></h6>
 			</div>
 
-		
+
 		</div>
 
 		<div class="small-4 large-10 columns">
@@ -28,7 +33,7 @@
 			<map data="filename" year="year" dataset="targetDataset" country="zoomToCountry" my-startyear="startingYear" my-endyear="endingYear" extrapolation-toggle="extrapolationToggle" target-country="targetCountry"></map>
 			<div id="map"></div>
 
-	
+
 
 		</div>
 	</div>

@@ -81,5 +81,4 @@ test:
 production:
   <<: *default
   database: milgoaldatavis_production
-  username: milgoaldatavis
-  password: <%= ENV['MILGOALDATAVIS_DATABASE_PASSWORD'] %>
+
