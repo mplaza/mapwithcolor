@@ -282,22 +282,6 @@ app.directive('map', [function() {
               var j;
               var timeDifference;
 
-              // FIND NEXT VALUE IN A DATASET WHEN NULL VALUES EXIST
-              // for(i = thisYear; i <= endingYear; i++ ){
-              //   var nextYearsValue = d.properties[(i.toString())];
-              //   if(nextYearsValue != null) {
-              //     nextValue = nextYearsValue;
-              //     break;
-              //   }
-              // }
-              // for(j = thisYear; j >= startingYear; j-- ){
-              //   var lastYearsValue = d.properties[(j.toString())];
-              //   if(lastYearsValue != null) {
-              //     lastValue = lastYearsValue;
-              //     timeDifference = i - j;
-              //     break;
-              //   }
-              // }
               if(value) {
                 return dataColor +  (value/maxValue) + ")";
               } 
@@ -315,11 +299,6 @@ app.directive('map', [function() {
 
           //add the tooptip to see country data when the mouse is over it
           var div = d3.select("#countrydatadiv")
-
-          // .append("div")
-          //   .attr("class", "has-tip")
-          //   .attr("class", "tip-left")
-          //   .style("opacity", 1e-6);
 
 
           //make the tooptip visible on mouseover
@@ -375,22 +354,6 @@ app.directive('map', [function() {
           //zoom in on a country when it's clicked and then back out when it's clicked again
           var country = null;
           function country_clicked(d) {
-           // if(country) {
-           //    $(this).css({"stroke": "grey"});
-           //  }
-
-           //  if(d && country !== d) {
-           //    var xyz = scope.get_xyz(d);
-           //    country = d;
-           //    zoom(xyz); 
-           //    $(this).css({"stroke":"black"});
-           //    $(this).css({"stroke-linejoin":"round"});
-           //    $(this).css({"stroke-linecap":"round"}); 
-           //  } else {
-           //    var xyz = [width / 2, height / 1.5, 1];
-           //    country = null;
-           //    zoom(xyz);          
-           //  }
 
             scope.clickedCountry = d.properties.name;
             scope.$apply();
