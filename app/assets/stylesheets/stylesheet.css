@@ -1,19 +1,37 @@
-@font-face {
-    font-family: 'DroidSerif-Bold';
-    src:font-url('DroidSerif-Bold.ttf');
-    font-weight: bold;
-    font-style: normal;
-} 
-
 body {
 /*  font-family: 'DroidSerif-Bold';*/
 /*  margin: 0 auto;
   text-align: center;*/
 }
 
+#content {
+
+}
+
+#chartmodal {
+  position: absolute;
+  top: 10px;
+  left: 100px;
+  margin: 0 auto;
+  height: 400px;
+  width: 600px;
+  background-color: rgba(0,0,0,0.4);
+  border-color: black;
+  padding: 20px;
+}
+
+#container {
+  margin: 30px auto 0 auto;
+  width: 90%;
+}
+
+#mapcolumn {
+}
+
+
+
 .options-section {
   position: relative;
-  z-index: 999;
 }
 
 .options {
@@ -107,6 +125,28 @@ slider {
   font-size: 10px;
 }
 
+.bar {
+  fill: smoke;
+}
+
+.bar:hover {
+  fill: brown;
+}
+
+.axis {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
 
 .axis path,
 .axis line {

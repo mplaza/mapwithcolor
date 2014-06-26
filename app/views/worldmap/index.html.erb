@@ -4,59 +4,80 @@
 
 
 <!-- <input ng-model="filename"/> -->
+<!-- 
+ <div class="large-1 columns">
+    <div class="switch tiny">
+      <input id="x" name="switch-x" type="radio" checked>
+      <label for="x" onclick="">No</label>
+      <input id="x1" name="switch-x" type="radio">
+      <label for="x1" onclick="">yes</label>
+      <span></span>
+    </div>
+  </div> -->
 
-<div class = "container">
-
-	<div class="row">
-		 <div class="small-2 large-2 columns">
-
-		 	<select ng-model="goal" ng-options="goal.description for goal in goals"></select>
-			<select ng-model="targetDataset" ng-options="dataset.name for dataset in datasets |filter:{number: goal.number}"></select>
-
-			<div>Country: <input ng-model="zoomToCountry"/></div>
-
-			<div ng-show="startingYear" id="countrydata" class ="panel">
+<div id="container">
+	<div id="content">
+		<div class="row">
+			<div class="small-2 columns">
+			 	<select ng-model="goal" ng-options="goal.description for goal in goals"></select>
+				<select ng-model="targetDataset" ng-options="dataset.name for dataset in datasets |filter:{number: goal.number}"></select>
+				<div>Country: <input ng-model="zoomToCountry"/></div>
+				<div ng-show="startingYear" id="countrydata" class ="panel">
 				<p>{{goal.description}}</p>
 				<p>{{targetDataset.name}}</p>
+				</div>
 			</div>
 
-		
+			<div class="small-10 columns" id="mapcolumn">
+				<map data="filename" year="year" dataset="targetDataset" country="zoomToCountry" my-startyear="startingYear" my-endyear="endingYear" extrapolation-toggle="extrapolationToggle" target-country="targetCountry" clicked-country="clickedCountry" min-dataset-value="minDatasetValue" max-dataset-value="maxDatasetValue"></map>
+				<div id="map"></div>
+				<div id="chartmodal" ng-show="showchart">
+					<chart dataset="targetDataset" target-country="clickedCountry" clicked-country="clickedCountry" min-dataset-value="minDatasetValue" max-dataset-value="maxDatasetValue"></chart>
+					<div id="chart"></div>
+					<span>{{clickedCountry}}</span>
+					<a href="#" class="button tiny" ng-click="closeChart()">Close</a>
+				</div>
+			</div>
 		</div>
 
-		<div class="small-4 large-10 columns">
+		<div class="row" ng-show="startingYear">
+			<div class = "small-7 column">
+				<slider ng-model="year" floor="{{startingYear}}" ceiling="{{endingYear}}" step=1></slider>
+			</div>
+			<div class = "small-1 column">
+				Data extrapolation: 
+					<!-- <div class="switch tiny">
+			      <input id="x" name="switch-x" type="radio" ng-model="extrapolationToggle" value="true" checked>
+			      <label for="x" onclick="">No</label>
+			      <input id="x1" name="switch-x" type="radio" ng-model="extrapolationToggle" value="false">
+			      <label for="x1" onclick="">yes</label>
+			      <span></span>
+			    </div> -->
 
-			<map data="filename" year="year" dataset="targetDataset" country="zoomToCountry" my-startyear="startingYear" my-endyear="endingYear" extrapolation-toggle="extrapolationToggle" target-country="targetCountry"></map>
-			<div id="map"></div>
+	    	<input type="checkbox" ng-model="extrapolationToggle">
+			</div>
+			<div class = "small-2 column">
+				<button ng-bind="buttonText" ng-click="play()" class="button radius"></button>
+			</div>
+		</div>
+
+
+	</div>
+</div>
 
 	
 
-		</div>
-	</div>
-	<div class = "row" ng-show="startingYear">
-
-		<div class = "large-7 column">
-			<slider ng-model="year" floor="{{startingYear}}" ceiling="{{endingYear}}" step=1></slider>
-		</div>
-		<div class = "large-1 column">
-			Data extrapolation: <input type="checkbox" ng-model="extrapolationToggle">
-		</div>
-		<div class = "large-2 column">
-			<button ng-bind="buttonText" ng-click="play()" class="button radius"></button>
-		</div>
-
-	</div>
 
 
-</div>
+  <script type="text/ng-template" id="myModalContent.html">
+  	<h1>hello</h1>
+    	<chart dataset="targetDataset" target-country="clickedCountry" clicked-country="clickedCountry"></chart>
+			<div id="chart"></div>
+    <a class="close-reveal-modal" ng-click="cancel()">&#215;</a>
+  </script>
 
-<chart dataset="targetDataset" target-country="targetCountry"></chart>
-<div id="chart"></div>
-
-
-</div>
-</div>
-
-
+  <!-- <button class="button" ng-click="open()">Open me!</button>
+  <div ng-show="selected">Selection from a modal: {{ selected }}</div> -->
 
 
 </div>

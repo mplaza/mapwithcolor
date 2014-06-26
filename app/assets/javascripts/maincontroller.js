@@ -17,7 +17,7 @@ var app = angular.module('myApp', ['ngResource', 'vr.directives.slider', 'mm.fou
 // }]);
 
 
-app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
+app.controller('MainCtrl', ['$scope', '$timeout', '$modal', '$log', function($scope, $timeout, $modal, $log) {
   $scope.cx = "5";
   $scope.circles=[5,10,15,20,25];
   $scope.goals = [
@@ -129,6 +129,41 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
     $scope.buttonText = "Play";
     $timeout.cancel($scope.currentTimeout);
   }, true);
+
+  var clickedCountryWatchCount = 0;
+  $scope.$watch('clickedCountry', function(){
+    // change year loaded to map
+    if (clickedCountryWatchCount > 0) {
+      $scope.showchart = true;
+    }
+    clickedCountryWatchCount++;
+  }, true);
+
+  $scope.showchart = false;
+  $scope.closeChart = function() {
+    $scope.clickedCountry = "";
+    $scope.$apply();
+    $scope.showchart = false;
+  }
+  $scope.items = ['item1', 'item2', 'item3'];
+
+  $scope.open = function () {
+    var modalInstance = $modal.open({
+      templateUrl: 'myModalContent.html',
+      controller: ModalInstanceCtrl,
+      resolve: {
+        items: function () {
+          return $scope.items;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selected = selectedItem;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
    
 
 
