@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get "worldmap/index"
+  get 'countries/:id', to: 'fulldatasets#country'
+  get 'goals/:id', to: 'fulldatasets#goal'
   # get 'goal1/target1ab', to: 'fulldatasets#goal1target1ab'
   # get 'goal1/target1cb', to: 'fulldatasets#goal1target1cb'
   resources :fulldatasets
