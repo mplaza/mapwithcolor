@@ -1,4 +1,4 @@
-app.directive('map', [function(Dataset) {
+app.directive('map', [function() {
 
   return {
     restrict: 'AE',
@@ -10,7 +10,8 @@ app.directive('map', [function(Dataset) {
       zoomCountry: '=country',
       myStartyear: '=',
       myEndyear: '=',
-      extrapolationToggle: '='
+      extrapolationToggle: '=',
+      targetCountry: '='
     },
     link: link
   }
@@ -84,6 +85,7 @@ app.directive('map', [function(Dataset) {
         var ls_w = 30, ls_h = 18;
 
         legend.append("rect")
+          .attr("class", "legend")
           .attr("x", 20)
           .attr("y", function(d, i){ return height - (i*ls_h) - 2*ls_h;})
           .attr("width", ls_w)
@@ -103,7 +105,6 @@ app.directive('map', [function(Dataset) {
       var dataColor;
       color = scope.mapDataset.color;
       dataType = scope.mapDataset.dataType;
-      console.log(color);
 
 
       // Dataset.query(function(dataset){
@@ -111,10 +112,8 @@ app.directive('map', [function(Dataset) {
       //   // console.log(scope.targetDataset);
       // })
 
-      console.log("src: " + scope.mapDataset.src);
       d3.json(scope.mapDataset.src, function(error, json) {
 
-        if (error) return console.warn(error);
         data = json;
 
         
@@ -124,7 +123,7 @@ app.directive('map', [function(Dataset) {
         // will need to subtract more than 3 when add other data into json
         var numberOfYears = parseFloat(Object.keys(data[1]).length - numOfPrecedingJson);
         var endingYear = parseFloat(Object.keys(data[1])[numOfPrecedingJson + numberOfYears - 1].split("r")[1]);
-        console.log(endingYear);
+
         scope.myStartyear = startingYear;
         scope.myEndyear = endingYear;
         scope.mapYear = startingYear;
@@ -146,7 +145,7 @@ app.directive('map', [function(Dataset) {
         // TAKING COUNTRY TOPO DATA AND ADDING MDG DATA TO IT
         d3.json("/countries.topo.json", function(error, json) {
           if (error) {
-            console.log(error);
+   
           } else {
             // LOOP THROUGH COUNTRIES
             for (var i = 0; i < data.length; i++) {
@@ -199,12 +198,12 @@ app.directive('map', [function(Dataset) {
             // console.log(json.objects.countries);
 
             // SET COLOR
-            console.log('this is the color' + scope.mapDataset.color);
+     
             if (scope.mapDataset.color == 'green') {
               dataColor = "rgba(0,100,0,";
-                console.log("green set");
+         
             } else if (scope.mapDataset.color == 'red') {
-              console.log('red set');
+   
               dataColor = "rgba(178,34,34,"; 
             }
             
@@ -227,7 +226,7 @@ app.directive('map', [function(Dataset) {
               //Data value
               var value = d.properties["year"+startingYear.toString()]; 
               if(value) {
-                console.log(dataColor +  (value/maxValue) + ")");
+            
                 return dataColor +  (value/maxValue) + ")";
               } else {
                 return "url(#no_data)";
@@ -298,8 +297,9 @@ app.directive('map', [function(Dataset) {
           };
 
           //add the tooptip to see country data when the mouse is over it
-          var div = d3.select("body").append("div")
-            .attr("class", "tooltip")
+          var div = d3.select("#countrydata").append("div")
+            .attr("class", "has-tip")
+            .attr("class", "tip-left")
             .style("opacity", 1e-6);
 
 
@@ -323,6 +323,7 @@ app.directive('map', [function(Dataset) {
 
             div
               .html(d.properties.name + "<br/>" + dataString)
+              .attr("title", d.properties.name)
               .style("left", (d3.event.pageX + 10) + "px")
               .style("top", (d3.event.pageY - 20) + "px");
           }
@@ -371,6 +372,9 @@ app.directive('map', [function(Dataset) {
               country = null;
               zoom(xyz);          
             }
+
+            scope.targetCountry = d.properties.name;
+            scope.$apply();
           };
 
           //zoom on country when it's name is typed in and then out when it's not a match anymore

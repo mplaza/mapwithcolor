@@ -18,7 +18,6 @@ var app = angular.module('myApp', ['ngResource', 'vr.directives.slider'])
 
 
 app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
-  console.log('hey there');
   $scope.cx = "5";
   $scope.circles=[5,10,15,20,25];
   $scope.goals = [
@@ -35,9 +34,9 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
     {name:'Proportion of Own Account and Contributing Family Workers in Total Employment', src:'/fulldatasets/1bd.json', color: 'green', dataType: '%', number: 1},
   	{name:'Children Under 5 Moderately or Severly Underweight', src:'/fulldatasets/1ca.json', color: 'red', dataType: '%', number: 1},
     {name:'Population Undernourished', src:'/fulldatasets/1cb.json', color: 'red', dataType: '%', number: 1},
-    {name:'Total Net Enrolment Ratio in Primary Education', src:'fulldatasets/2aa.json', color: 'green', dataType: '%', number: 2},
-    {name:'Pupils Starting Grade 1 who Reach Last Grade of Primary', src:'fulldatasets/2ab.json', color: 'green', dataType: '%', number: 2},
-    {name:'Literacy Rates of 15-24 year olds', src:'fulldatasets/2ac.json', color: 'green', dataType: '%', number: 2},
+    {name:'Total Net Enrolment Ratio in Primary Education', src:'/fulldatasets/2aa.json', color: 'green', dataType: '%', number: 2},
+    {name:'Pupils Starting Grade 1 who Reach Last Grade of Primary', src:'/fulldatasets/2ab.json', color: 'green', dataType: '%', number: 2},
+    {name:'Literacy Rates of 15-24 year olds', src:'/fulldatasets/2ac.json', color: 'green', dataType: '%', number: 2},
     {name:'Gender Parity Index in Primary Level Enrollment', src:'/fulldatasets/3aa.json', color: 'green', dataType: '', number: 3},
     {name:'Gender Parity Index in Secondary Level Enrollment', src:'/fulldatasets/3ab.json', color: 'green', dataType: '', number: 3},
     {name:'Gender Parity Index in Tertiary Level Enrollment', src:'/fulldatasets/3ac.json', color: 'green', dataType: '%', number: 3},
@@ -93,6 +92,7 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
   $scope.endingYear = null;
   $scope.extrapolationToggle = false;
   $scope.buttonText = "Play";
+  $scope.targetCountry = "";
 
   $scope.play = function() {
     console.log("play");
@@ -120,17 +120,16 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 
   $scope.$watch('extrapolationToggle', function(){
     // change year loaded to map
-    console.log("hello");
     $scope.buttonText = "Play";
     $timeout.cancel($scope.currentTimeout);
   }, true);
 
   $scope.$watch('targetDataset', function(){
     // change year loaded to map
-    console.log("hello");
     $scope.buttonText = "Play";
     $timeout.cancel($scope.currentTimeout);
   }, true);
    
+
 
 }])

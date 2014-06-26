@@ -1,5 +1,3 @@
-IT WORKS!
-
 <div ng-app="myApp">
 <div ng-controller="MainCtrl">
 
@@ -7,44 +5,58 @@ IT WORKS!
 
 <!-- <input ng-model="filename"/> -->
 
-<a href="#" class="button" data-dropdown="drop">Link Dropdown</a>
-<ul id="drop" class="tiny content f-dropdown" data-dropdown-content>
-  <li><a href="#">This is a link</a></li>
-  <li><a href="#">This is another</a></li>
-  <li><a href="#">Yet another</a></li>
-</ul>
+<div class = "container">
+
+	<div class="row">
+		 <div class="small-2 large-2 columns">
+
+		 	<select ng-model="goal" ng-options="goal.description for goal in goals"></select>
+			<select ng-model="targetDataset" ng-options="dataset.name for dataset in datasets |filter:{number: goal.number}"></select>
+
+			<div>Country: <input ng-model="zoomToCountry"/></div>
+
+			<div ng-show="startingYear" id="countrydata" class ="panel">
+				<p>{{goal.description}}</p>
+				<p>{{targetDataset.name}}</p>
+			</div>
+
+		
+		</div>
+
+		<div class="small-4 large-10 columns">
+
+			<map data="filename" year="year" dataset="targetDataset" country="zoomToCountry" my-startyear="startingYear" my-endyear="endingYear" extrapolation-toggle="extrapolationToggle" target-country="targetCountry"></map>
+			<div id="map"></div>
+
+	
+
+		</div>
+	</div>
+	<div class = "row" ng-show="startingYear">
+
+		<div class = "large-7 column">
+			<slider ng-model="year" floor="{{startingYear}}" ceiling="{{endingYear}}" step=1></slider>
+		</div>
+		<div class = "large-1 column">
+			Data extrapolation: <input type="checkbox" ng-model="extrapolationToggle">
+		</div>
+		<div class = "large-2 column">
+			<button ng-bind="buttonText" ng-click="play()" class="button radius"></button>
+		</div>
+
+	</div>
 
 
-<div class="switch">
-  <input id="exampleCheckboxSwitch" type="checkbox">
-  <label for="exampleCheckboxSwitch"></label>
 </div>
 
-<div class="switch small">
-  <input id="exampleRadioSwitch1" type="radio" checked name="testGroup">
-  <label for="exampleRadioSwitch1"></label>
-</div> 
-
-Data extrapolation: <input type="checkbox" ng-model="extrapolationToggle">
-<slider ng-show="startingYear" ng-model="year" floor="{{startingYear}}" ceiling="{{endingYear}}" step=1></slider>
-<button ng-bind="buttonText" ng-click="play()"></button>
-
-<select ng-model="goal" ng-options="goal.description for goal in goals"></select>
-<select ng-model="targetDataset" ng-options="dataset.name for dataset in datasets |filter:{number: goal.number}"></select>
-{{targetDataset.src}}
+<chart dataset="targetDataset" target-country="targetCountry"></chart>
+<div id="chart"></div>
 
 
-<map data="filename" year="year" dataset="targetDataset" country="zoomToCountry" my-startyear="startingYear" my-endyear="endingYear" extrapolation-toggle="extrapolationToggle"></map>
-<div id="map"></div>
-Country: <input ng-model="zoomToCountry"/>
-{{zoomToCountry}}
+</div>
+</div>
 
 
-
-
-<!-- <svg ng-repeat="circle in circles" height="100" width="100">
-  <circle cx="50" cy="50" r="{{circle}}" fill="red"/>
-</svg> -->
 
 
 </div>
