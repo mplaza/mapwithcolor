@@ -15,7 +15,7 @@
 <h1> MDG Data API </h1>
 <% if @secretkey %>
 	<% if @secretkey[0] %>
-		<%= link_to 'See your Secret Key', apikey_path(@secretkey), class: "button radius" %>
+		<%= link_to 'See your Secret Key', apikey_path(@secretkey[0].id), class: "button radius" %>
 
 	<% else %>
 		<% if @user %>
