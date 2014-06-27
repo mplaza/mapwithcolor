@@ -1,28 +1,19 @@
-== README
+MDG Visualization 	
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+see at: http://mapwithcolor.herokuapp.com/
 
-Things you may want to cover:
+Description
 
-* Ruby version
+Visualizes the indicators UN's Millennium Development Goals. Displays the indicator data for each country on a map where they years can be slid through or played to see changed over time. 
 
-* System dependencies
+The data extrapolation option take countries with 3 or more datapoints for that indicator and creates a best fit line to fill in missing values and predict the value for 2015, when the UN aims to reach their goal. Indicators can be chosen from the dropdown, filtered by goal, or searched for. Countries can also be searched for to zoom in on them on the map. Clicking on a country shows a bar chart of the indicator data for that country (yellow bars for extrapolated data, red for official data). Hovering over the bars shows their values.
 
-* Configuration
+Dataset and API
 
-* Database creation
+Country specific data was downloaded as CSVs from the UN stats site (http://unstats.un.org/unsd/mdg/Data.aspx) stripped of footnotes and other unused data and imported into a psql database. If you are downloading this locally, run the rake task 'rake import_cd:import_raw' after creating your db to import the CSVs. From the database they rendered as json and can be accessed as explained in: http://mapwithcolor.herokuapp.com/apidocs/all.
 
-* Database initialization
+Technologies
 
-* How to run the test suite
+The map is rendered with D3 from a topojson file. The topojson file was created from the geojson downloaded from: http://www.naturalearthdata.com/downloads/. We used a medium scale cultural map.
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+The d3 is being used with angular to create data transitions. Datasets are stored in a postgres database and rendered as json with an active model serializer. Foundation was used for styling.
